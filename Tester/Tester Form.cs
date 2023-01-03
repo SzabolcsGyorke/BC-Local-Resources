@@ -12,12 +12,14 @@ using BCPrint;
 using System.IO;
 using static BCLRS.FileHelper;
 using BCLRS;
+using System.Diagnostics;
 
 namespace Tester
 {
     public partial class frm_tester : Form
     {
         WebServiceHelper wshelper;
+        WebAuthentication webAuthentication;
         List<WebDocument> documents;
         List<BCFolder> folders;
         AuthType authtype = AuthType.Basic;
@@ -58,19 +60,22 @@ namespace Tester
 
         private void frm_tester_Load(object sender, EventArgs e)
         {
-            rb_basicauth.Checked = true; rb_oauth.Checked = false;
+            cb_authtype.SelectedIndex = 0;
             tb_baseurl.Text = Properties.Settings.Default.BaseUrl.ToString();
             tb_username.Text = Properties.Settings.Default.UserName.ToString();
             tb_webkey.Text = Properties.Settings.Default.ApiKey.ToString();
             tb_instance.Text = Properties.Settings.Default.Instance.ToString();
-            rb_basicauth.Checked = (Properties.Settings.Default.AuthType == AuthType.Basic.ToString());
-            rb_oauth.Checked = (Properties.Settings.Default.AuthType == AuthType.oAuth.ToString());
+            cb_authtype.SelectedIndex = (Properties.Settings.Default.AuthType == AuthType.Basic.ToString()) ? 1 : 2;
             tb_dwfolder1.Text = Properties.Settings.Default.DownloadFolder1.ToString();
-
+            tb_scope.Text = Properties.Settings.Default.Scope;
+            tb_authurl.Text = Properties.Settings.Default.AuthUrl.ToString();
+            tb_redirecturl.Text = Properties.Settings.Default.RedirectURL.ToString();
             tb_timeinterval.Text = "10";
+            cb_folderdirection.SelectedIndex = 0;
 
-            if (rb_basicauth.Checked) authtype = AuthType.Basic;
-            else if (rb_oauth.Checked) authtype = AuthType.oAuth;
+            if (cb_authtype.SelectedIndex == 0) authtype = AuthType.Basic;
+            else authtype = AuthType.oAuth;
+
 
             UpdateConnectionDetails(authtype);
 
@@ -119,11 +124,8 @@ namespace Tester
 
         private void btn_getdocuments_Click(object sender, EventArgs e)
         {
-            if (wshelper == null)
-            {
-                wshelper = new WebServiceHelper(tb_baseurl.Text, authtype, tb_username.Text, tb_webkey.Text, tb_instance.Text);
-            }
-            //frm_tester.ActiveForm.UseWaitCursor = true;
+            InitAuthentication();
+
             documents = wshelper.GetDocumentsForPrint();
 
             lst_documents.Items.Clear();
@@ -170,22 +172,28 @@ namespace Tester
             }
         }
 
-        private void btn_registerinstance_Click(object sender, EventArgs e)
+        private void InitAuthentication()
         {
+            if (webAuthentication == null)
+            {
+                webAuthentication = new WebAuthentication(authtype, tb_username.Text, tb_webkey.Text, tb_username.Text, tb_webkey.Text, tb_authurl.Text, tb_redirecturl.Text, tb_scope.Text);
+            }
             if (wshelper == null)
             {
-                wshelper = new WebServiceHelper(tb_baseurl.Text, authtype, tb_username.Text, tb_webkey.Text, tb_instance.Text);
+                wshelper = new WebServiceHelper(tb_baseurl.Text, webAuthentication, tb_instance.Text);
             }
+        }
+
+        private void btn_registerinstance_Click(object sender, EventArgs e)
+        {
+            InitAuthentication();
 
             wshelper.RegisterInstance();
         }
 
         private void btn_updateheartbeat_Click(object sender, EventArgs e)
         {
-            if (wshelper == null)
-            {
-                wshelper = new WebServiceHelper(tb_baseurl.Text, authtype, tb_username.Text, tb_webkey.Text, tb_instance.Text);
-            }
+            InitAuthentication();
             wshelper.UpdateBCHeartbeat();
         }
 
@@ -238,10 +246,7 @@ namespace Tester
 
         private void btn_updatefolders_Click(object sender, EventArgs e)
         {
-            if (wshelper == null)
-            {
-                wshelper = new WebServiceHelper(tb_baseurl.Text, authtype, tb_username.Text, tb_webkey.Text, tb_instance.Text);
-            }
+            InitAuthentication();
 
             wshelper.RegisterFolder(tb_dwfolder1.Text, 1);
 
@@ -249,40 +254,17 @@ namespace Tester
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (wshelper == null)
-            {
-                wshelper = new WebServiceHelper(tb_baseurl.Text, authtype, tb_username.Text, tb_webkey.Text, tb_instance.Text);
-            }
+            InitAuthentication();
             BCLRS.FileHelper filehelper = new FileHelper(wshelper);
             filehelper.SyncBCFolders();
 
         }
 
-        private void rb_basicauth_CheckedChanged(object sender, EventArgs e)
-        {
-            if (this.rb_basicauth.Checked)
-            {
-                authtype = AuthType.Basic;
-                Properties.Settings.Default.AuthType = authtype.ToString();
-                Properties.Settings.Default.Save();
-            }
-            UpdateConnectionDetails(authtype);
-        }
 
-        private void rb_oauth_CheckedChanged(object sender, EventArgs e)
-        {
-            if (this.rb_oauth.Checked)
-            {
-                authtype = AuthType.oAuth;
-                Properties.Settings.Default.AuthType = authtype.ToString();
-                Properties.Settings.Default.Save();
-            }
-            UpdateConnectionDetails(authtype);
-        }
 
         private void btn_tokeninfo_Click(object sender, EventArgs e)
         {
-            contextMenuStrip1.Show(btn_tokeninfo, new Point(0, btn_tokeninfo.Height));
+            MessageBox.Show(webAuthentication.GetTokenInfo(), "Token", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void tokenInfoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -308,10 +290,7 @@ namespace Tester
 
         private void btn_getFolders_Click(object sender, EventArgs e)
         {
-            if (wshelper == null)
-            {
-                wshelper = new WebServiceHelper(tb_baseurl.Text, authtype, tb_username.Text, tb_webkey.Text, tb_instance.Text);
-            }
+            InitAuthentication();
 
             folders = wshelper.GetBCFolders();
 
@@ -364,10 +343,7 @@ namespace Tester
                 lbl_remtime.Text = (numberoftick + 1).ToString();
 
 
-            if (wshelper == null)
-            {
-                wshelper = new WebServiceHelper(tb_baseurl.Text, authtype, tb_username.Text, tb_webkey.Text, tb_instance.Text);
-            }
+            InitAuthentication();
             //update heartbeat
             if (cb_heartbeat.Checked)
             {
@@ -380,36 +356,58 @@ namespace Tester
 
             }
             //Syncfiles
-            BCLRS.FileHelper filehelper = new FileHelper(wshelper);
-            if (filehelper.SyncBCFolders())
-                lst_timerlog.Items.Add(new ListViewItem(new[] { DateTime.Now.ToString(), "Sync folders", "OK" }));
-            else
-                lst_timerlog.Items.Add(new ListViewItem(new[] { DateTime.Now.ToString(), "Sync folders", filehelper.ErrorText }));
-
-            //Print
-            documents = wshelper.GetDocumentsForPrint();
-            lst_timerlog.Items.Add(new ListViewItem(new[] { DateTime.Now.ToString(), "Document query", filehelper.ErrorText }));
-            lst_documents.Items.Clear();
-            if (documents.Count > 0)
+            if (cb_timedfilesync.Checked)
             {
-                lst_timerlog.Items.Add(new ListViewItem(new[] { DateTime.Now.ToString(), "Document query", String.Format("Document(s) found: {0}", documents.Count) }));
-                foreach (WebDocument doc in documents)
+                BCLRS.FileHelper filehelper = new FileHelper(wshelper);
+                if (filehelper.SyncBCFolders())
+                    lst_timerlog.Items.Add(new ListViewItem(new[] { DateTime.Now.ToString(), "Sync folders", "OK" }));
+                else
+                    lst_timerlog.Items.Add(new ListViewItem(new[] { DateTime.Now.ToString(), "Sync folders", filehelper.ErrorText }));
+            }
+            //Print
+            if (cb_timedprint.Checked)
+            {
+                documents = wshelper.GetDocumentsForPrint();
+                lst_timerlog.Items.Add(new ListViewItem(new[] { DateTime.Now.ToString(), "Document query", wshelper.ErrorText }));
+                lst_documents.Items.Clear();
+                if (documents.Count > 0)
                 {
-                    string tempFile = Path.GetTempFileName();
-                    if (wshelper.GetBCDocument(doc.DocumentGUID, tempFile))
-                    { 
-                    LocalPrinterHelper.SendPdfFileToPrinter(cb_printer.Text, tempFile, doc.DocumentName);
-                    wshelper.SetBCDocumentComplete(doc.DocumentGUID);
-                        lst_timerlog.Items.Add(new ListViewItem(new[] { DateTime.Now.ToString(), "Document query", String.Format("Printed: {0}", doc.DocumentName) }));
-                    } else
-                        lst_timerlog.Items.Add(new ListViewItem(new[] { DateTime.Now.ToString(), "Document query",wshelper.ErrorText }));
+                    lst_timerlog.Items.Add(new ListViewItem(new[] { DateTime.Now.ToString(), "Document query", String.Format("Document(s) found: {0}", documents.Count) }));
+                    foreach (WebDocument doc in documents)
+                    {
+                        string tempFile = Path.GetTempFileName();
+                        if (wshelper.GetBCDocument(doc.DocumentGUID, tempFile))
+                        {
+                            LocalPrinterHelper.SendPdfFileToPrinter(cb_printer.Text, tempFile, doc.DocumentName);
+                            wshelper.SetBCDocumentComplete(doc.DocumentGUID);
+                            lst_timerlog.Items.Add(new ListViewItem(new[] { DateTime.Now.ToString(), "Document query", String.Format("Printed: {0}", doc.DocumentName) }));
+                        }
+                        else
+                            lst_timerlog.Items.Add(new ListViewItem(new[] { DateTime.Now.ToString(), "Document query", wshelper.ErrorText }));
+                    }
+                }
+                else
+                {
+                    if (wshelper.ErrorText != "")
+                    {
+                        lst_timerlog.Items.Add(new ListViewItem(new[] { DateTime.Now.ToString(), "Printing", wshelper.ErrorText }));
+                    }
                 }
             }
-            else
+            //command
+            if (cb_command.Checked)
             {
-                if (wshelper.ErrorText != "")
+                List<WebCommand> commands = wshelper.GetWebCommands();
+
+                lst_commands.Items.Clear();
+                if (commands.Count > 0)
                 {
-                    lst_timerlog.Items.Add(new ListViewItem(new[] { DateTime.Now.ToString(), "Printing", filehelper.ErrorText }));
+                    foreach (WebCommand command in commands)
+                    {
+                        ExecuteCommand(command.Command);
+                        wshelper.SetBCDocumentComplete(command.CommandGUID);
+                        lst_timerlog.Items.Add(new ListViewItem(new[] { DateTime.Now.ToString(), "Command", command.Command }));
+                    }
                 }
             }
         }
@@ -422,6 +420,98 @@ namespace Tester
             }
         }
 
+        private void tb_authurl_TextChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.AuthUrl = tb_authurl.Text;
+            Properties.Settings.Default.Save();
+        }
 
+        private void tb_redirecturl_TextChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.RedirectURL = tb_redirecturl.Text;
+            Properties.Settings.Default.Save();
+        }
+
+        private void tb_scope_TextChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.Scope = tb_scope.Text;
+            Properties.Settings.Default.Save();
+        }
+
+        private void btn_updatefolders_Click_1(object sender, EventArgs e)
+        {
+            InitAuthentication();
+
+            wshelper.RegisterFolder(tb_dwfolder1.Text, cb_folderdirection.SelectedIndex + 1);
+        }
+
+        private void btn_resetauth_Click(object sender, EventArgs e)
+        {
+            wshelper = null;
+            webAuthentication = null;
+        }
+
+        private void cb_authtype_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (this.cb_authtype.SelectedIndex == 0)
+            {
+                authtype = AuthType.Basic;
+                Properties.Settings.Default.AuthType = authtype.ToString();
+                Properties.Settings.Default.Save();
+            }
+            else
+            {
+                authtype = AuthType.oAuth;
+                Properties.Settings.Default.AuthType = authtype.ToString();
+                Properties.Settings.Default.Save();
+            }
+            UpdateConnectionDetails(authtype);
+        }
+
+        private void btn_getcommands_Click(object sender, EventArgs e)
+        {
+            InitAuthentication();
+            List<WebCommand> commands = wshelper.GetWebCommands();
+
+            lst_commands.Items.Clear();
+            if (commands.Count > 0)
+            {
+                foreach (WebCommand command in commands)
+                {
+                    lst_commands.Items.Add(new ListViewItem(new[] { command.CommandGUID.ToString(), command.Command, command.Done.ToString() }));
+                }
+            }
+        }
+
+        private void btn_exexcommand_Click(object sender, EventArgs e)
+        {
+            InitAuthentication();
+            foreach (ListViewItem selecteddoc in lst_commands.SelectedItems)
+            {
+                ExecuteCommand(selecteddoc.SubItems[1].Text);
+                wshelper.SetBCDocumentComplete(Guid.Parse(selecteddoc.SubItems[0].Text));
+                selecteddoc.SubItems[2].Text = "true";
+            }
+        }
+
+        private void ExecuteCommand(string _command)
+        {
+            ProcessStartInfo startInfo = new ProcessStartInfo();
+            startInfo.FileName = _command;
+
+            startInfo.WindowStyle = ProcessWindowStyle.Hidden;
+            startInfo.CreateNoWindow = true;
+            startInfo.ErrorDialog = false;
+            startInfo.UseShellExecute = false;
+
+            Process process = Process.Start(startInfo);
+        }
+
+
+
+        private void lst_timerlog_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+
+        }
     }
 }

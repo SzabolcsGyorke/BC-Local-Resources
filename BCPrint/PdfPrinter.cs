@@ -131,11 +131,9 @@ namespace BCPrint
                     process.Kill();
                 }
             }
-            catch (Exception ex)
+            catch (Exception eee)
             {
-                // ReSharper disable PossibleIntendedRethrow
-                throw ex;
-                // ReSharper restore PossibleIntendedRethrow
+                throw eee;    
             }
         }
 

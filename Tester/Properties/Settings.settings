@@ -32,5 +32,14 @@
     <Setting Name="AuthType" Type="System.String" Scope="User">
       <Value Profile="(Default)">Basic</Value>
     </Setting>
+    <Setting Name="AuthUrl" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="Scope" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://api.businesscentral.dynamics.com/.default</Value>
+    </Setting>
+    <Setting Name="RedirectURL" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

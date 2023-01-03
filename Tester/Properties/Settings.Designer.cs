@@ -140,5 +140,41 @@ namespace Tester.Properties {
                 this["AuthType"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string AuthUrl {
+            get {
+                return ((string)(this["AuthUrl"]));
+            }
+            set {
+                this["AuthUrl"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://api.businesscentral.dynamics.com/.default")]
+        public string Scope {
+            get {
+                return ((string)(this["Scope"]));
+            }
+            set {
+                this["Scope"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string RedirectURL {
+            get {
+                return ((string)(this["RedirectURL"]));
+            }
+            set {
+                this["RedirectURL"] = value;
+            }
+        }
     }
 }

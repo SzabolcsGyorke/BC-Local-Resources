@@ -34,6 +34,7 @@
             this.tc = new System.Windows.Forms.TabControl();
             this.TPage_Print = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btn_markascompleted = new System.Windows.Forms.Button();
             this.btn_savefile = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.cb_printer = new System.Windows.Forms.ComboBox();
@@ -46,6 +47,12 @@
             this.UseRawPrint = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btn_getdocuments = new System.Windows.Forms.Button();
             this.tpage_local = new System.Windows.Forms.TabPage();
+            this.btn_exexcommand = new System.Windows.Forms.Button();
+            this.btn_getcommands = new System.Windows.Forms.Button();
+            this.lst_commands = new System.Windows.Forms.ListView();
+            this.col_guid = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.col_Command = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.col_completed = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label7 = new System.Windows.Forms.Label();
             this.lb_printers = new System.Windows.Forms.ComboBox();
@@ -56,7 +63,7 @@
             this.TPage_File = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btn_folderbrowse = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cb_folderdirection = new System.Windows.Forms.ComboBox();
             this.btn_updatefolders = new System.Windows.Forms.Button();
             this.tb_dwfolder1 = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -66,7 +73,21 @@
             this.Enabled = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btn_getFolders = new System.Windows.Forms.Button();
             this.btn_uploadfolder1 = new System.Windows.Forms.Button();
+            this.TPage_Timer = new System.Windows.Forms.TabPage();
+            this.cb_heartbeat = new System.Windows.Forms.CheckBox();
+            this.lst_timerlog = new System.Windows.Forms.ListView();
+            this.col_datetime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.col_func = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.col_status = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.cb_timedfilesync = new System.Windows.Forms.CheckBox();
+            this.cb_timedprint = new System.Windows.Forms.CheckBox();
+            this.lbl_remtime = new System.Windows.Forms.Label();
+            this.btn_starttimer = new System.Windows.Forms.Button();
+            this.lbl_timeinterval = new System.Windows.Forms.Label();
+            this.tb_timeinterval = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.cb_authtype = new System.Windows.Forms.ComboBox();
+            this.btn_resetauth = new System.Windows.Forms.Button();
             this.tb_scope = new System.Windows.Forms.TextBox();
             this.lbl_scope = new System.Windows.Forms.Label();
             this.tb_redirecturl = new System.Windows.Forms.TextBox();
@@ -74,12 +95,7 @@
             this.tb_authurl = new System.Windows.Forms.TextBox();
             this.lbl_authurl = new System.Windows.Forms.Label();
             this.btn_tokeninfo = new System.Windows.Forms.Button();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tokenInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.azureDefultsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label5 = new System.Windows.Forms.Label();
-            this.rb_oauth = new System.Windows.Forms.RadioButton();
-            this.rb_basicauth = new System.Windows.Forms.RadioButton();
             this.btn_updateheartbeat = new System.Windows.Forms.Button();
             this.btn_registerinstance = new System.Windows.Forms.Button();
             this.tb_webkey = new System.Windows.Forms.TextBox();
@@ -90,21 +106,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.tb_instance = new System.Windows.Forms.TextBox();
             this.lbl_instance = new System.Windows.Forms.Label();
-            this.btn_markascompleted = new System.Windows.Forms.Button();
-            this.TPage_Timer = new System.Windows.Forms.TabPage();
             this.timer_Job = new System.Windows.Forms.Timer(this.components);
-            this.tb_timeinterval = new System.Windows.Forms.TextBox();
-            this.lbl_timeinterval = new System.Windows.Forms.Label();
-            this.btn_starttimer = new System.Windows.Forms.Button();
-            this.lbl_remtime = new System.Windows.Forms.Label();
-            this.cb_timedprint = new System.Windows.Forms.CheckBox();
-            this.cb_timedfilesync = new System.Windows.Forms.CheckBox();
-            this.lst_timerlog = new System.Windows.Forms.ListView();
-            this.col_datetime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.col_func = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.col_status = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.cb_heartbeat = new System.Windows.Forms.CheckBox();
             this.webDocumentBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cb_command = new System.Windows.Forms.CheckBox();
             this.tc.SuspendLayout();
             this.TPage_Print.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -112,9 +116,8 @@
             this.groupBox2.SuspendLayout();
             this.TPage_File.SuspendLayout();
             this.groupBox4.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            this.contextMenuStrip1.SuspendLayout();
             this.TPage_Timer.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.webDocumentBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -162,6 +165,17 @@
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Printing";
+            // 
+            // btn_markascompleted
+            // 
+            this.btn_markascompleted.Location = new System.Drawing.Point(15, 303);
+            this.btn_markascompleted.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_markascompleted.Name = "btn_markascompleted";
+            this.btn_markascompleted.Size = new System.Drawing.Size(177, 35);
+            this.btn_markascompleted.TabIndex = 16;
+            this.btn_markascompleted.Text = "Mark as Completed";
+            this.btn_markascompleted.UseVisualStyleBackColor = true;
+            this.btn_markascompleted.Click += new System.EventHandler(this.btn_markascompleted_Click);
             // 
             // btn_savefile
             // 
@@ -263,6 +277,9 @@
             // 
             // tpage_local
             // 
+            this.tpage_local.Controls.Add(this.btn_exexcommand);
+            this.tpage_local.Controls.Add(this.btn_getcommands);
+            this.tpage_local.Controls.Add(this.lst_commands);
             this.tpage_local.Controls.Add(this.groupBox2);
             this.tpage_local.Location = new System.Drawing.Point(4, 29);
             this.tpage_local.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -272,6 +289,59 @@
             this.tpage_local.TabIndex = 1;
             this.tpage_local.Text = "Local functions";
             this.tpage_local.UseVisualStyleBackColor = true;
+            // 
+            // btn_exexcommand
+            // 
+            this.btn_exexcommand.Location = new System.Drawing.Point(394, 436);
+            this.btn_exexcommand.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_exexcommand.Name = "btn_exexcommand";
+            this.btn_exexcommand.Size = new System.Drawing.Size(177, 35);
+            this.btn_exexcommand.TabIndex = 16;
+            this.btn_exexcommand.Text = "Execute";
+            this.btn_exexcommand.UseVisualStyleBackColor = true;
+            this.btn_exexcommand.Click += new System.EventHandler(this.btn_exexcommand_Click);
+            // 
+            // btn_getcommands
+            // 
+            this.btn_getcommands.Location = new System.Drawing.Point(209, 436);
+            this.btn_getcommands.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_getcommands.Name = "btn_getcommands";
+            this.btn_getcommands.Size = new System.Drawing.Size(177, 35);
+            this.btn_getcommands.TabIndex = 15;
+            this.btn_getcommands.Text = "Get Commands";
+            this.btn_getcommands.UseVisualStyleBackColor = true;
+            this.btn_getcommands.Click += new System.EventHandler(this.btn_getcommands_Click);
+            // 
+            // lst_commands
+            // 
+            this.lst_commands.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.col_guid,
+            this.col_Command,
+            this.col_completed});
+            this.lst_commands.FullRowSelect = true;
+            this.lst_commands.HideSelection = false;
+            this.lst_commands.Location = new System.Drawing.Point(12, 187);
+            this.lst_commands.MultiSelect = false;
+            this.lst_commands.Name = "lst_commands";
+            this.lst_commands.Size = new System.Drawing.Size(559, 241);
+            this.lst_commands.TabIndex = 9;
+            this.lst_commands.UseCompatibleStateImageBehavior = false;
+            this.lst_commands.View = System.Windows.Forms.View.Details;
+            // 
+            // col_guid
+            // 
+            this.col_guid.Text = "Guid";
+            this.col_guid.Width = 100;
+            // 
+            // col_Command
+            // 
+            this.col_Command.Text = "Command";
+            this.col_Command.Width = 338;
+            // 
+            // col_completed
+            // 
+            this.col_completed.Text = "Completed";
+            this.col_completed.Width = 82;
             // 
             // groupBox2
             // 
@@ -370,7 +440,7 @@
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.btn_folderbrowse);
-            this.groupBox4.Controls.Add(this.comboBox1);
+            this.groupBox4.Controls.Add(this.cb_folderdirection);
             this.groupBox4.Controls.Add(this.btn_updatefolders);
             this.groupBox4.Controls.Add(this.tb_dwfolder1);
             this.groupBox4.Controls.Add(this.label8);
@@ -393,16 +463,16 @@
             this.btn_folderbrowse.UseVisualStyleBackColor = true;
             this.btn_folderbrowse.Click += new System.EventHandler(this.btn_folderbrowse_Click_1);
             // 
-            // comboBox1
+            // cb_folderdirection
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Upload from Client",
-            "Download from BC"});
-            this.comboBox1.Location = new System.Drawing.Point(423, 27);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(156, 28);
-            this.comboBox1.TabIndex = 36;
+            this.cb_folderdirection.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cb_folderdirection.Items.AddRange(new object[] {
+            "Download from BC",
+            "Upload from Client"});
+            this.cb_folderdirection.Location = new System.Drawing.Point(423, 27);
+            this.cb_folderdirection.Name = "cb_folderdirection";
+            this.cb_folderdirection.Size = new System.Drawing.Size(156, 28);
+            this.cb_folderdirection.TabIndex = 36;
             // 
             // btn_updatefolders
             // 
@@ -413,6 +483,7 @@
             this.btn_updatefolders.TabIndex = 35;
             this.btn_updatefolders.Text = "Register";
             this.btn_updatefolders.UseVisualStyleBackColor = true;
+            this.btn_updatefolders.Click += new System.EventHandler(this.btn_updatefolders_Click_1);
             // 
             // tb_dwfolder1
             // 
@@ -485,8 +556,128 @@
             this.btn_uploadfolder1.UseVisualStyleBackColor = true;
             this.btn_uploadfolder1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // TPage_Timer
+            // 
+            this.TPage_Timer.Controls.Add(this.cb_command);
+            this.TPage_Timer.Controls.Add(this.cb_heartbeat);
+            this.TPage_Timer.Controls.Add(this.lst_timerlog);
+            this.TPage_Timer.Controls.Add(this.cb_timedfilesync);
+            this.TPage_Timer.Controls.Add(this.cb_timedprint);
+            this.TPage_Timer.Controls.Add(this.lbl_remtime);
+            this.TPage_Timer.Controls.Add(this.btn_starttimer);
+            this.TPage_Timer.Controls.Add(this.lbl_timeinterval);
+            this.TPage_Timer.Controls.Add(this.tb_timeinterval);
+            this.TPage_Timer.Location = new System.Drawing.Point(4, 29);
+            this.TPage_Timer.Name = "TPage_Timer";
+            this.TPage_Timer.Padding = new System.Windows.Forms.Padding(3);
+            this.TPage_Timer.Size = new System.Drawing.Size(601, 485);
+            this.TPage_Timer.TabIndex = 3;
+            this.TPage_Timer.Text = "Timer";
+            this.TPage_Timer.UseVisualStyleBackColor = true;
+            // 
+            // cb_heartbeat
+            // 
+            this.cb_heartbeat.AutoSize = true;
+            this.cb_heartbeat.Location = new System.Drawing.Point(357, 55);
+            this.cb_heartbeat.Name = "cb_heartbeat";
+            this.cb_heartbeat.Size = new System.Drawing.Size(107, 24);
+            this.cb_heartbeat.TabIndex = 43;
+            this.cb_heartbeat.Text = "Heartbeat";
+            this.cb_heartbeat.UseVisualStyleBackColor = true;
+            // 
+            // lst_timerlog
+            // 
+            this.lst_timerlog.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.col_datetime,
+            this.col_func,
+            this.col_status});
+            this.lst_timerlog.FullRowSelect = true;
+            this.lst_timerlog.GridLines = true;
+            this.lst_timerlog.HideSelection = false;
+            this.lst_timerlog.Location = new System.Drawing.Point(12, 85);
+            this.lst_timerlog.MultiSelect = false;
+            this.lst_timerlog.Name = "lst_timerlog";
+            this.lst_timerlog.Size = new System.Drawing.Size(583, 394);
+            this.lst_timerlog.Sorting = System.Windows.Forms.SortOrder.Descending;
+            this.lst_timerlog.TabIndex = 42;
+            this.lst_timerlog.UseCompatibleStateImageBehavior = false;
+            this.lst_timerlog.View = System.Windows.Forms.View.Details;
+            this.lst_timerlog.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lst_timerlog_MouseDoubleClick);
+            // 
+            // col_datetime
+            // 
+            this.col_datetime.Text = "DateTime";
+            this.col_datetime.Width = 108;
+            // 
+            // col_func
+            // 
+            this.col_func.Text = "Function";
+            this.col_func.Width = 136;
+            // 
+            // col_status
+            // 
+            this.col_status.Text = "Status";
+            this.col_status.Width = 350;
+            // 
+            // cb_timedfilesync
+            // 
+            this.cb_timedfilesync.AutoSize = true;
+            this.cb_timedfilesync.Location = new System.Drawing.Point(126, 55);
+            this.cb_timedfilesync.Name = "cb_timedfilesync";
+            this.cb_timedfilesync.Size = new System.Drawing.Size(103, 24);
+            this.cb_timedfilesync.TabIndex = 41;
+            this.cb_timedfilesync.Text = "File Sync.";
+            this.cb_timedfilesync.UseVisualStyleBackColor = true;
+            // 
+            // cb_timedprint
+            // 
+            this.cb_timedprint.AutoSize = true;
+            this.cb_timedprint.Location = new System.Drawing.Point(13, 55);
+            this.cb_timedprint.Name = "cb_timedprint";
+            this.cb_timedprint.Size = new System.Drawing.Size(88, 24);
+            this.cb_timedprint.TabIndex = 40;
+            this.cb_timedprint.Text = "Printing";
+            this.cb_timedprint.UseVisualStyleBackColor = true;
+            // 
+            // lbl_remtime
+            // 
+            this.lbl_remtime.AutoSize = true;
+            this.lbl_remtime.Location = new System.Drawing.Point(262, 18);
+            this.lbl_remtime.Name = "lbl_remtime";
+            this.lbl_remtime.Size = new System.Drawing.Size(0, 20);
+            this.lbl_remtime.TabIndex = 39;
+            // 
+            // btn_starttimer
+            // 
+            this.btn_starttimer.Location = new System.Drawing.Point(414, 10);
+            this.btn_starttimer.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_starttimer.Name = "btn_starttimer";
+            this.btn_starttimer.Size = new System.Drawing.Size(177, 37);
+            this.btn_starttimer.TabIndex = 38;
+            this.btn_starttimer.Text = "Start";
+            this.btn_starttimer.UseVisualStyleBackColor = false;
+            this.btn_starttimer.Click += new System.EventHandler(this.btn_starttimer_Click);
+            // 
+            // lbl_timeinterval
+            // 
+            this.lbl_timeinterval.AutoSize = true;
+            this.lbl_timeinterval.Location = new System.Drawing.Point(12, 18);
+            this.lbl_timeinterval.Name = "lbl_timeinterval";
+            this.lbl_timeinterval.Size = new System.Drawing.Size(136, 20);
+            this.lbl_timeinterval.TabIndex = 1;
+            this.lbl_timeinterval.Text = "Time interval (sec)";
+            // 
+            // tb_timeinterval
+            // 
+            this.tb_timeinterval.Location = new System.Drawing.Point(156, 15);
+            this.tb_timeinterval.Name = "tb_timeinterval";
+            this.tb_timeinterval.Size = new System.Drawing.Size(100, 26);
+            this.tb_timeinterval.TabIndex = 0;
+            // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.cb_authtype);
+            this.groupBox3.Controls.Add(this.btn_resetauth);
             this.groupBox3.Controls.Add(this.tb_scope);
             this.groupBox3.Controls.Add(this.lbl_scope);
             this.groupBox3.Controls.Add(this.tb_redirecturl);
@@ -495,8 +686,6 @@
             this.groupBox3.Controls.Add(this.lbl_authurl);
             this.groupBox3.Controls.Add(this.btn_tokeninfo);
             this.groupBox3.Controls.Add(this.label5);
-            this.groupBox3.Controls.Add(this.rb_oauth);
-            this.groupBox3.Controls.Add(this.rb_basicauth);
             this.groupBox3.Controls.Add(this.btn_updateheartbeat);
             this.groupBox3.Controls.Add(this.btn_registerinstance);
             this.groupBox3.Controls.Add(this.tb_webkey);
@@ -514,6 +703,29 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Connection";
             // 
+            // cb_authtype
+            // 
+            this.cb_authtype.FormattingEnabled = true;
+            this.cb_authtype.Items.AddRange(new object[] {
+            "Basic",
+            "oAuth"});
+            this.cb_authtype.Location = new System.Drawing.Point(160, 53);
+            this.cb_authtype.Name = "cb_authtype";
+            this.cb_authtype.Size = new System.Drawing.Size(181, 28);
+            this.cb_authtype.TabIndex = 39;
+            this.cb_authtype.SelectedIndexChanged += new System.EventHandler(this.cb_authtype_SelectedIndexChanged);
+            // 
+            // btn_resetauth
+            // 
+            this.btn_resetauth.Location = new System.Drawing.Point(418, 49);
+            this.btn_resetauth.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_resetauth.Name = "btn_resetauth";
+            this.btn_resetauth.Size = new System.Drawing.Size(173, 35);
+            this.btn_resetauth.TabIndex = 38;
+            this.btn_resetauth.Text = "Clear Auth Cache";
+            this.btn_resetauth.UseVisualStyleBackColor = true;
+            this.btn_resetauth.Click += new System.EventHandler(this.btn_resetauth_Click);
+            // 
             // tb_scope
             // 
             this.tb_scope.Location = new System.Drawing.Point(160, 237);
@@ -521,6 +733,7 @@
             this.tb_scope.Name = "tb_scope";
             this.tb_scope.Size = new System.Drawing.Size(380, 26);
             this.tb_scope.TabIndex = 37;
+            this.tb_scope.TextChanged += new System.EventHandler(this.tb_scope_TextChanged);
             // 
             // lbl_scope
             // 
@@ -539,6 +752,7 @@
             this.tb_redirecturl.Name = "tb_redirecturl";
             this.tb_redirecturl.Size = new System.Drawing.Size(380, 26);
             this.tb_redirecturl.TabIndex = 35;
+            this.tb_redirecturl.TextChanged += new System.EventHandler(this.tb_redirecturl_TextChanged);
             // 
             // lbl_redirecturl
             // 
@@ -557,6 +771,7 @@
             this.tb_authurl.Name = "tb_authurl";
             this.tb_authurl.Size = new System.Drawing.Size(380, 26);
             this.tb_authurl.TabIndex = 33;
+            this.tb_authurl.TextChanged += new System.EventHandler(this.tb_authurl_TextChanged);
             // 
             // lbl_authurl
             // 
@@ -570,7 +785,6 @@
             // 
             // btn_tokeninfo
             // 
-            this.btn_tokeninfo.ContextMenuStrip = this.contextMenuStrip1;
             this.btn_tokeninfo.Location = new System.Drawing.Point(77, 292);
             this.btn_tokeninfo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_tokeninfo.Name = "btn_tokeninfo";
@@ -580,28 +794,6 @@
             this.btn_tokeninfo.UseVisualStyleBackColor = true;
             this.btn_tokeninfo.Click += new System.EventHandler(this.btn_tokeninfo_Click);
             // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tokenInfoToolStripMenuItem,
-            this.azureDefultsToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(191, 68);
-            // 
-            // tokenInfoToolStripMenuItem
-            // 
-            this.tokenInfoToolStripMenuItem.Name = "tokenInfoToolStripMenuItem";
-            this.tokenInfoToolStripMenuItem.Size = new System.Drawing.Size(190, 32);
-            this.tokenInfoToolStripMenuItem.Text = "Token Info";
-            this.tokenInfoToolStripMenuItem.Click += new System.EventHandler(this.tokenInfoToolStripMenuItem_Click);
-            // 
-            // azureDefultsToolStripMenuItem
-            // 
-            this.azureDefultsToolStripMenuItem.Name = "azureDefultsToolStripMenuItem";
-            this.azureDefultsToolStripMenuItem.Size = new System.Drawing.Size(190, 32);
-            this.azureDefultsToolStripMenuItem.Text = "Azure Defults";
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -610,30 +802,6 @@
             this.label5.Size = new System.Drawing.Size(112, 20);
             this.label5.TabIndex = 30;
             this.label5.Text = "Authentication";
-            // 
-            // rb_oauth
-            // 
-            this.rb_oauth.AutoSize = true;
-            this.rb_oauth.Location = new System.Drawing.Point(271, 52);
-            this.rb_oauth.Name = "rb_oauth";
-            this.rb_oauth.Size = new System.Drawing.Size(77, 24);
-            this.rb_oauth.TabIndex = 29;
-            this.rb_oauth.TabStop = true;
-            this.rb_oauth.Text = "oAuth";
-            this.rb_oauth.UseVisualStyleBackColor = true;
-            this.rb_oauth.CheckedChanged += new System.EventHandler(this.rb_oauth_CheckedChanged);
-            // 
-            // rb_basicauth
-            // 
-            this.rb_basicauth.AutoSize = true;
-            this.rb_basicauth.Location = new System.Drawing.Point(160, 53);
-            this.rb_basicauth.Name = "rb_basicauth";
-            this.rb_basicauth.Size = new System.Drawing.Size(73, 24);
-            this.rb_basicauth.TabIndex = 28;
-            this.rb_basicauth.TabStop = true;
-            this.rb_basicauth.Text = "Basic";
-            this.rb_basicauth.UseVisualStyleBackColor = true;
-            this.rb_basicauth.CheckedChanged += new System.EventHandler(this.rb_basicauth_CheckedChanged);
             // 
             // btn_updateheartbeat
             // 
@@ -730,140 +898,23 @@
             this.lbl_instance.TabIndex = 11;
             this.lbl_instance.Text = "Instance";
             // 
-            // btn_markascompleted
-            // 
-            this.btn_markascompleted.Location = new System.Drawing.Point(15, 303);
-            this.btn_markascompleted.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btn_markascompleted.Name = "btn_markascompleted";
-            this.btn_markascompleted.Size = new System.Drawing.Size(177, 35);
-            this.btn_markascompleted.TabIndex = 16;
-            this.btn_markascompleted.Text = "Mark as Completed";
-            this.btn_markascompleted.UseVisualStyleBackColor = true;
-            this.btn_markascompleted.Click += new System.EventHandler(this.btn_markascompleted_Click);
-            // 
-            // TPage_Timer
-            // 
-            this.TPage_Timer.Controls.Add(this.cb_heartbeat);
-            this.TPage_Timer.Controls.Add(this.lst_timerlog);
-            this.TPage_Timer.Controls.Add(this.cb_timedfilesync);
-            this.TPage_Timer.Controls.Add(this.cb_timedprint);
-            this.TPage_Timer.Controls.Add(this.lbl_remtime);
-            this.TPage_Timer.Controls.Add(this.btn_starttimer);
-            this.TPage_Timer.Controls.Add(this.lbl_timeinterval);
-            this.TPage_Timer.Controls.Add(this.tb_timeinterval);
-            this.TPage_Timer.Location = new System.Drawing.Point(4, 29);
-            this.TPage_Timer.Name = "TPage_Timer";
-            this.TPage_Timer.Padding = new System.Windows.Forms.Padding(3);
-            this.TPage_Timer.Size = new System.Drawing.Size(601, 485);
-            this.TPage_Timer.TabIndex = 3;
-            this.TPage_Timer.Text = "Timer";
-            this.TPage_Timer.UseVisualStyleBackColor = true;
-            // 
             // timer_Job
             // 
             this.timer_Job.Tick += new System.EventHandler(this.timer_Job_Tick);
             // 
-            // tb_timeinterval
-            // 
-            this.tb_timeinterval.Location = new System.Drawing.Point(156, 15);
-            this.tb_timeinterval.Name = "tb_timeinterval";
-            this.tb_timeinterval.Size = new System.Drawing.Size(100, 26);
-            this.tb_timeinterval.TabIndex = 0;
-            // 
-            // lbl_timeinterval
-            // 
-            this.lbl_timeinterval.AutoSize = true;
-            this.lbl_timeinterval.Location = new System.Drawing.Point(12, 18);
-            this.lbl_timeinterval.Name = "lbl_timeinterval";
-            this.lbl_timeinterval.Size = new System.Drawing.Size(136, 20);
-            this.lbl_timeinterval.TabIndex = 1;
-            this.lbl_timeinterval.Text = "Time interval (sec)";
-            // 
-            // btn_starttimer
-            // 
-            this.btn_starttimer.Location = new System.Drawing.Point(414, 10);
-            this.btn_starttimer.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btn_starttimer.Name = "btn_starttimer";
-            this.btn_starttimer.Size = new System.Drawing.Size(177, 37);
-            this.btn_starttimer.TabIndex = 38;
-            this.btn_starttimer.Text = "Start";
-            this.btn_starttimer.UseVisualStyleBackColor = false;
-            this.btn_starttimer.Click += new System.EventHandler(this.btn_starttimer_Click);
-            // 
-            // lbl_remtime
-            // 
-            this.lbl_remtime.AutoSize = true;
-            this.lbl_remtime.Location = new System.Drawing.Point(262, 18);
-            this.lbl_remtime.Name = "lbl_remtime";
-            this.lbl_remtime.Size = new System.Drawing.Size(0, 20);
-            this.lbl_remtime.TabIndex = 39;
-            // 
-            // cb_timedprint
-            // 
-            this.cb_timedprint.AutoSize = true;
-            this.cb_timedprint.Location = new System.Drawing.Point(13, 55);
-            this.cb_timedprint.Name = "cb_timedprint";
-            this.cb_timedprint.Size = new System.Drawing.Size(88, 24);
-            this.cb_timedprint.TabIndex = 40;
-            this.cb_timedprint.Text = "Printing";
-            this.cb_timedprint.UseVisualStyleBackColor = true;
-            // 
-            // cb_timedfilesync
-            // 
-            this.cb_timedfilesync.AutoSize = true;
-            this.cb_timedfilesync.Location = new System.Drawing.Point(126, 55);
-            this.cb_timedfilesync.Name = "cb_timedfilesync";
-            this.cb_timedfilesync.Size = new System.Drawing.Size(103, 24);
-            this.cb_timedfilesync.TabIndex = 41;
-            this.cb_timedfilesync.Text = "File Sync.";
-            this.cb_timedfilesync.UseVisualStyleBackColor = true;
-            // 
-            // lst_timerlog
-            // 
-            this.lst_timerlog.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.col_datetime,
-            this.col_func,
-            this.col_status});
-            this.lst_timerlog.FullRowSelect = true;
-            this.lst_timerlog.GridLines = true;
-            this.lst_timerlog.HideSelection = false;
-            this.lst_timerlog.Location = new System.Drawing.Point(12, 85);
-            this.lst_timerlog.MultiSelect = false;
-            this.lst_timerlog.Name = "lst_timerlog";
-            this.lst_timerlog.Size = new System.Drawing.Size(583, 394);
-            this.lst_timerlog.Sorting = System.Windows.Forms.SortOrder.Descending;
-            this.lst_timerlog.TabIndex = 42;
-            this.lst_timerlog.UseCompatibleStateImageBehavior = false;
-            this.lst_timerlog.View = System.Windows.Forms.View.Details;
-            // 
-            // col_datetime
-            // 
-            this.col_datetime.Text = "DateTime";
-            this.col_datetime.Width = 108;
-            // 
-            // col_func
-            // 
-            this.col_func.Text = "Function";
-            this.col_func.Width = 136;
-            // 
-            // col_status
-            // 
-            this.col_status.Text = "Status";
-            this.col_status.Width = 350;
-            // 
-            // cb_heartbeat
-            // 
-            this.cb_heartbeat.AutoSize = true;
-            this.cb_heartbeat.Location = new System.Drawing.Point(235, 55);
-            this.cb_heartbeat.Name = "cb_heartbeat";
-            this.cb_heartbeat.Size = new System.Drawing.Size(107, 24);
-            this.cb_heartbeat.TabIndex = 43;
-            this.cb_heartbeat.Text = "Heartbeat";
-            this.cb_heartbeat.UseVisualStyleBackColor = true;
-            // 
             // webDocumentBindingSource
             // 
             this.webDocumentBindingSource.DataSource = typeof(BCLRS.WebDocument);
+            // 
+            // cb_command
+            // 
+            this.cb_command.AutoSize = true;
+            this.cb_command.Location = new System.Drawing.Point(235, 55);
+            this.cb_command.Name = "cb_command";
+            this.cb_command.Size = new System.Drawing.Size(116, 24);
+            this.cb_command.TabIndex = 44;
+            this.cb_command.Text = "Commands";
+            this.cb_command.UseVisualStyleBackColor = true;
             // 
             // frm_tester
             // 
@@ -891,11 +942,10 @@
             this.TPage_File.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
-            this.contextMenuStrip1.ResumeLayout(false);
             this.TPage_Timer.ResumeLayout(false);
             this.TPage_Timer.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.webDocumentBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -937,14 +987,9 @@
         private System.Windows.Forms.TabPage TPage_File;
         private System.Windows.Forms.Button btn_uploadfolder1;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.RadioButton rb_oauth;
-        private System.Windows.Forms.RadioButton rb_basicauth;
         private System.Windows.Forms.TextBox tb_instance;
         private System.Windows.Forms.Label lbl_instance;
         private System.Windows.Forms.Button btn_tokeninfo;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem tokenInfoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem azureDefultsToolStripMenuItem;
         private System.Windows.Forms.TextBox tb_scope;
         private System.Windows.Forms.Label lbl_scope;
         private System.Windows.Forms.TextBox tb_redirecturl;
@@ -960,7 +1005,7 @@
         private System.Windows.Forms.Button btn_getFolders;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Button btn_folderbrowse;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cb_folderdirection;
         private System.Windows.Forms.Button btn_updatefolders;
         private System.Windows.Forms.TextBox tb_dwfolder1;
         private System.Windows.Forms.Label label8;
@@ -978,6 +1023,15 @@
         private System.Windows.Forms.CheckBox cb_timedfilesync;
         private System.Windows.Forms.CheckBox cb_timedprint;
         private System.Windows.Forms.CheckBox cb_heartbeat;
+        private System.Windows.Forms.Button btn_resetauth;
+        private System.Windows.Forms.ComboBox cb_authtype;
+        private System.Windows.Forms.Button btn_exexcommand;
+        private System.Windows.Forms.Button btn_getcommands;
+        private System.Windows.Forms.ListView lst_commands;
+        private System.Windows.Forms.ColumnHeader col_guid;
+        private System.Windows.Forms.ColumnHeader col_Command;
+        private System.Windows.Forms.ColumnHeader col_completed;
+        private System.Windows.Forms.CheckBox cb_command;
     }
 }
 
