@@ -1,0 +1,18 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="BC_Print_Service.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="BaseUrl" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://api.businesscentral.dynamics.com/v2.0/f968cbe4-b4a1-48ff-9920-5224b47e606a/V15TestDev/WS/CRONUS%20UK%20Ltd./</Value>
+    </Setting>
+    <Setting Name="UserName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">SZABOLCS.GYORKE</Value>
+    </Setting>
+    <Setting Name="ApiKey" Type="System.String" Scope="User">
+      <Value Profile="(Default)">zLYZ0ZW1gjbpqZFnSq0zrV4fo2m/BvfFDaNTp0RluJY=</Value>
+    </Setting>
+    <Setting Name="Instance" Type="System.String" Scope="User">
+      <Value Profile="(Default)">SZABOLCSG-PC2</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

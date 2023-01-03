@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29418.71
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BCLRS", "BCPrint\BCLRS.csproj", "{52EA9C73-473E-4114-B5D5-83F1BE34628F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tester", "Tester\Tester.csproj", "{54A31A74-26AF-4F7C-89DF-99321CC14617}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BCLRSService", "BC Print Service\BCLRSService.csproj", "{7D04A91E-5DFF-4BD8-93DC-78D0E99427E1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{52EA9C73-473E-4114-B5D5-83F1BE34628F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52EA9C73-473E-4114-B5D5-83F1BE34628F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52EA9C73-473E-4114-B5D5-83F1BE34628F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52EA9C73-473E-4114-B5D5-83F1BE34628F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54A31A74-26AF-4F7C-89DF-99321CC14617}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54A31A74-26AF-4F7C-89DF-99321CC14617}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54A31A74-26AF-4F7C-89DF-99321CC14617}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54A31A74-26AF-4F7C-89DF-99321CC14617}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D04A91E-5DFF-4BD8-93DC-78D0E99427E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D04A91E-5DFF-4BD8-93DC-78D0E99427E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D04A91E-5DFF-4BD8-93DC-78D0E99427E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D04A91E-5DFF-4BD8-93DC-78D0E99427E1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1B68457E-DFF7-45C9-A45F-556578B24623}
+	EndGlobalSection
+EndGlobal
