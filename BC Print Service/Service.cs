@@ -11,19 +11,22 @@ using System.Runtime.InteropServices;
 using BCPrint;
 using System.Threading;
 using BCLRS;
+using BC_Print_Service;
+using System.Windows.Forms;
+using System.IO;
+using System.Data.Common;
 
-namespace BC_Print_Service
+namespace BC_Local_Service
 {
-    public partial class BCPrintService : ServiceBase
+    public partial class BCLocalService : ServiceBase
     {
 
         private int eventId = 1;
         WebServiceHelper wshelper;
-
-        string servicebaseurl = "";
-        string username = "";
-        string apikey = "";
-        string mylocalprintingservicename = "";
+        WebAuthentication webAuthentication;
+        List<WebDocument> documents;
+        List<BCFolder> folders;
+        AuthType authtype = AuthType.Basic;
         private int sucsessfulsyncs = 1000;
 
         public enum ServiceState
@@ -52,13 +55,27 @@ namespace BC_Print_Service
         [DllImport("advapi32.dll", SetLastError = true)]
         private static extern bool SetServiceStatus(System.IntPtr handle, ref ServiceStatus serviceStatus);
 
-        public BCPrintService()
+        public BCLocalService()
         {
             InitializeComponent();
-            string servicebaseurl = Properties.Settings.Default.BaseUrl.ToString();
-            string username = Properties.Settings.Default.UserName.ToString();
-            string apikey = Properties.Settings.Default.ApiKey.ToString();
-            string mylocalprintingservicename = Properties.Settings.Default.Instance.ToString();
+            string servicebaseurl = BC_Print_Service.Properties.Settings.Default.BaseUrl.ToString(); //Properties.Settings.Default.BaseUrl.ToString();
+            string username = BC_Print_Service.Properties.Settings.Default.UserName.ToString();
+            string apikey = BC_Print_Service.Properties.Settings.Default.ApiKey.ToString();
+            string mylocalprintingservicename = BC_Print_Service.Properties.Settings.Default.Instance.ToString();
+            string authurl = BC_Print_Service.Properties.Settings.Default.AuthUrl.ToString();
+            string redirecturl = BC_Print_Service.Properties.Settings.Default.RedirectURL.ToString();
+            string scope = BC_Print_Service.Properties.Settings.Default.Scope.ToString();
+           
+            authtype = (BC_Print_Service.Properties.Settings.Default.AuthType == AuthType.Basic.ToString()) ? AuthType.Basic : AuthType.oAuth;
+
+            if (webAuthentication == null)
+            {
+                webAuthentication = new WebAuthentication(authtype, username, apikey, username, apikey, authurl, redirecturl, scope);
+            }
+            if (wshelper == null)
+            {
+                wshelper = new WebServiceHelper(servicebaseurl, webAuthentication, mylocalprintingservicename);
+            }
 
             //Thread.Sleep(20000);
 
@@ -70,13 +87,13 @@ namespace BC_Print_Service
             }
             eventLog1.Source = mylocalprintingservicename;
             eventLog1.Log = "BC Local Resources Service";
-            
+
         }
 
         protected override void OnStart(string[] args)
         {
             eventLog1.WriteEntry("Service Started. - Timer set to 10 seconds");
-            
+
             // Update the service state to Start Pending.
             ServiceStatus serviceStatus = new ServiceStatus();
             serviceStatus.dwCurrentState = ServiceState.SERVICE_START_PENDING;
@@ -100,13 +117,16 @@ namespace BC_Print_Service
             List<WebDocument> documents;
             if (wshelper == null)
             {
-            //    wshelper = new WebServiceHelper(servicebaseurl, username, apikey, mylocalprintingservicename);
+                //    wshelper = new WebServiceHelper(servicebaseurl, username, apikey, mylocalprintingservicename);
             }
 
             try
             {
                 //Service maintenance
-                wshelper.UpdateBCHeartbeat();
+                if (!wshelper.UpdateBCHeartbeat())
+                    eventLog1.WriteEntry("Heartbeat Update Error " + wshelper.ErrorText, EventLogEntryType.Error, eventId++);
+
+
                 if (wshelper.PrinterUpdateRequested())
                 {
                     eventLog1.WriteEntry("Service update reqested by BC", EventLogEntryType.Information, eventId++);
@@ -114,41 +134,66 @@ namespace BC_Print_Service
                     sucsessfulsyncs = 0;
                 }
                 //Update Printers every 1000th HB
-                if (sucsessfulsyncs == 1000)
-                {
-                    eventLog1.WriteEntry("Services updated", EventLogEntryType.Information, eventId++);
-                    wshelper.RegisterInstance();
-                    sucsessfulsyncs = 0;
-                }
-                if (wshelper.ErrorText == "") { 
-                     sucsessfulsyncs++;
-                } else
-                {
-                    eventLog1.WriteEntry(wshelper.ErrorText, EventLogEntryType.Error, eventId++);
-                }
+                /*
+                                if (sucsessfulsyncs == 1000)
+                                {
+                                    eventLog1.WriteEntry("Services updated", EventLogEntryType.Information, eventId++);
+                                    wshelper.RegisterInstance();
+                                    sucsessfulsyncs = 0;
+                                }
+                                if (wshelper.ErrorText == "") { 
+                                     sucsessfulsyncs++;
+                                } else
+                                {
+                                    eventLog1.WriteEntry(wshelper.ErrorText, EventLogEntryType.Error, eventId++);
+                                }
+                */
+
+                //Syncfiles
+                BCLRS.FileHelper filehelper = new FileHelper(wshelper);
+                if (!filehelper.SyncBCFolders())
+                    eventLog1.WriteEntry("File Sync. Error " + wshelper.ErrorText, EventLogEntryType.Error, eventId++);
+
+
                 //Get and print documents
                 documents = wshelper.GetDocumentsForPrint();
+                // lst_timerlog.Items.Add(new ListViewItem(new[] { DateTime.Now.ToString(), "Document query", wshelper.ErrorText }));
+                //    lst_documents.Items.Clear();
                 if (documents.Count > 0)
                 {
                     foreach (WebDocument doc in documents)
                     {
-                        string tempFile = System.IO.Path.GetTempFileName();
-                        wshelper.GetBCDocument(doc.DocumentGUID, tempFile);
-                        LocalPrinterHelper.SendPdfFileToPrinter(doc.PrinterName, tempFile, doc.DocumentName);
-                        wshelper.SetBCDocumentComplete(doc.DocumentGUID);
-                        if (wshelper.ErrorText != "")
+                        string tempFile = Path.GetTempFileName();
+                        if (wshelper.GetBCDocument(doc.DocumentGUID, tempFile))
                         {
-                            eventLog1.WriteEntry(wshelper.ErrorText, EventLogEntryType.Error, eventId++);
+                            LocalPrinterHelper.SendPdfFileToPrinter(doc.PrinterName, tempFile, doc.DocumentName);
+                            wshelper.SetBCDocumentComplete(doc.DocumentGUID);
+                            //lst_timerlog.Items.Add(new ListViewItem(new[] { DateTime.Now.ToString(), "Document query", String.Format("Printed: {0}", doc.DocumentName) }));
                         }
+                        else
+                            eventLog1.WriteEntry("Document Query " + wshelper.ErrorText, EventLogEntryType.Error, eventId++);
                     }
                 }
                 else
                 {
                     if (wshelper.ErrorText != "")
                     {
-                        eventLog1.WriteEntry(wshelper.ErrorText, EventLogEntryType.Error, eventId++);
+                        eventLog1.WriteEntry("Printing " + wshelper.ErrorText, EventLogEntryType.Error, eventId++);
                     }
                 }
+
+                //command
+
+                List<WebCommand> commands = wshelper.GetWebCommands();
+                if (commands.Count > 0)
+                {
+                    foreach (WebCommand command in commands)
+                    {
+                        ExecuteCommand(command.Command);
+                        wshelper.SetBCDocumentComplete(command.CommandGUID);
+                    }
+                }
+
             }
             catch (Exception eee)
             {
@@ -159,6 +204,18 @@ namespace BC_Print_Service
 
         }
 
+        private void ExecuteCommand(string _command)
+        {
+            ProcessStartInfo startInfo = new ProcessStartInfo();
+            startInfo.FileName = _command;
+
+            startInfo.WindowStyle = ProcessWindowStyle.Hidden;
+            startInfo.CreateNoWindow = true;
+            startInfo.ErrorDialog = false;
+            startInfo.UseShellExecute = false;
+
+            Process process = Process.Start(startInfo);
+        }
         protected override void OnStop()
         {
             // Update the service state to Stop Pending.

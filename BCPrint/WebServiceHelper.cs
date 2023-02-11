@@ -14,6 +14,8 @@ using BCPrint;
 using RestSharp;
 using System.Text.Json.Nodes;
 using System.Text.Json;
+using System.Drawing.Printing;
+using static BCPrint.LocalPrinterHelper;
 
 namespace BCLRS
 { 
@@ -36,6 +38,8 @@ namespace BCLRS
         JsonElement tokenjson;
         string token_auth;
         int tokenexpiresin;
+        DateTime tokenacquired;
+        DateTime tokenexpdatetime;
         public WebAuthentication(AuthType _serverauthentication, string _username, string _password, string _clientid, string _clientsecret, string _authurl, string _redirecturl, string _scope) 
         {
             serverauthentication = _serverauthentication;
@@ -54,6 +58,13 @@ namespace BCLRS
 
         public bool GetToken()
         {
+            //if the token still valid
+            if(tokenexpdatetime > DateTime.Now) 
+            { 
+                return true; 
+            }
+
+            //get new token
             var client = new RestClient(authurl);
             var request = new RestRequest();
             request.Method = Method.Post;
@@ -71,6 +82,9 @@ namespace BCLRS
                     JsonElement token = data.RootElement;
                     //tokenexpiresin = token.GetProperty("expires_in").GetInt32();
                     token_auth = token.GetProperty("access_token").GetString();
+                    tokenexpiresin = token.GetProperty("expires_in").GetInt32();
+                    tokenacquired = DateTime.Now;
+                    tokenexpdatetime= DateTime.Now.AddSeconds(tokenexpiresin);
                     return true;
                 }
             } else
@@ -112,7 +126,7 @@ namespace BCLRS
 
         public string GetTokenInfo()
         {
-           return GetBearer();
+            return string.Format("Token expires: {0}\nToken:\n{1}",tokenexpdatetime, GetBearer());
         }
     }
 
@@ -155,6 +169,18 @@ namespace BCLRS
         }
     }
 
+    public class WebSetting
+    {
+        public string Key { get; set; }
+        public string Value { get; set; }   
+
+        public WebSetting(string key, string value)
+        {
+            Key = key;
+            Value = value;  
+        }
+    }
+
 
     public class WebServiceHelper
     {
@@ -176,8 +202,9 @@ namespace BCLRS
         public bool Initilaized { get; }
         public string ErrorText { get; set; }
 
-        public void RegisterInstance()
+        public bool RegisterInstance()
         {
+            ErrorText = "";
             var serviceRoot = servicebaseurl;
             var context = new BC.NAV(new Uri(serviceRoot));
             context.BuildingRequest += InjectHeader;
@@ -190,14 +217,22 @@ namespace BCLRS
             ArrayList localprinters = LocalPrinterHelper.GetLocalPrinters();
             foreach (string printername in localprinters)
             {
-                actionUri = new Uri(context.BaseUri, "BCLRSServiceFunctions('')/NAV.AddPrinterServicePrinter");
+                PageSettings pagesettings = GetPrinterPageInfo(printername);
 
-                parameres = new BodyOperationParameter[2] { new BodyOperationParameter("localService", mylocalprintingservicename), new BodyOperationParameter("printer", printername) };
+                actionUri = new Uri(context.BaseUri, "BCLRSServiceFunctions('')/NAV.AddPrinterServicePrinter_594577777");
+
+                parameres = new BodyOperationParameter[5] { new BodyOperationParameter("localService", mylocalprintingservicename), new BodyOperationParameter("printer", printername), new BodyOperationParameter("landscape", pagesettings.Landscape), new BodyOperationParameter("paperSize", pagesettings.PaperSize.ToString()), new BodyOperationParameter("paperTray", pagesettings.PaperSource.SourceName.ToString()) };
+                try
+                { 
                 retval = context.Execute<bool>(actionUri, "POST", true, parameres);
+                } catch(Exception eee)
+                {
+                    ErrorText = ErrorText +"\n"+ eee.InnerException.Message;
+                }
             }
 
             //add local folders
-
+            return true;
         }
 
         private void InjectHeader(object sender, Microsoft.OData.Client.BuildingRequestEventArgs e)
@@ -506,6 +541,31 @@ namespace BCLRS
             }
 
             return documents;
+        }
+
+        public void UploadSettingstoBC(List<WebSetting> websettings)
+        {
+            ErrorText = "";
+            var serviceRoot = servicebaseurl;
+            var context = new BC.NAV(new Uri(serviceRoot));
+            context.BuildingRequest += InjectHeader;
+
+            try
+            {
+                foreach (var websetting in websettings)
+                {
+                    var BCSettingLine = BC.BCLRSSetupLinesAPI.CreateBCLRSSetupLinesAPI(mylocalprintingservicename, websetting.Key);
+                    BCSettingLine.SetupValue = websetting.Value;
+                    if (websetting.Key.Contains("ApiKey"))
+                        BCSettingLine.IsSensitive = true;
+                    context.AddToBCLRSSetupLinesAPI(BCSettingLine);
+                    context.SaveChanges(SaveChangesOptions.ContinueOnError);
+                }
+            }
+            catch(Exception eee)
+            {
+                ErrorText= eee.InnerException.Message;
+            }
         }
     }
 }

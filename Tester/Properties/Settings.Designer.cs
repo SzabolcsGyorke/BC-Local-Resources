@@ -23,19 +23,9 @@ namespace Tester.Properties {
             }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string Tester_BCPrintWebServiceFunctions_BCPrintWebService {
-            get {
-                return ((string)(this["Tester_BCPrintWebServiceFunctions_BCPrintWebService"]));
-            }
-        }
-        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://businesscentral.dynamics.com/f968cbe4-b4a1-48ff-9920-5224b47e606a/V15_Tes" +
-            "t/WS/CRONUS%20UK%20Ltd./")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string BaseUrl {
             get {
                 return ((string)(this["BaseUrl"]));
@@ -47,7 +37,7 @@ namespace Tester.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("SZABOLCS.GYORKE")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string UserName {
             get {
                 return ((string)(this["UserName"]));
@@ -59,7 +49,7 @@ namespace Tester.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("MGJOHYH4SJaBj2JYLyq0yVJ4Ws59XkxFoWE/VeYNvUU=")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string ApiKey {
             get {
                 return ((string)(this["ApiKey"]));
@@ -71,61 +61,13 @@ namespace Tester.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("SZABOLCSG-PC2")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string Instance {
             get {
                 return ((string)(this["Instance"]));
             }
             set {
                 this["Instance"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\temp\\UploadTest1")]
-        public string UploadFolder1 {
-            get {
-                return ((string)(this["UploadFolder1"]));
-            }
-            set {
-                this["UploadFolder1"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\temp\\UploadTest2")]
-        public string UploadFolder2 {
-            get {
-                return ((string)(this["UploadFolder2"]));
-            }
-            set {
-                this["UploadFolder2"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\temp\\DownloadTest1")]
-        public string DownloadFolder1 {
-            get {
-                return ((string)(this["DownloadFolder1"]));
-            }
-            set {
-                this["DownloadFolder1"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\temp\\DownloadTest2")]
-        public string DownloadFolder2 {
-            get {
-                return ((string)(this["DownloadFolder2"]));
-            }
-            set {
-                this["DownloadFolder2"] = value;
             }
         }
         
@@ -167,13 +109,25 @@ namespace Tester.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://bclrs")]
         public string RedirectURL {
             get {
                 return ((string)(this["RedirectURL"]));
             }
             set {
                 this["RedirectURL"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public string TimeIntervalSec {
+            get {
+                return ((string)(this["TimeIntervalSec"]));
+            }
+            set {
+                this["TimeIntervalSec"] = value;
             }
         }
     }

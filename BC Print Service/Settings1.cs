@@ -1,4 +1,4 @@
-﻿namespace BC_Local_Service.Properties {
+﻿namespace BC_Print_Service.Properties {
     
     
     // This class allows you to handle specific events on the settings class:

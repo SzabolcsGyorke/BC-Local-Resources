@@ -229,6 +229,7 @@
         <NavigationProperty Name="BCLRSEntryList" Type="Collection(NAV.BCLRSEntryList)" ContainsTarget="true" />
         <NavigationProperty Name="BCLRSServiceFunctions" Type="Collection(NAV.BCLRSServiceFunctions)" ContainsTarget="true" />
         <NavigationProperty Name="BCLRSServicesAPI" Type="Collection(NAV.BCLRSServicesAPI)" ContainsTarget="true" />
+        <NavigationProperty Name="BCLRSSetupLinesAPI" Type="Collection(NAV.BCLRSSetupLinesAPI)" ContainsTarget="true" />
         <NavigationProperty Name="Chart_of_Accounts" Type="Collection(NAV.Chart_of_Accounts)" ContainsTarget="true" />
         <NavigationProperty Name="ExcelTemplateAgedAccountsPayable" Type="Collection(NAV.ExcelTemplateAgedAccountsPayable)" ContainsTarget="true" />
         <NavigationProperty Name="ExcelTemplateAgedAccountsReceivable" Type="Collection(NAV.ExcelTemplateAgedAccountsReceivable)" ContainsTarget="true" />
@@ -2250,6 +2251,39 @@
           </Annotation>
         </Property>
         <Annotation Term="NAV.LabelId" String="BCLRSServicesAPI" />
+      </EntityType>
+      <EntityType Name="BCLRSSetupLinesAPI">
+        <Key>
+          <PropertyRef Name="localServiceCode" />
+          <PropertyRef Name="setupVariableName" />
+        </Key>
+        <Property Name="localServiceCode" Type="Edm.String" Nullable="false" MaxLength="20">
+          <Annotation Term="NAV.LabelId" String="Local Service Code" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+          <Annotation Term="NAV.AllowEditOnCreate" Bool="true" />
+        </Property>
+        <Property Name="setupVariableName" Type="Edm.String" Nullable="false" MaxLength="100">
+          <Annotation Term="NAV.LabelId" String="Setup Variable Name" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+          <Annotation Term="NAV.AllowEditOnCreate" Bool="true" />
+        </Property>
+        <Property Name="setupValue" Type="Edm.String" MaxLength="500">
+          <Annotation Term="NAV.LabelId" String="Setup Value" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/String</EnumMember>
+          </Annotation>
+        </Property>
+        <Property Name="isSensitive" Type="Edm.Boolean">
+          <Annotation Term="NAV.LabelId" String="Is Sensitive" />
+          <Annotation Term="NAV.NavType">
+            <EnumMember>NAV.NavType/Bool</EnumMember>
+          </Annotation>
+        </Property>
+        <Annotation Term="NAV.LabelId" String="BCLRSSetupLinesAPI" />
       </EntityType>
       <EntityType Name="Chart_of_Accounts">
         <Key>
@@ -26554,10 +26588,26 @@
         <Parameter Name="fileQueue" Type="Edm.String" />
         <Parameter Name="direction" Type="Edm.Int32" />
       </Action>
+      <Action Name="AddPrinterPaperSetup" IsBound="true">
+        <Parameter Name="bindingParameter" Type="NAV.BCLRSServiceFunctions" />
+        <Parameter Name="localService" Type="Edm.String" />
+        <Parameter Name="printer" Type="Edm.String" />
+        <Parameter Name="landscape" Type="Edm.Boolean" />
+        <Parameter Name="paperSize" Type="Edm.String" />
+        <Parameter Name="paperTray" Type="Edm.String" />
+      </Action>
       <Action Name="AddPrinterServicePrinter" IsBound="true">
         <Parameter Name="bindingParameter" Type="NAV.BCLRSServiceFunctions" />
         <Parameter Name="localService" Type="Edm.String" />
         <Parameter Name="printer" Type="Edm.String" />
+      </Action>
+      <Action Name="AddPrinterServicePrinter_594577777" IsBound="true">
+        <Parameter Name="bindingParameter" Type="NAV.BCLRSServiceFunctions" />
+        <Parameter Name="localService" Type="Edm.String" />
+        <Parameter Name="printer" Type="Edm.String" />
+        <Parameter Name="landscape" Type="Edm.Boolean" />
+        <Parameter Name="paperSize" Type="Edm.String" />
+        <Parameter Name="paperTray" Type="Edm.String" />
       </Action>
       <Action Name="ClearPrinterList" IsBound="true">
         <Parameter Name="bindingParameter" Type="NAV.BCLRSServiceFunctions" />
@@ -26608,6 +26658,13 @@
         <Parameter Name="localService" Type="Edm.String" />
         <Parameter Name="fileQueue" Type="Edm.String" />
         <Parameter Name="direction" Type="Edm.Int32" />
+      </Action>
+      <Action Name="BCLRSWS_AddPrinterPaperSetup">
+        <Parameter Name="localService" Type="Edm.String" />
+        <Parameter Name="printer" Type="Edm.String" />
+        <Parameter Name="landscape" Type="Edm.Boolean" />
+        <Parameter Name="paperSize" Type="Edm.String" />
+        <Parameter Name="paperTray" Type="Edm.String" />
       </Action>
       <Action Name="BCLRSWS_AddPrinterServicePrinter">
         <Parameter Name="localService" Type="Edm.String" />
@@ -26706,6 +26763,7 @@
       </Action>
       <EntityContainer Name="NAV">
         <ActionImport Name="BCLRSWS_AddFileService" Action="NAV.BCLRSWS_AddFileService" />
+        <ActionImport Name="BCLRSWS_AddPrinterPaperSetup" Action="NAV.BCLRSWS_AddPrinterPaperSetup" />
         <ActionImport Name="BCLRSWS_AddPrinterServicePrinter" Action="NAV.BCLRSWS_AddPrinterServicePrinter" />
         <ActionImport Name="BCLRSWS_AddPrinterServicePrinter_594577777" Action="NAV.BCLRSWS_AddPrinterServicePrinter_594577777" />
         <ActionImport Name="BCLRSWS_ClearPrinterList" Action="NAV.BCLRSWS_ClearPrinterList" />
@@ -27102,6 +27160,28 @@
           </Annotation>
         </EntitySet>
         <EntitySet Name="BCLRSServicesAPI" EntityType="NAV.BCLRSServicesAPI">
+          <Annotation Term="Org.OData.Capabilities.V1.ChangeTracking">
+            <Record>
+              <PropertyValue Property="Supported" Bool="false" />
+            </Record>
+          </Annotation>
+          <Annotation Term="Org.OData.Capabilities.V1.DeleteRestrictions">
+            <Record>
+              <PropertyValue Property="Deletable" Bool="true" />
+            </Record>
+          </Annotation>
+          <Annotation Term="Org.OData.Capabilities.V1.InsertRestrictions">
+            <Record>
+              <PropertyValue Property="Insertable" Bool="true" />
+            </Record>
+          </Annotation>
+          <Annotation Term="Org.OData.Capabilities.V1.UpdateRestrictions">
+            <Record>
+              <PropertyValue Property="Updatable" Bool="true" />
+            </Record>
+          </Annotation>
+        </EntitySet>
+        <EntitySet Name="BCLRSSetupLinesAPI" EntityType="NAV.BCLRSSetupLinesAPI">
           <Annotation Term="Org.OData.Capabilities.V1.ChangeTracking">
             <Record>
               <PropertyValue Property="Supported" Bool="false" />

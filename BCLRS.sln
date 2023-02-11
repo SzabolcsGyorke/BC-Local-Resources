@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29418.71
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BCLRS", "BCPrint\BCLRS.csproj", "{52EA9C73-473E-4114-B5D5-83F1BE34628F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tester", "Tester\Tester.csproj", "{54A31A74-26AF-4F7C-89DF-99321CC14617}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BCLRSService", "BC Print Service\BCLRSService.csproj", "{7D04A91E-5DFF-4BD8-93DC-78D0E99427E1}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "BC Local Resources Service Setup", "BC Local Resources Service Setup\BC Local Resources Service Setup.vdproj", "{3AB213B8-BD90-4625-B931-7C3730C8ED0E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,8 @@ Global
 		{7D04A91E-5DFF-4BD8-93DC-78D0E99427E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D04A91E-5DFF-4BD8-93DC-78D0E99427E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D04A91E-5DFF-4BD8-93DC-78D0E99427E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3AB213B8-BD90-4625-B931-7C3730C8ED0E}.Debug|Any CPU.ActiveCfg = Debug
+		{3AB213B8-BD90-4625-B931-7C3730C8ED0E}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generation date: 01/01/2023 20:36:59
+// Generation date: 03/02/2023 19:34:30
 namespace BC
 {
     /// <summary>
@@ -75,6 +75,24 @@ namespace BC
             return null;
         }
         /// <summary>
+        /// There are no comments for UserTaskSetComplete in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        [global::Microsoft.OData.Client.OriginalNameAttribute("UserTaskSetComplete")]
+        public virtual global::Microsoft.OData.Client.DataServiceQuery<UserTaskSetComplete> UserTaskSetComplete
+        {
+            get
+            {
+                if ((this._UserTaskSetComplete == null))
+                {
+                    this._UserTaskSetComplete = base.CreateQuery<UserTaskSetComplete>("UserTaskSetComplete");
+                }
+                return this._UserTaskSetComplete;
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        private global::Microsoft.OData.Client.DataServiceQuery<UserTaskSetComplete> _UserTaskSetComplete;
+        /// <summary>
         /// There are no comments for BCLRSEntryList in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
@@ -129,6 +147,32 @@ namespace BC
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
         private global::Microsoft.OData.Client.DataServiceQuery<BCLRSServicesAPI> _BCLRSServicesAPI;
         /// <summary>
+        /// There are no comments for BCLRSSetupLinesAPI in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        [global::Microsoft.OData.Client.OriginalNameAttribute("BCLRSSetupLinesAPI")]
+        public virtual global::Microsoft.OData.Client.DataServiceQuery<BCLRSSetupLinesAPI> BCLRSSetupLinesAPI
+        {
+            get
+            {
+                if ((this._BCLRSSetupLinesAPI == null))
+                {
+                    this._BCLRSSetupLinesAPI = base.CreateQuery<BCLRSSetupLinesAPI>("BCLRSSetupLinesAPI");
+                }
+                return this._BCLRSSetupLinesAPI;
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        private global::Microsoft.OData.Client.DataServiceQuery<BCLRSSetupLinesAPI> _BCLRSSetupLinesAPI;
+        /// <summary>
+        /// There are no comments for UserTaskSetComplete in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        public virtual void AddToUserTaskSetComplete(UserTaskSetComplete userTaskSetComplete)
+        {
+            base.AddObject("UserTaskSetComplete", userTaskSetComplete);
+        }
+        /// <summary>
         /// There are no comments for BCLRSEntryList in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
@@ -151,6 +195,14 @@ namespace BC
         public virtual void AddToBCLRSServicesAPI(BCLRSServicesAPI bCLRSServicesAPI)
         {
             base.AddObject("BCLRSServicesAPI", bCLRSServicesAPI);
+        }
+        /// <summary>
+        /// There are no comments for BCLRSSetupLinesAPI in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        public virtual void AddToBCLRSSetupLinesAPI(BCLRSSetupLinesAPI bCLRSSetupLinesAPI)
+        {
+            base.AddObject("BCLRSSetupLinesAPI", bCLRSSetupLinesAPI);
         }
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
         private abstract class GeneratedEdmModel
@@ -224,6 +276,18 @@ namespace BC
             return new global::Microsoft.OData.Client.DataServiceActionQuery(this, this.BaseUri.OriginalString.Trim('/') + "/BCLRSWS_AddFileService", new global::Microsoft.OData.Client.BodyOperationParameter("localService", localService),
                     new global::Microsoft.OData.Client.BodyOperationParameter("fileQueue", fileQueue),
                     new global::Microsoft.OData.Client.BodyOperationParameter("direction", direction));
+        }
+        /// <summary>
+        /// There are no comments for BCLRSWS_AddPrinterPaperSetup in the schema.
+        /// </summary>
+        [global::Microsoft.OData.Client.OriginalNameAttribute("BCLRSWS_AddPrinterPaperSetup")]
+        public virtual global::Microsoft.OData.Client.DataServiceActionQuery BCLRSWS_AddPrinterPaperSetup(string localService, string printer, global::System.Nullable<bool> landscape, string paperSize, string paperTray)
+        {
+            return new global::Microsoft.OData.Client.DataServiceActionQuery(this, this.BaseUri.OriginalString.Trim('/') + "/BCLRSWS_AddPrinterPaperSetup", new global::Microsoft.OData.Client.BodyOperationParameter("localService", localService),
+                    new global::Microsoft.OData.Client.BodyOperationParameter("printer", printer),
+                    new global::Microsoft.OData.Client.BodyOperationParameter("landscape", landscape),
+                    new global::Microsoft.OData.Client.BodyOperationParameter("paperSize", paperSize),
+                    new global::Microsoft.OData.Client.BodyOperationParameter("paperTray", paperTray));
         }
         /// <summary>
         /// There are no comments for BCLRSWS_AddPrinterServicePrinter in the schema.
@@ -414,6 +478,379 @@ namespace BC
         public virtual global::Microsoft.OData.Client.DataServiceActionQuery WorkflowActionResponse_Reject(global::System.Nullable<global::System.Guid> workflowStepInstanceId)
         {
             return new global::Microsoft.OData.Client.DataServiceActionQuery(this, this.BaseUri.OriginalString.Trim('/') + "/WorkflowActionResponse_Reject", new global::Microsoft.OData.Client.BodyOperationParameter("workflowStepInstanceId", workflowStepInstanceId));
+        }
+    }
+    /// <summary>
+    /// There are no comments for UserTaskSetCompleteSingle in the schema.
+    /// </summary>
+    [global::Microsoft.OData.Client.OriginalNameAttribute("UserTaskSetCompleteSingle")]
+    public partial class UserTaskSetCompleteSingle : global::Microsoft.OData.Client.DataServiceQuerySingle<UserTaskSetComplete>
+    {
+        /// <summary>
+        /// Initialize a new UserTaskSetCompleteSingle object.
+        /// </summary>
+        public UserTaskSetCompleteSingle(global::Microsoft.OData.Client.DataServiceContext context, string path)
+            : base(context, path) {}
+
+        /// <summary>
+        /// Initialize a new UserTaskSetCompleteSingle object.
+        /// </summary>
+        public UserTaskSetCompleteSingle(global::Microsoft.OData.Client.DataServiceContext context, string path, bool isComposable)
+            : base(context, path, isComposable) {}
+
+        /// <summary>
+        /// Initialize a new UserTaskSetCompleteSingle object.
+        /// </summary>
+        public UserTaskSetCompleteSingle(global::Microsoft.OData.Client.DataServiceQuerySingle<UserTaskSetComplete> query)
+            : base(query) {}
+
+    }
+    /// <summary>
+    /// There are no comments for UserTaskSetComplete in the schema.
+    /// </summary>
+    /// <KeyProperties>
+    /// ID
+    /// </KeyProperties>
+    [global::Microsoft.OData.Client.Key("ID")]
+    [global::Microsoft.OData.Client.EntitySet("UserTaskSetComplete")]
+    [global::Microsoft.OData.Client.OriginalNameAttribute("UserTaskSetComplete")]
+    public partial class UserTaskSetComplete : global::Microsoft.OData.Client.BaseEntityType, global::System.ComponentModel.INotifyPropertyChanged
+    {
+        /// <summary>
+        /// Create a new UserTaskSetComplete object.
+        /// </summary>
+        /// <param name="ID">Initial value of ID.</param>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        public static UserTaskSetComplete CreateUserTaskSetComplete(int ID)
+        {
+            UserTaskSetComplete userTaskSetComplete = new UserTaskSetComplete();
+            userTaskSetComplete.ID = ID;
+            return userTaskSetComplete;
+        }
+        /// <summary>
+        /// There are no comments for Property ID in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+
+        [global::Microsoft.OData.Client.OriginalNameAttribute("ID")]
+        [global::System.ComponentModel.DataAnnotations.RequiredAttribute(ErrorMessage = "ID is required.")]
+        public virtual int ID
+        {
+            get
+            {
+                return this._ID;
+            }
+            set
+            {
+                this.OnIDChanging(value);
+                this._ID = value;
+                this.OnIDChanged();
+                this.OnPropertyChanged("ID");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        private int _ID;
+        partial void OnIDChanging(int value);
+        partial void OnIDChanged();
+        /// <summary>
+        /// There are no comments for Property Title in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+
+        [global::Microsoft.OData.Client.OriginalNameAttribute("Title")]
+        [global::System.ComponentModel.DataAnnotations.StringLengthAttribute(250, ErrorMessage = "Title cannot be longer than 250 characters.")]
+        public virtual string Title
+        {
+            get
+            {
+                return this._Title;
+            }
+            set
+            {
+                this.OnTitleChanging(value);
+                this._Title = value;
+                this.OnTitleChanged();
+                this.OnPropertyChanged("Title");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        private string _Title;
+        partial void OnTitleChanging(string value);
+        partial void OnTitleChanged();
+        /// <summary>
+        /// There are no comments for Property Due_DateTime in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+
+        [global::Microsoft.OData.Client.OriginalNameAttribute("Due_DateTime")]
+        public virtual global::System.Nullable<global::System.DateTimeOffset> Due_DateTime
+        {
+            get
+            {
+                return this._Due_DateTime;
+            }
+            set
+            {
+                this.OnDue_DateTimeChanging(value);
+                this._Due_DateTime = value;
+                this.OnDue_DateTimeChanged();
+                this.OnPropertyChanged("Due_DateTime");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        private global::System.Nullable<global::System.DateTimeOffset> _Due_DateTime;
+        partial void OnDue_DateTimeChanging(global::System.Nullable<global::System.DateTimeOffset> value);
+        partial void OnDue_DateTimeChanged();
+        /// <summary>
+        /// There are no comments for Property Priority in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+
+        [global::Microsoft.OData.Client.OriginalNameAttribute("Priority")]
+        public virtual string Priority
+        {
+            get
+            {
+                return this._Priority;
+            }
+            set
+            {
+                this.OnPriorityChanging(value);
+                this._Priority = value;
+                this.OnPriorityChanged();
+                this.OnPropertyChanged("Priority");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        private string _Priority;
+        partial void OnPriorityChanging(string value);
+        partial void OnPriorityChanged();
+        /// <summary>
+        /// There are no comments for Property Percent_Complete in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+
+        [global::Microsoft.OData.Client.OriginalNameAttribute("Percent_Complete")]
+        public virtual global::System.Nullable<int> Percent_Complete
+        {
+            get
+            {
+                return this._Percent_Complete;
+            }
+            set
+            {
+                this.OnPercent_CompleteChanging(value);
+                this._Percent_Complete = value;
+                this.OnPercent_CompleteChanged();
+                this.OnPropertyChanged("Percent_Complete");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        private global::System.Nullable<int> _Percent_Complete;
+        partial void OnPercent_CompleteChanging(global::System.Nullable<int> value);
+        partial void OnPercent_CompleteChanged();
+        /// <summary>
+        /// There are no comments for Property Assigned_To_User_Name in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+
+        [global::Microsoft.OData.Client.OriginalNameAttribute("Assigned_To_User_Name")]
+        [global::System.ComponentModel.DataAnnotations.StringLengthAttribute(50, ErrorMessage = "Assigned_To_User_Name cannot be longer than 50 characters.")]
+        public virtual string Assigned_To_User_Name
+        {
+            get
+            {
+                return this._Assigned_To_User_Name;
+            }
+            set
+            {
+                this.OnAssigned_To_User_NameChanging(value);
+                this._Assigned_To_User_Name = value;
+                this.OnAssigned_To_User_NameChanged();
+                this.OnPropertyChanged("Assigned_To_User_Name");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        private string _Assigned_To_User_Name;
+        partial void OnAssigned_To_User_NameChanging(string value);
+        partial void OnAssigned_To_User_NameChanged();
+        /// <summary>
+        /// There are no comments for Property User_Task_Group_Assigned_To in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+
+        [global::Microsoft.OData.Client.OriginalNameAttribute("User_Task_Group_Assigned_To")]
+        [global::System.ComponentModel.DataAnnotations.StringLengthAttribute(20, ErrorMessage = "User_Task_Group_Assigned_To cannot be longer than 20 characters.")]
+        public virtual string User_Task_Group_Assigned_To
+        {
+            get
+            {
+                return this._User_Task_Group_Assigned_To;
+            }
+            set
+            {
+                this.OnUser_Task_Group_Assigned_ToChanging(value);
+                this._User_Task_Group_Assigned_To = value;
+                this.OnUser_Task_Group_Assigned_ToChanged();
+                this.OnPropertyChanged("User_Task_Group_Assigned_To");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        private string _User_Task_Group_Assigned_To;
+        partial void OnUser_Task_Group_Assigned_ToChanging(string value);
+        partial void OnUser_Task_Group_Assigned_ToChanged();
+        /// <summary>
+        /// There are no comments for Property Created_DateTime in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+
+        [global::Microsoft.OData.Client.OriginalNameAttribute("Created_DateTime")]
+        public virtual global::System.Nullable<global::System.DateTimeOffset> Created_DateTime
+        {
+            get
+            {
+                return this._Created_DateTime;
+            }
+            set
+            {
+                this.OnCreated_DateTimeChanging(value);
+                this._Created_DateTime = value;
+                this.OnCreated_DateTimeChanged();
+                this.OnPropertyChanged("Created_DateTime");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        private global::System.Nullable<global::System.DateTimeOffset> _Created_DateTime;
+        partial void OnCreated_DateTimeChanging(global::System.Nullable<global::System.DateTimeOffset> value);
+        partial void OnCreated_DateTimeChanged();
+        /// <summary>
+        /// There are no comments for Property Completed_DateTime in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+
+        [global::Microsoft.OData.Client.OriginalNameAttribute("Completed_DateTime")]
+        public virtual global::System.Nullable<global::System.DateTimeOffset> Completed_DateTime
+        {
+            get
+            {
+                return this._Completed_DateTime;
+            }
+            set
+            {
+                this.OnCompleted_DateTimeChanging(value);
+                this._Completed_DateTime = value;
+                this.OnCompleted_DateTimeChanged();
+                this.OnPropertyChanged("Completed_DateTime");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        private global::System.Nullable<global::System.DateTimeOffset> _Completed_DateTime;
+        partial void OnCompleted_DateTimeChanging(global::System.Nullable<global::System.DateTimeOffset> value);
+        partial void OnCompleted_DateTimeChanged();
+        /// <summary>
+        /// There are no comments for Property Start_DateTime in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+
+        [global::Microsoft.OData.Client.OriginalNameAttribute("Start_DateTime")]
+        public virtual global::System.Nullable<global::System.DateTimeOffset> Start_DateTime
+        {
+            get
+            {
+                return this._Start_DateTime;
+            }
+            set
+            {
+                this.OnStart_DateTimeChanging(value);
+                this._Start_DateTime = value;
+                this.OnStart_DateTimeChanged();
+                this.OnPropertyChanged("Start_DateTime");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        private global::System.Nullable<global::System.DateTimeOffset> _Start_DateTime;
+        partial void OnStart_DateTimeChanging(global::System.Nullable<global::System.DateTimeOffset> value);
+        partial void OnStart_DateTimeChanged();
+        /// <summary>
+        /// There are no comments for Property Created_By_User_Name in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+
+        [global::Microsoft.OData.Client.OriginalNameAttribute("Created_By_User_Name")]
+        [global::System.ComponentModel.DataAnnotations.StringLengthAttribute(50, ErrorMessage = "Created_By_User_Name cannot be longer than 50 characters.")]
+        public virtual string Created_By_User_Name
+        {
+            get
+            {
+                return this._Created_By_User_Name;
+            }
+            set
+            {
+                this.OnCreated_By_User_NameChanging(value);
+                this._Created_By_User_Name = value;
+                this.OnCreated_By_User_NameChanged();
+                this.OnPropertyChanged("Created_By_User_Name");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        private string _Created_By_User_Name;
+        partial void OnCreated_By_User_NameChanging(string value);
+        partial void OnCreated_By_User_NameChanged();
+        /// <summary>
+        /// There are no comments for Property Completed_By_User_Name in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+
+        [global::Microsoft.OData.Client.OriginalNameAttribute("Completed_By_User_Name")]
+        [global::System.ComponentModel.DataAnnotations.StringLengthAttribute(50, ErrorMessage = "Completed_By_User_Name cannot be longer than 50 characters.")]
+        public virtual string Completed_By_User_Name
+        {
+            get
+            {
+                return this._Completed_By_User_Name;
+            }
+            set
+            {
+                this.OnCompleted_By_User_NameChanging(value);
+                this._Completed_By_User_Name = value;
+                this.OnCompleted_By_User_NameChanged();
+                this.OnPropertyChanged("Completed_By_User_Name");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        private string _Completed_By_User_Name;
+        partial void OnCompleted_By_User_NameChanging(string value);
+        partial void OnCompleted_By_User_NameChanged();
+        /// <summary>
+        /// This event is raised when the value of the property is changed
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        public event global::System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        /// <summary>
+        /// The value of the property is changed
+        /// </summary>
+        /// <param name="property">property name</param>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        protected virtual void OnPropertyChanged(string property)
+        {
+            if ((this.PropertyChanged != null))
+            {
+                this.PropertyChanged(this, new global::System.ComponentModel.PropertyChangedEventArgs(property));
+            }
+        }
+        /// <summary>
+        /// There are no comments for SetComplete in the schema.
+        /// </summary>
+        [global::Microsoft.OData.Client.OriginalNameAttribute("SetComplete")]
+        public virtual global::Microsoft.OData.Client.DataServiceActionQuery SetComplete()
+        {
+            global::Microsoft.OData.Client.EntityDescriptor resource = Context.EntityTracker.TryGetEntityDescriptor(this);
+            if (resource == null)
+            {
+                throw new global::System.Exception("cannot find entity");
+            }
+
+            return new global::Microsoft.OData.Client.DataServiceActionQuery(this.Context, resource.EditLink.OriginalString.Trim('/') + "/NAV.SetComplete");
         }
     }
     /// <summary>
@@ -1009,6 +1446,203 @@ namespace BC
                 this.PropertyChanged(this, new global::System.ComponentModel.PropertyChangedEventArgs(property));
             }
         }
+        /// <summary>
+        /// There are no comments for AddFileService in the schema.
+        /// </summary>
+        [global::Microsoft.OData.Client.OriginalNameAttribute("AddFileService")]
+        public virtual global::Microsoft.OData.Client.DataServiceActionQuery AddFileService(string localService, string fileQueue, global::System.Nullable<int> direction)
+        {
+            global::Microsoft.OData.Client.EntityDescriptor resource = Context.EntityTracker.TryGetEntityDescriptor(this);
+            if (resource == null)
+            {
+                throw new global::System.Exception("cannot find entity");
+            }
+
+            return new global::Microsoft.OData.Client.DataServiceActionQuery(this.Context, resource.EditLink.OriginalString.Trim('/') + "/NAV.AddFileService", new global::Microsoft.OData.Client.BodyOperationParameter("localService", localService),
+                    new global::Microsoft.OData.Client.BodyOperationParameter("fileQueue", fileQueue),
+                    new global::Microsoft.OData.Client.BodyOperationParameter("direction", direction));
+        }
+        /// <summary>
+        /// There are no comments for AddPrinterPaperSetup in the schema.
+        /// </summary>
+        [global::Microsoft.OData.Client.OriginalNameAttribute("AddPrinterPaperSetup")]
+        public virtual global::Microsoft.OData.Client.DataServiceActionQuery AddPrinterPaperSetup(string localService, string printer, global::System.Nullable<bool> landscape, string paperSize, string paperTray)
+        {
+            global::Microsoft.OData.Client.EntityDescriptor resource = Context.EntityTracker.TryGetEntityDescriptor(this);
+            if (resource == null)
+            {
+                throw new global::System.Exception("cannot find entity");
+            }
+
+            return new global::Microsoft.OData.Client.DataServiceActionQuery(this.Context, resource.EditLink.OriginalString.Trim('/') + "/NAV.AddPrinterPaperSetup", new global::Microsoft.OData.Client.BodyOperationParameter("localService", localService),
+                    new global::Microsoft.OData.Client.BodyOperationParameter("printer", printer),
+                    new global::Microsoft.OData.Client.BodyOperationParameter("landscape", landscape),
+                    new global::Microsoft.OData.Client.BodyOperationParameter("paperSize", paperSize),
+                    new global::Microsoft.OData.Client.BodyOperationParameter("paperTray", paperTray));
+        }
+        /// <summary>
+        /// There are no comments for AddPrinterServicePrinter in the schema.
+        /// </summary>
+        [global::Microsoft.OData.Client.OriginalNameAttribute("AddPrinterServicePrinter")]
+        public virtual global::Microsoft.OData.Client.DataServiceActionQuery AddPrinterServicePrinter(string localService, string printer)
+        {
+            global::Microsoft.OData.Client.EntityDescriptor resource = Context.EntityTracker.TryGetEntityDescriptor(this);
+            if (resource == null)
+            {
+                throw new global::System.Exception("cannot find entity");
+            }
+
+            return new global::Microsoft.OData.Client.DataServiceActionQuery(this.Context, resource.EditLink.OriginalString.Trim('/') + "/NAV.AddPrinterServicePrinter", new global::Microsoft.OData.Client.BodyOperationParameter("localService", localService),
+                    new global::Microsoft.OData.Client.BodyOperationParameter("printer", printer));
+        }
+        /// <summary>
+        /// There are no comments for AddPrinterServicePrinter_594577777 in the schema.
+        /// </summary>
+        [global::Microsoft.OData.Client.OriginalNameAttribute("AddPrinterServicePrinter_594577777")]
+        public virtual global::Microsoft.OData.Client.DataServiceActionQuery AddPrinterServicePrinter_594577777(string localService, string printer, global::System.Nullable<bool> landscape, string paperSize, string paperTray)
+        {
+            global::Microsoft.OData.Client.EntityDescriptor resource = Context.EntityTracker.TryGetEntityDescriptor(this);
+            if (resource == null)
+            {
+                throw new global::System.Exception("cannot find entity");
+            }
+
+            return new global::Microsoft.OData.Client.DataServiceActionQuery(this.Context, resource.EditLink.OriginalString.Trim('/') + "/NAV.AddPrinterServicePrinter_594577777", new global::Microsoft.OData.Client.BodyOperationParameter("localService", localService),
+                    new global::Microsoft.OData.Client.BodyOperationParameter("printer", printer),
+                    new global::Microsoft.OData.Client.BodyOperationParameter("landscape", landscape),
+                    new global::Microsoft.OData.Client.BodyOperationParameter("paperSize", paperSize),
+                    new global::Microsoft.OData.Client.BodyOperationParameter("paperTray", paperTray));
+        }
+        /// <summary>
+        /// There are no comments for ClearPrinterList in the schema.
+        /// </summary>
+        [global::Microsoft.OData.Client.OriginalNameAttribute("ClearPrinterList")]
+        public virtual global::Microsoft.OData.Client.DataServiceActionQuery ClearPrinterList(string printerService)
+        {
+            global::Microsoft.OData.Client.EntityDescriptor resource = Context.EntityTracker.TryGetEntityDescriptor(this);
+            if (resource == null)
+            {
+                throw new global::System.Exception("cannot find entity");
+            }
+
+            return new global::Microsoft.OData.Client.DataServiceActionQuery(this.Context, resource.EditLink.OriginalString.Trim('/') + "/NAV.ClearPrinterList", new global::Microsoft.OData.Client.BodyOperationParameter("printerService", printerService));
+        }
+        /// <summary>
+        /// There are no comments for GetEntryFile in the schema.
+        /// </summary>
+        [global::Microsoft.OData.Client.OriginalNameAttribute("GetEntryFile")]
+        public virtual global::Microsoft.OData.Client.DataServiceActionQuerySingle<string> GetEntryFile(global::System.Nullable<global::System.Guid> documentGUID)
+        {
+            global::Microsoft.OData.Client.EntityDescriptor resource = Context.EntityTracker.TryGetEntityDescriptor(this);
+            if (resource == null)
+            {
+                throw new global::System.Exception("cannot find entity");
+            }
+
+            return new global::Microsoft.OData.Client.DataServiceActionQuerySingle<string>(this.Context, resource.EditLink.OriginalString.Trim('/') + "/NAV.GetEntryFile", new global::Microsoft.OData.Client.BodyOperationParameter("documentGUID", documentGUID));
+        }
+        /// <summary>
+        /// There are no comments for GetFileServiceStatus in the schema.
+        /// </summary>
+        [global::Microsoft.OData.Client.OriginalNameAttribute("GetFileServiceStatus")]
+        public virtual global::Microsoft.OData.Client.DataServiceActionQuerySingle<global::System.Nullable<int>> GetFileServiceStatus(string localService, string fileQueue)
+        {
+            global::Microsoft.OData.Client.EntityDescriptor resource = Context.EntityTracker.TryGetEntityDescriptor(this);
+            if (resource == null)
+            {
+                throw new global::System.Exception("cannot find entity");
+            }
+
+            return new global::Microsoft.OData.Client.DataServiceActionQuerySingle<global::System.Nullable<int>>(this.Context, resource.EditLink.OriginalString.Trim('/') + "/NAV.GetFileServiceStatus", new global::Microsoft.OData.Client.BodyOperationParameter("localService", localService),
+                    new global::Microsoft.OData.Client.BodyOperationParameter("fileQueue", fileQueue));
+        }
+        /// <summary>
+        /// There are no comments for Ping in the schema.
+        /// </summary>
+        [global::Microsoft.OData.Client.OriginalNameAttribute("Ping")]
+        public virtual global::Microsoft.OData.Client.DataServiceActionQuerySingle<string> Ping()
+        {
+            global::Microsoft.OData.Client.EntityDescriptor resource = Context.EntityTracker.TryGetEntityDescriptor(this);
+            if (resource == null)
+            {
+                throw new global::System.Exception("cannot find entity");
+            }
+
+            return new global::Microsoft.OData.Client.DataServiceActionQuerySingle<string>(this.Context, resource.EditLink.OriginalString.Trim('/') + "/NAV.Ping");
+        }
+        /// <summary>
+        /// There are no comments for RegisterPrinterService in the schema.
+        /// </summary>
+        [global::Microsoft.OData.Client.OriginalNameAttribute("RegisterPrinterService")]
+        public virtual global::Microsoft.OData.Client.DataServiceActionQuery RegisterPrinterService(string localService)
+        {
+            global::Microsoft.OData.Client.EntityDescriptor resource = Context.EntityTracker.TryGetEntityDescriptor(this);
+            if (resource == null)
+            {
+                throw new global::System.Exception("cannot find entity");
+            }
+
+            return new global::Microsoft.OData.Client.DataServiceActionQuery(this.Context, resource.EditLink.OriginalString.Trim('/') + "/NAV.RegisterPrinterService", new global::Microsoft.OData.Client.BodyOperationParameter("localService", localService));
+        }
+        /// <summary>
+        /// There are no comments for ServiceUpdateRequested in the schema.
+        /// </summary>
+        [global::Microsoft.OData.Client.OriginalNameAttribute("ServiceUpdateRequested")]
+        public virtual global::Microsoft.OData.Client.DataServiceActionQuerySingle<global::System.Nullable<bool>> ServiceUpdateRequested(string localService)
+        {
+            global::Microsoft.OData.Client.EntityDescriptor resource = Context.EntityTracker.TryGetEntityDescriptor(this);
+            if (resource == null)
+            {
+                throw new global::System.Exception("cannot find entity");
+            }
+
+            return new global::Microsoft.OData.Client.DataServiceActionQuerySingle<global::System.Nullable<bool>>(this.Context, resource.EditLink.OriginalString.Trim('/') + "/NAV.ServiceUpdateRequested", new global::Microsoft.OData.Client.BodyOperationParameter("localService", localService));
+        }
+        /// <summary>
+        /// There are no comments for SetDocumentComplete in the schema.
+        /// </summary>
+        [global::Microsoft.OData.Client.OriginalNameAttribute("SetDocumentComplete")]
+        public virtual global::Microsoft.OData.Client.DataServiceActionQuery SetDocumentComplete(global::System.Nullable<global::System.Guid> documentGUID)
+        {
+            global::Microsoft.OData.Client.EntityDescriptor resource = Context.EntityTracker.TryGetEntityDescriptor(this);
+            if (resource == null)
+            {
+                throw new global::System.Exception("cannot find entity");
+            }
+
+            return new global::Microsoft.OData.Client.DataServiceActionQuery(this.Context, resource.EditLink.OriginalString.Trim('/') + "/NAV.SetDocumentComplete", new global::Microsoft.OData.Client.BodyOperationParameter("documentGUID", documentGUID));
+        }
+        /// <summary>
+        /// There are no comments for UpdateHeartBeat in the schema.
+        /// </summary>
+        [global::Microsoft.OData.Client.OriginalNameAttribute("UpdateHeartBeat")]
+        public virtual global::Microsoft.OData.Client.DataServiceActionQuerySingle<global::System.Nullable<bool>> UpdateHeartBeat(string localService)
+        {
+            global::Microsoft.OData.Client.EntityDescriptor resource = Context.EntityTracker.TryGetEntityDescriptor(this);
+            if (resource == null)
+            {
+                throw new global::System.Exception("cannot find entity");
+            }
+
+            return new global::Microsoft.OData.Client.DataServiceActionQuerySingle<global::System.Nullable<bool>>(this.Context, resource.EditLink.OriginalString.Trim('/') + "/NAV.UpdateHeartBeat", new global::Microsoft.OData.Client.BodyOperationParameter("localService", localService));
+        }
+        /// <summary>
+        /// There are no comments for UploadEntry in the schema.
+        /// </summary>
+        [global::Microsoft.OData.Client.OriginalNameAttribute("UploadEntry")]
+        public virtual global::Microsoft.OData.Client.DataServiceActionQuerySingle<global::System.Nullable<int>> UploadEntry(string localService, string fileQueue, string description, string base64Result)
+        {
+            global::Microsoft.OData.Client.EntityDescriptor resource = Context.EntityTracker.TryGetEntityDescriptor(this);
+            if (resource == null)
+            {
+                throw new global::System.Exception("cannot find entity");
+            }
+
+            return new global::Microsoft.OData.Client.DataServiceActionQuerySingle<global::System.Nullable<int>>(this.Context, resource.EditLink.OriginalString.Trim('/') + "/NAV.UploadEntry", new global::Microsoft.OData.Client.BodyOperationParameter("localService", localService),
+                    new global::Microsoft.OData.Client.BodyOperationParameter("fileQueue", fileQueue),
+                    new global::Microsoft.OData.Client.BodyOperationParameter("description", description),
+                    new global::Microsoft.OData.Client.BodyOperationParameter("base64Result", base64Result));
+        }
     }
     /// <summary>
     /// There are no comments for BCLRSServicesAPISingle in the schema.
@@ -1393,10 +2027,202 @@ namespace BC
         }
     }
     /// <summary>
+    /// There are no comments for BCLRSSetupLinesAPISingle in the schema.
+    /// </summary>
+    [global::Microsoft.OData.Client.OriginalNameAttribute("BCLRSSetupLinesAPISingle")]
+    public partial class BCLRSSetupLinesAPISingle : global::Microsoft.OData.Client.DataServiceQuerySingle<BCLRSSetupLinesAPI>
+    {
+        /// <summary>
+        /// Initialize a new BCLRSSetupLinesAPISingle object.
+        /// </summary>
+        public BCLRSSetupLinesAPISingle(global::Microsoft.OData.Client.DataServiceContext context, string path)
+            : base(context, path) {}
+
+        /// <summary>
+        /// Initialize a new BCLRSSetupLinesAPISingle object.
+        /// </summary>
+        public BCLRSSetupLinesAPISingle(global::Microsoft.OData.Client.DataServiceContext context, string path, bool isComposable)
+            : base(context, path, isComposable) {}
+
+        /// <summary>
+        /// Initialize a new BCLRSSetupLinesAPISingle object.
+        /// </summary>
+        public BCLRSSetupLinesAPISingle(global::Microsoft.OData.Client.DataServiceQuerySingle<BCLRSSetupLinesAPI> query)
+            : base(query) {}
+
+    }
+    /// <summary>
+    /// There are no comments for BCLRSSetupLinesAPI in the schema.
+    /// </summary>
+    /// <KeyProperties>
+    /// LocalServiceCode
+    /// SetupVariableName
+    /// </KeyProperties>
+    [global::Microsoft.OData.Client.Key("localServiceCode", "setupVariableName")]
+    [global::Microsoft.OData.Client.EntitySet("BCLRSSetupLinesAPI")]
+    [global::Microsoft.OData.Client.OriginalNameAttribute("BCLRSSetupLinesAPI")]
+    public partial class BCLRSSetupLinesAPI : global::Microsoft.OData.Client.BaseEntityType, global::System.ComponentModel.INotifyPropertyChanged
+    {
+        /// <summary>
+        /// Create a new BCLRSSetupLinesAPI object.
+        /// </summary>
+        /// <param name="localServiceCode">Initial value of LocalServiceCode.</param>
+        /// <param name="setupVariableName">Initial value of SetupVariableName.</param>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        public static BCLRSSetupLinesAPI CreateBCLRSSetupLinesAPI(string localServiceCode, string setupVariableName)
+        {
+            BCLRSSetupLinesAPI bCLRSSetupLinesAPI = new BCLRSSetupLinesAPI();
+            bCLRSSetupLinesAPI.LocalServiceCode = localServiceCode;
+            bCLRSSetupLinesAPI.SetupVariableName = setupVariableName;
+            return bCLRSSetupLinesAPI;
+        }
+        /// <summary>
+        /// There are no comments for Property LocalServiceCode in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+
+        [global::Microsoft.OData.Client.OriginalNameAttribute("localServiceCode")]
+        [global::System.ComponentModel.DataAnnotations.StringLengthAttribute(20, ErrorMessage = "LocalServiceCode cannot be longer than 20 characters.")]
+        [global::System.ComponentModel.DataAnnotations.RequiredAttribute(ErrorMessage = "LocalServiceCode is required.")]
+        public virtual string LocalServiceCode
+        {
+            get
+            {
+                return this._LocalServiceCode;
+            }
+            set
+            {
+                this.OnLocalServiceCodeChanging(value);
+                this._LocalServiceCode = value;
+                this.OnLocalServiceCodeChanged();
+                this.OnPropertyChanged("localServiceCode");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        private string _LocalServiceCode;
+        partial void OnLocalServiceCodeChanging(string value);
+        partial void OnLocalServiceCodeChanged();
+        /// <summary>
+        /// There are no comments for Property SetupVariableName in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+
+        [global::Microsoft.OData.Client.OriginalNameAttribute("setupVariableName")]
+        [global::System.ComponentModel.DataAnnotations.StringLengthAttribute(100, ErrorMessage = "SetupVariableName cannot be longer than 100 characters.")]
+        [global::System.ComponentModel.DataAnnotations.RequiredAttribute(ErrorMessage = "SetupVariableName is required.")]
+        public virtual string SetupVariableName
+        {
+            get
+            {
+                return this._SetupVariableName;
+            }
+            set
+            {
+                this.OnSetupVariableNameChanging(value);
+                this._SetupVariableName = value;
+                this.OnSetupVariableNameChanged();
+                this.OnPropertyChanged("setupVariableName");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        private string _SetupVariableName;
+        partial void OnSetupVariableNameChanging(string value);
+        partial void OnSetupVariableNameChanged();
+        /// <summary>
+        /// There are no comments for Property SetupValue in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+
+        [global::Microsoft.OData.Client.OriginalNameAttribute("setupValue")]
+        [global::System.ComponentModel.DataAnnotations.StringLengthAttribute(500, ErrorMessage = "SetupValue cannot be longer than 500 characters.")]
+        public virtual string SetupValue
+        {
+            get
+            {
+                return this._SetupValue;
+            }
+            set
+            {
+                this.OnSetupValueChanging(value);
+                this._SetupValue = value;
+                this.OnSetupValueChanged();
+                this.OnPropertyChanged("setupValue");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        private string _SetupValue;
+        partial void OnSetupValueChanging(string value);
+        partial void OnSetupValueChanged();
+        /// <summary>
+        /// There are no comments for Property IsSensitive in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+
+        [global::Microsoft.OData.Client.OriginalNameAttribute("isSensitive")]
+        public virtual global::System.Nullable<bool> IsSensitive
+        {
+            get
+            {
+                return this._IsSensitive;
+            }
+            set
+            {
+                this.OnIsSensitiveChanging(value);
+                this._IsSensitive = value;
+                this.OnIsSensitiveChanged();
+                this.OnPropertyChanged("isSensitive");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        private global::System.Nullable<bool> _IsSensitive;
+        partial void OnIsSensitiveChanging(global::System.Nullable<bool> value);
+        partial void OnIsSensitiveChanged();
+        /// <summary>
+        /// This event is raised when the value of the property is changed
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        public event global::System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        /// <summary>
+        /// The value of the property is changed
+        /// </summary>
+        /// <param name="property">property name</param>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        protected virtual void OnPropertyChanged(string property)
+        {
+            if ((this.PropertyChanged != null))
+            {
+                this.PropertyChanged(this, new global::System.ComponentModel.PropertyChangedEventArgs(property));
+            }
+        }
+    }
+    /// <summary>
     /// Class containing all extension methods
     /// </summary>
     public static class ExtensionMethods
     {
+        /// <summary>
+        /// Get an entity of type global::BC.UserTaskSetComplete as global::BC.UserTaskSetCompleteSingle specified by key from an entity set
+        /// </summary>
+        /// <param name="_source">source entity set</param>
+        /// <param name="_keys">dictionary with the names and values of keys</param>
+        public static global::BC.UserTaskSetCompleteSingle ByKey(this global::Microsoft.OData.Client.DataServiceQuery<global::BC.UserTaskSetComplete> _source, global::System.Collections.Generic.IDictionary<string, object> _keys)
+        {
+            return new global::BC.UserTaskSetCompleteSingle(_source.Context, _source.GetKeyPath(global::Microsoft.OData.Client.Serializer.GetKeyString(_source.Context, _keys)));
+        }
+        /// <summary>
+        /// Get an entity of type global::BC.UserTaskSetComplete as global::BC.UserTaskSetCompleteSingle specified by key from an entity set
+        /// </summary>
+        /// <param name="_source">source entity set</param>
+        /// <param name="iD">The value of iD</param>
+        public static global::BC.UserTaskSetCompleteSingle ByKey(this global::Microsoft.OData.Client.DataServiceQuery<global::BC.UserTaskSetComplete> _source,
+            int iD)
+        {
+            global::System.Collections.Generic.IDictionary<string, object> _keys = new global::System.Collections.Generic.Dictionary<string, object>
+            {
+                { "ID", iD }
+            };
+            return new global::BC.UserTaskSetCompleteSingle(_source.Context, _source.GetKeyPath(global::Microsoft.OData.Client.Serializer.GetKeyString(_source.Context, _keys)));
+        }
         /// <summary>
         /// Get an entity of type global::BC.BCLRSEntryList as global::BC.BCLRSEntryListSingle specified by key from an entity set
         /// </summary>
@@ -1465,6 +2291,229 @@ namespace BC
                 { "no", no }
             };
             return new global::BC.BCLRSServicesAPISingle(_source.Context, _source.GetKeyPath(global::Microsoft.OData.Client.Serializer.GetKeyString(_source.Context, _keys)));
+        }
+        /// <summary>
+        /// Get an entity of type global::BC.BCLRSSetupLinesAPI as global::BC.BCLRSSetupLinesAPISingle specified by key from an entity set
+        /// </summary>
+        /// <param name="_source">source entity set</param>
+        /// <param name="_keys">dictionary with the names and values of keys</param>
+        public static global::BC.BCLRSSetupLinesAPISingle ByKey(this global::Microsoft.OData.Client.DataServiceQuery<global::BC.BCLRSSetupLinesAPI> _source, global::System.Collections.Generic.IDictionary<string, object> _keys)
+        {
+            return new global::BC.BCLRSSetupLinesAPISingle(_source.Context, _source.GetKeyPath(global::Microsoft.OData.Client.Serializer.GetKeyString(_source.Context, _keys)));
+        }
+        /// <summary>
+        /// Get an entity of type global::BC.BCLRSSetupLinesAPI as global::BC.BCLRSSetupLinesAPISingle specified by key from an entity set
+        /// </summary>
+        /// <param name="_source">source entity set</param>
+        /// <param name="localServiceCode">The value of localServiceCode</param>
+        /// <param name="setupVariableName">The value of setupVariableName</param>
+        public static global::BC.BCLRSSetupLinesAPISingle ByKey(this global::Microsoft.OData.Client.DataServiceQuery<global::BC.BCLRSSetupLinesAPI> _source,
+            string localServiceCode, 
+            string setupVariableName)
+        {
+            global::System.Collections.Generic.IDictionary<string, object> _keys = new global::System.Collections.Generic.Dictionary<string, object>
+            {
+                { "localServiceCode", localServiceCode }, 
+                { "setupVariableName", setupVariableName }
+            };
+            return new global::BC.BCLRSSetupLinesAPISingle(_source.Context, _source.GetKeyPath(global::Microsoft.OData.Client.Serializer.GetKeyString(_source.Context, _keys)));
+        }
+        /// <summary>
+        /// There are no comments for SetComplete in the schema.
+        /// </summary>
+        [global::Microsoft.OData.Client.OriginalNameAttribute("SetComplete")]
+        public static global::Microsoft.OData.Client.DataServiceActionQuery SetComplete(this global::Microsoft.OData.Client.DataServiceQuerySingle<global::BC.UserTaskSetComplete> _source)
+        {
+            if (!_source.IsComposable)
+            {
+                throw new global::System.NotSupportedException("The previous function is not composable.");
+            }
+
+            return new global::Microsoft.OData.Client.DataServiceActionQuery(_source.Context, _source.AppendRequestUri("NAV.SetComplete"));
+        }
+        /// <summary>
+        /// There are no comments for AddFileService in the schema.
+        /// </summary>
+        [global::Microsoft.OData.Client.OriginalNameAttribute("AddFileService")]
+        public static global::Microsoft.OData.Client.DataServiceActionQuery AddFileService(this global::Microsoft.OData.Client.DataServiceQuerySingle<global::BC.BCLRSServiceFunctions> _source, string localService, string fileQueue, global::System.Nullable<int> direction)
+        {
+            if (!_source.IsComposable)
+            {
+                throw new global::System.NotSupportedException("The previous function is not composable.");
+            }
+
+            return new global::Microsoft.OData.Client.DataServiceActionQuery(_source.Context, _source.AppendRequestUri("NAV.AddFileService"), new global::Microsoft.OData.Client.BodyOperationParameter("localService", localService),
+                    new global::Microsoft.OData.Client.BodyOperationParameter("fileQueue", fileQueue),
+                    new global::Microsoft.OData.Client.BodyOperationParameter("direction", direction));
+        }
+        /// <summary>
+        /// There are no comments for AddPrinterPaperSetup in the schema.
+        /// </summary>
+        [global::Microsoft.OData.Client.OriginalNameAttribute("AddPrinterPaperSetup")]
+        public static global::Microsoft.OData.Client.DataServiceActionQuery AddPrinterPaperSetup(this global::Microsoft.OData.Client.DataServiceQuerySingle<global::BC.BCLRSServiceFunctions> _source, string localService, string printer, global::System.Nullable<bool> landscape, string paperSize, string paperTray)
+        {
+            if (!_source.IsComposable)
+            {
+                throw new global::System.NotSupportedException("The previous function is not composable.");
+            }
+
+            return new global::Microsoft.OData.Client.DataServiceActionQuery(_source.Context, _source.AppendRequestUri("NAV.AddPrinterPaperSetup"), new global::Microsoft.OData.Client.BodyOperationParameter("localService", localService),
+                    new global::Microsoft.OData.Client.BodyOperationParameter("printer", printer),
+                    new global::Microsoft.OData.Client.BodyOperationParameter("landscape", landscape),
+                    new global::Microsoft.OData.Client.BodyOperationParameter("paperSize", paperSize),
+                    new global::Microsoft.OData.Client.BodyOperationParameter("paperTray", paperTray));
+        }
+        /// <summary>
+        /// There are no comments for AddPrinterServicePrinter in the schema.
+        /// </summary>
+        [global::Microsoft.OData.Client.OriginalNameAttribute("AddPrinterServicePrinter")]
+        public static global::Microsoft.OData.Client.DataServiceActionQuery AddPrinterServicePrinter(this global::Microsoft.OData.Client.DataServiceQuerySingle<global::BC.BCLRSServiceFunctions> _source, string localService, string printer)
+        {
+            if (!_source.IsComposable)
+            {
+                throw new global::System.NotSupportedException("The previous function is not composable.");
+            }
+
+            return new global::Microsoft.OData.Client.DataServiceActionQuery(_source.Context, _source.AppendRequestUri("NAV.AddPrinterServicePrinter"), new global::Microsoft.OData.Client.BodyOperationParameter("localService", localService),
+                    new global::Microsoft.OData.Client.BodyOperationParameter("printer", printer));
+        }
+        /// <summary>
+        /// There are no comments for AddPrinterServicePrinter_594577777 in the schema.
+        /// </summary>
+        [global::Microsoft.OData.Client.OriginalNameAttribute("AddPrinterServicePrinter_594577777")]
+        public static global::Microsoft.OData.Client.DataServiceActionQuery AddPrinterServicePrinter_594577777(this global::Microsoft.OData.Client.DataServiceQuerySingle<global::BC.BCLRSServiceFunctions> _source, string localService, string printer, global::System.Nullable<bool> landscape, string paperSize, string paperTray)
+        {
+            if (!_source.IsComposable)
+            {
+                throw new global::System.NotSupportedException("The previous function is not composable.");
+            }
+
+            return new global::Microsoft.OData.Client.DataServiceActionQuery(_source.Context, _source.AppendRequestUri("NAV.AddPrinterServicePrinter_594577777"), new global::Microsoft.OData.Client.BodyOperationParameter("localService", localService),
+                    new global::Microsoft.OData.Client.BodyOperationParameter("printer", printer),
+                    new global::Microsoft.OData.Client.BodyOperationParameter("landscape", landscape),
+                    new global::Microsoft.OData.Client.BodyOperationParameter("paperSize", paperSize),
+                    new global::Microsoft.OData.Client.BodyOperationParameter("paperTray", paperTray));
+        }
+        /// <summary>
+        /// There are no comments for ClearPrinterList in the schema.
+        /// </summary>
+        [global::Microsoft.OData.Client.OriginalNameAttribute("ClearPrinterList")]
+        public static global::Microsoft.OData.Client.DataServiceActionQuery ClearPrinterList(this global::Microsoft.OData.Client.DataServiceQuerySingle<global::BC.BCLRSServiceFunctions> _source, string printerService)
+        {
+            if (!_source.IsComposable)
+            {
+                throw new global::System.NotSupportedException("The previous function is not composable.");
+            }
+
+            return new global::Microsoft.OData.Client.DataServiceActionQuery(_source.Context, _source.AppendRequestUri("NAV.ClearPrinterList"), new global::Microsoft.OData.Client.BodyOperationParameter("printerService", printerService));
+        }
+        /// <summary>
+        /// There are no comments for GetEntryFile in the schema.
+        /// </summary>
+        [global::Microsoft.OData.Client.OriginalNameAttribute("GetEntryFile")]
+        public static global::Microsoft.OData.Client.DataServiceActionQuerySingle<string> GetEntryFile(this global::Microsoft.OData.Client.DataServiceQuerySingle<global::BC.BCLRSServiceFunctions> _source, global::System.Nullable<global::System.Guid> documentGUID)
+        {
+            if (!_source.IsComposable)
+            {
+                throw new global::System.NotSupportedException("The previous function is not composable.");
+            }
+
+            return new global::Microsoft.OData.Client.DataServiceActionQuerySingle<string>(_source.Context, _source.AppendRequestUri("NAV.GetEntryFile"), new global::Microsoft.OData.Client.BodyOperationParameter("documentGUID", documentGUID));
+        }
+        /// <summary>
+        /// There are no comments for GetFileServiceStatus in the schema.
+        /// </summary>
+        [global::Microsoft.OData.Client.OriginalNameAttribute("GetFileServiceStatus")]
+        public static global::Microsoft.OData.Client.DataServiceActionQuerySingle<global::System.Nullable<int>> GetFileServiceStatus(this global::Microsoft.OData.Client.DataServiceQuerySingle<global::BC.BCLRSServiceFunctions> _source, string localService, string fileQueue)
+        {
+            if (!_source.IsComposable)
+            {
+                throw new global::System.NotSupportedException("The previous function is not composable.");
+            }
+
+            return new global::Microsoft.OData.Client.DataServiceActionQuerySingle<global::System.Nullable<int>>(_source.Context, _source.AppendRequestUri("NAV.GetFileServiceStatus"), new global::Microsoft.OData.Client.BodyOperationParameter("localService", localService),
+                    new global::Microsoft.OData.Client.BodyOperationParameter("fileQueue", fileQueue));
+        }
+        /// <summary>
+        /// There are no comments for Ping in the schema.
+        /// </summary>
+        [global::Microsoft.OData.Client.OriginalNameAttribute("Ping")]
+        public static global::Microsoft.OData.Client.DataServiceActionQuerySingle<string> Ping(this global::Microsoft.OData.Client.DataServiceQuerySingle<global::BC.BCLRSServiceFunctions> _source)
+        {
+            if (!_source.IsComposable)
+            {
+                throw new global::System.NotSupportedException("The previous function is not composable.");
+            }
+
+            return new global::Microsoft.OData.Client.DataServiceActionQuerySingle<string>(_source.Context, _source.AppendRequestUri("NAV.Ping"));
+        }
+        /// <summary>
+        /// There are no comments for RegisterPrinterService in the schema.
+        /// </summary>
+        [global::Microsoft.OData.Client.OriginalNameAttribute("RegisterPrinterService")]
+        public static global::Microsoft.OData.Client.DataServiceActionQuery RegisterPrinterService(this global::Microsoft.OData.Client.DataServiceQuerySingle<global::BC.BCLRSServiceFunctions> _source, string localService)
+        {
+            if (!_source.IsComposable)
+            {
+                throw new global::System.NotSupportedException("The previous function is not composable.");
+            }
+
+            return new global::Microsoft.OData.Client.DataServiceActionQuery(_source.Context, _source.AppendRequestUri("NAV.RegisterPrinterService"), new global::Microsoft.OData.Client.BodyOperationParameter("localService", localService));
+        }
+        /// <summary>
+        /// There are no comments for ServiceUpdateRequested in the schema.
+        /// </summary>
+        [global::Microsoft.OData.Client.OriginalNameAttribute("ServiceUpdateRequested")]
+        public static global::Microsoft.OData.Client.DataServiceActionQuerySingle<global::System.Nullable<bool>> ServiceUpdateRequested(this global::Microsoft.OData.Client.DataServiceQuerySingle<global::BC.BCLRSServiceFunctions> _source, string localService)
+        {
+            if (!_source.IsComposable)
+            {
+                throw new global::System.NotSupportedException("The previous function is not composable.");
+            }
+
+            return new global::Microsoft.OData.Client.DataServiceActionQuerySingle<global::System.Nullable<bool>>(_source.Context, _source.AppendRequestUri("NAV.ServiceUpdateRequested"), new global::Microsoft.OData.Client.BodyOperationParameter("localService", localService));
+        }
+        /// <summary>
+        /// There are no comments for SetDocumentComplete in the schema.
+        /// </summary>
+        [global::Microsoft.OData.Client.OriginalNameAttribute("SetDocumentComplete")]
+        public static global::Microsoft.OData.Client.DataServiceActionQuery SetDocumentComplete(this global::Microsoft.OData.Client.DataServiceQuerySingle<global::BC.BCLRSServiceFunctions> _source, global::System.Nullable<global::System.Guid> documentGUID)
+        {
+            if (!_source.IsComposable)
+            {
+                throw new global::System.NotSupportedException("The previous function is not composable.");
+            }
+
+            return new global::Microsoft.OData.Client.DataServiceActionQuery(_source.Context, _source.AppendRequestUri("NAV.SetDocumentComplete"), new global::Microsoft.OData.Client.BodyOperationParameter("documentGUID", documentGUID));
+        }
+        /// <summary>
+        /// There are no comments for UpdateHeartBeat in the schema.
+        /// </summary>
+        [global::Microsoft.OData.Client.OriginalNameAttribute("UpdateHeartBeat")]
+        public static global::Microsoft.OData.Client.DataServiceActionQuerySingle<global::System.Nullable<bool>> UpdateHeartBeat(this global::Microsoft.OData.Client.DataServiceQuerySingle<global::BC.BCLRSServiceFunctions> _source, string localService)
+        {
+            if (!_source.IsComposable)
+            {
+                throw new global::System.NotSupportedException("The previous function is not composable.");
+            }
+
+            return new global::Microsoft.OData.Client.DataServiceActionQuerySingle<global::System.Nullable<bool>>(_source.Context, _source.AppendRequestUri("NAV.UpdateHeartBeat"), new global::Microsoft.OData.Client.BodyOperationParameter("localService", localService));
+        }
+        /// <summary>
+        /// There are no comments for UploadEntry in the schema.
+        /// </summary>
+        [global::Microsoft.OData.Client.OriginalNameAttribute("UploadEntry")]
+        public static global::Microsoft.OData.Client.DataServiceActionQuerySingle<global::System.Nullable<int>> UploadEntry(this global::Microsoft.OData.Client.DataServiceQuerySingle<global::BC.BCLRSServiceFunctions> _source, string localService, string fileQueue, string description, string base64Result)
+        {
+            if (!_source.IsComposable)
+            {
+                throw new global::System.NotSupportedException("The previous function is not composable.");
+            }
+
+            return new global::Microsoft.OData.Client.DataServiceActionQuerySingle<global::System.Nullable<int>>(_source.Context, _source.AppendRequestUri("NAV.UploadEntry"), new global::Microsoft.OData.Client.BodyOperationParameter("localService", localService),
+                    new global::Microsoft.OData.Client.BodyOperationParameter("fileQueue", fileQueue),
+                    new global::Microsoft.OData.Client.BodyOperationParameter("description", description),
+                    new global::Microsoft.OData.Client.BodyOperationParameter("base64Result", base64Result));
         }
     }
 }

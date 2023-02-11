@@ -2,17 +2,32 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="BC_Print_Service.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="BaseUrl" Type="System.String" Scope="User">
-      <Value Profile="(Default)">https://api.businesscentral.dynamics.com/v2.0/f968cbe4-b4a1-48ff-9920-5224b47e606a/V15TestDev/WS/CRONUS%20UK%20Ltd./</Value>
+    <Setting Name="BaseUrl" Roaming="true" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="UserName" Type="System.String" Scope="User">
-      <Value Profile="(Default)">SZABOLCS.GYORKE</Value>
+    <Setting Name="UserName" Roaming="true" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="ApiKey" Type="System.String" Scope="User">
-      <Value Profile="(Default)">zLYZ0ZW1gjbpqZFnSq0zrV4fo2m/BvfFDaNTp0RluJY=</Value>
+    <Setting Name="ApiKey" Roaming="true" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="Instance" Type="System.String" Scope="User">
-      <Value Profile="(Default)">SZABOLCSG-PC2</Value>
+    <Setting Name="Instance" Roaming="true" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="AuthType" Roaming="true" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Basic</Value>
+    </Setting>
+    <Setting Name="AuthUrl" Roaming="true" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="Scope" Roaming="true" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://api.businesscentral.dynamics.com/.default</Value>
+    </Setting>
+    <Setting Name="RedirectURL" Roaming="true" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://bclrs</Value>
+    </Setting>
+    <Setting Name="TimeIntervalSec" Roaming="true" Type="System.String" Scope="User">
+      <Value Profile="(Default)">10</Value>
     </Setting>
   </Settings>
 </SettingsFile>

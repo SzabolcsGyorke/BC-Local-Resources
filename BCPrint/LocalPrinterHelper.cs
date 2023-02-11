@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Collections;
 using System.IO;
 using RawPrint;
+using System.Drawing.Printing;
 
 namespace BCPrint
 {
@@ -23,6 +24,35 @@ namespace BCPrint
 
 
             return retunarray;
+        }
+
+        public static PageSettings GetPrinterPageInfo(String printerName)
+        {
+            PrinterSettings settings;
+
+            // If printer name is not set, look for default printer
+            if (String.IsNullOrEmpty(printerName))
+            {
+                foreach (var printer in PrinterSettings.InstalledPrinters)
+                {
+                    settings = new PrinterSettings();
+
+                    settings.PrinterName = printer.ToString();
+
+                    if (settings.IsDefaultPrinter)
+                        return settings.DefaultPageSettings;
+                }
+
+                return null; // <- No default printer  
+            }
+
+            // printer by its name 
+            settings = new PrinterSettings();
+
+            settings.PrinterName = printerName;
+            
+
+            return settings.DefaultPageSettings;
         }
 
         public static void SendPdfFileToPrinter(string printername, string filenameandpath, string documentname, int copies)

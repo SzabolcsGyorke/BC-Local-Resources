@@ -2,32 +2,17 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Tester.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="Tester_BCPrintWebServiceFunctions_BCPrintWebService" Type="System.String" Scope="Application">
+    <Setting Name="BaseUrl" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="BaseUrl" Type="System.String" Scope="User">
-      <Value Profile="(Default)">https://businesscentral.dynamics.com/f968cbe4-b4a1-48ff-9920-5224b47e606a/V15_Test/WS/CRONUS%20UK%20Ltd./</Value>
-    </Setting>
     <Setting Name="UserName" Type="System.String" Scope="User">
-      <Value Profile="(Default)">SZABOLCS.GYORKE</Value>
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="ApiKey" Type="System.String" Scope="User">
-      <Value Profile="(Default)">MGJOHYH4SJaBj2JYLyq0yVJ4Ws59XkxFoWE/VeYNvUU=</Value>
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="Instance" Type="System.String" Scope="User">
-      <Value Profile="(Default)">SZABOLCSG-PC2</Value>
-    </Setting>
-    <Setting Name="UploadFolder1" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\temp\UploadTest1</Value>
-    </Setting>
-    <Setting Name="UploadFolder2" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\temp\UploadTest2</Value>
-    </Setting>
-    <Setting Name="DownloadFolder1" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\temp\DownloadTest1</Value>
-    </Setting>
-    <Setting Name="DownloadFolder2" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\temp\DownloadTest2</Value>
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="AuthType" Type="System.String" Scope="User">
       <Value Profile="(Default)">Basic</Value>
@@ -39,7 +24,10 @@
       <Value Profile="(Default)">https://api.businesscentral.dynamics.com/.default</Value>
     </Setting>
     <Setting Name="RedirectURL" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">https://bclrs</Value>
+    </Setting>
+    <Setting Name="TimeIntervalSec" Type="System.String" Scope="User">
+      <Value Profile="(Default)">10</Value>
     </Setting>
   </Settings>
 </SettingsFile>

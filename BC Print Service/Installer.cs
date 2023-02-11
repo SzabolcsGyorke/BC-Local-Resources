@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 namespace BC_Print_Service
 {
     [RunInstaller(true)]
-    public partial class ProjectInstaller : System.Configuration.Install.Installer
+    public partial class Installer : System.Configuration.Install.Installer
     {
-        public ProjectInstaller()
+        public Installer()
         {
             InitializeComponent();
         }

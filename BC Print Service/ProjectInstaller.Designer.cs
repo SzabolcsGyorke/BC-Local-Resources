@@ -39,11 +39,7 @@
             // 
             // serviceInstaller1
             // 
-            this.serviceInstaller1.Description = "Fetches documents and files to Print from Microsoft Dynamics BC";
-            this.serviceInstaller1.DisplayName = "BC Local Resources Service";
-            this.serviceInstaller1.ServiceName = "BC LRS";
-            this.serviceInstaller1.StartType = System.ServiceProcess.ServiceStartMode.Automatic;
-            this.serviceInstaller1.BeforeInstall += new System.Configuration.Install.InstallEventHandler(this.serviceInstaller1_BeforeInstall);
+            this.serviceInstaller1.ServiceName = "BC Local Service";
             // 
             // ProjectInstaller
             // 

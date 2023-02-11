@@ -13,6 +13,8 @@ using System.IO;
 using static BCLRS.FileHelper;
 using BCLRS;
 using System.Diagnostics;
+using System.Reflection;
+using System.Windows.Forms.Design;
 
 namespace Tester
 {
@@ -61,16 +63,17 @@ namespace Tester
         private void frm_tester_Load(object sender, EventArgs e)
         {
             cb_authtype.SelectedIndex = 0;
+            tb_instance.Text = Properties.Settings.Default.Instance.ToString();
             tb_baseurl.Text = Properties.Settings.Default.BaseUrl.ToString();
             tb_username.Text = Properties.Settings.Default.UserName.ToString();
             tb_webkey.Text = Properties.Settings.Default.ApiKey.ToString();
             tb_instance.Text = Properties.Settings.Default.Instance.ToString();
             cb_authtype.SelectedIndex = (Properties.Settings.Default.AuthType == AuthType.Basic.ToString()) ? 1 : 2;
-            tb_dwfolder1.Text = Properties.Settings.Default.DownloadFolder1.ToString();
+            //tb_dwfolder1.Text = Properties.Settings.Default.DownloadFolder1.ToString();
             tb_scope.Text = Properties.Settings.Default.Scope;
             tb_authurl.Text = Properties.Settings.Default.AuthUrl.ToString();
             tb_redirecturl.Text = Properties.Settings.Default.RedirectURL.ToString();
-            tb_timeinterval.Text = "10";
+            tb_timeinterval.Text = Properties.Settings.Default.TimeIntervalSec.ToString();
             cb_folderdirection.SelectedIndex = 0;
 
             if (cb_authtype.SelectedIndex == 0) authtype = AuthType.Basic;
@@ -91,6 +94,10 @@ namespace Tester
                 cb_printer.SelectedIndex = 1;
                 lb_printers.SelectedIndex = 1;
             }
+
+
+          
+         
         }
 
         private void UpdateConnectionDetails(AuthType authtype)
@@ -264,6 +271,7 @@ namespace Tester
 
         private void btn_tokeninfo_Click(object sender, EventArgs e)
         {
+            if (webAuthentication != null)
             MessageBox.Show(webAuthentication.GetTokenInfo(), "Token", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
@@ -283,8 +291,7 @@ namespace Tester
 
         private void tb_dwfolder1_TextChanged(object sender, EventArgs e)
         {
-            Properties.Settings.Default.DownloadFolder1 = tb_dwfolder1.Text;
-            Properties.Settings.Default.Save();
+        
         }
 
 
@@ -510,6 +517,39 @@ namespace Tester
 
 
         private void lst_timerlog_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void btn_uploadsettings_Click(object sender, EventArgs e)
+        {
+            List<WebSetting> webSettings = new List<WebSetting>();
+            foreach (System.Configuration.SettingsPropertyValue property in Properties.Settings.Default.PropertyValues)
+            {
+                webSettings.Add(new WebSetting(property.Name.ToString(), property.PropertyValue.ToString()));                               
+            }
+            if (webSettings.Count > 0)
+            {
+                InitAuthentication();
+                wshelper.UploadSettingstoBC(webSettings);
+                if (wshelper.ErrorText != "")
+                    MessageBox.Show(wshelper.ErrorText,"Web Service Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }
+        }
+
+        private void tb_instance_TextChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.Instance = tb_instance.Text;
+            Properties.Settings.Default.Save();
+        }
+
+        private void tb_timeinterval_TextChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.TimeIntervalSec = tb_timeinterval.Text;
+            Properties.Settings.Default.Save();
+        }
+
+        private void btn_exexcommand_Click_1(object sender, EventArgs e)
         {
 
         }
