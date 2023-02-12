@@ -1,20 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Linq;
-using System.ServiceProcess;
-using System.Text;
-using System.Timers;
-using System.Runtime.InteropServices;
+﻿using BCLRS;
 using BCPrint;
-using System.Threading;
-using BCLRS;
-using BC_Print_Service;
-using System.Windows.Forms;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
-using System.Data.Common;
+using System.Runtime.InteropServices;
+using System.ServiceProcess;
+using System.Timers;
 
 namespace BC_Local_Service
 {
@@ -65,7 +57,7 @@ namespace BC_Local_Service
             string authurl = BC_Print_Service.Properties.Settings.Default.AuthUrl.ToString();
             string redirecturl = BC_Print_Service.Properties.Settings.Default.RedirectURL.ToString();
             string scope = BC_Print_Service.Properties.Settings.Default.Scope.ToString();
-           
+
             authtype = (BC_Print_Service.Properties.Settings.Default.AuthType == AuthType.Basic.ToString()) ? AuthType.Basic : AuthType.oAuth;
 
             if (webAuthentication == null)
@@ -115,10 +107,7 @@ namespace BC_Local_Service
         {
             //eventLog1.WriteEntry("Monitoring the System", EventLogEntryType.Information, eventId++);
             List<WebDocument> documents;
-            if (wshelper == null)
-            {
-                //    wshelper = new WebServiceHelper(servicebaseurl, username, apikey, mylocalprintingservicename);
-            }
+            
 
             try
             {
@@ -157,8 +146,6 @@ namespace BC_Local_Service
 
                 //Get and print documents
                 documents = wshelper.GetDocumentsForPrint();
-                // lst_timerlog.Items.Add(new ListViewItem(new[] { DateTime.Now.ToString(), "Document query", wshelper.ErrorText }));
-                //    lst_documents.Items.Clear();
                 if (documents.Count > 0)
                 {
                     foreach (WebDocument doc in documents)
@@ -166,9 +153,10 @@ namespace BC_Local_Service
                         string tempFile = Path.GetTempFileName();
                         if (wshelper.GetBCDocument(doc.DocumentGUID, tempFile))
                         {
+                            LocalPrinterHelper.pdfprinertype = (BC_Print_Service.Properties.Settings.Default.PdfPrinter.ToString() == PdfPrinterType.FoxIt.ToString()) ? PdfPrinterType.FoxIt : PdfPrinterType.AdobeAcrobat;
                             LocalPrinterHelper.SendPdfFileToPrinter(doc.PrinterName, tempFile, doc.DocumentName);
                             wshelper.SetBCDocumentComplete(doc.DocumentGUID);
-                            //lst_timerlog.Items.Add(new ListViewItem(new[] { DateTime.Now.ToString(), "Document query", String.Format("Printed: {0}", doc.DocumentName) }));
+                          
                         }
                         else
                             eventLog1.WriteEntry("Document Query " + wshelper.ErrorText, EventLogEntryType.Error, eventId++);

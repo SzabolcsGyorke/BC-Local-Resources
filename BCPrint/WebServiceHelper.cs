@@ -1,24 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Collections;
-using System.Net;
-using System.IO;
-using BC;
+﻿using BCPrint;
 using Microsoft.OData.Client;
-using static BCLRS.FileHelper;
-using BCLRS;
-using BCPrint;
 using RestSharp;
-using System.Text.Json.Nodes;
-using System.Text.Json;
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Drawing.Printing;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Text.Json;
+using static BCLRS.FileHelper;
 using static BCPrint.LocalPrinterHelper;
 
 namespace BCLRS
-{ 
+{
 
     public enum AuthType
     {
@@ -29,7 +24,7 @@ namespace BCLRS
     public class WebAuthentication
     {
         public string basicauthheader { get; set; }
-        public AuthType serverauthentication { get; set; }  
+        public AuthType serverauthentication { get; set; }
         string authurl;
         string redirecturl;
         string clientid;
@@ -40,15 +35,15 @@ namespace BCLRS
         int tokenexpiresin;
         DateTime tokenacquired;
         DateTime tokenexpdatetime;
-        public WebAuthentication(AuthType _serverauthentication, string _username, string _password, string _clientid, string _clientsecret, string _authurl, string _redirecturl, string _scope) 
+        public WebAuthentication(AuthType _serverauthentication, string _username, string _password, string _clientid, string _clientsecret, string _authurl, string _redirecturl, string _scope)
         {
             serverauthentication = _serverauthentication;
             clientid = _clientid;
             clientsecret = _clientsecret;
             authurl = _authurl;
-            scope= _scope;
+            scope = _scope;
             redirecturl = _redirecturl;
-            
+
             if (serverauthentication == AuthType.Basic)
             {
                 basicauthheader = CalculateBasicAuthHeader(_username, _password);
@@ -59,9 +54,9 @@ namespace BCLRS
         public bool GetToken()
         {
             //if the token still valid
-            if(tokenexpdatetime > DateTime.Now) 
-            { 
-                return true; 
+            if (tokenexpdatetime > DateTime.Now)
+            {
+                return true;
             }
 
             //get new token
@@ -71,7 +66,7 @@ namespace BCLRS
             request.AddHeader("cache-control", "no-cache");
             request.AddHeader("content-type", "application/x-www-form-urlencoded");
             request.AddParameter("application/x-www-form-urlencoded", string.Format("grant_type=client_credentials&client_id={0}&client_secret={1}&scope={2}", clientid, clientsecret, scope), ParameterType.RequestBody);
-            
+
             RestResponse response = client.Execute(request);
 
             if (response.StatusCode == HttpStatusCode.OK)
@@ -84,12 +79,13 @@ namespace BCLRS
                     token_auth = token.GetProperty("access_token").GetString();
                     tokenexpiresin = token.GetProperty("expires_in").GetInt32();
                     tokenacquired = DateTime.Now;
-                    tokenexpdatetime= DateTime.Now.AddSeconds(tokenexpiresin);
+                    tokenexpdatetime = DateTime.Now.AddSeconds(tokenexpiresin);
                     return true;
                 }
-            } else
+            }
+            else
             {
-              
+
             }
 
             return false;
@@ -102,14 +98,14 @@ namespace BCLRS
             request.Method = Method.Post;
             request.AddHeader("cache-control", "no-cache");
             request.AddHeader("content-type", "application/x-www-form-urlencoded");
-            request.AddParameter("application/x-www-form-urlencoded", string.Format("grant_type=refresh_token&refresh_token={0}&redirect_uri={1}&client_id={2}&client_secret", token_auth,redirecturl,clientid, clientsecret), ParameterType.RequestBody);
+            request.AddParameter("application/x-www-form-urlencoded", string.Format("grant_type=refresh_token&refresh_token={0}&redirect_uri={1}&client_id={2}&client_secret", token_auth, redirecturl, clientid, clientsecret), ParameterType.RequestBody);
 
             RestResponse response = client.Execute(request);
 
             if (response.StatusCode == HttpStatusCode.OK)
             { return true; }
 
-                return true;
+            return true;
         }
         private string CalculateBasicAuthHeader(string username, string password)
         {
@@ -126,7 +122,7 @@ namespace BCLRS
 
         public string GetTokenInfo()
         {
-            return string.Format("Token expires: {0}\nToken:\n{1}",tokenexpdatetime, GetBearer());
+            return string.Format("Token expires: {0}\nToken:\n{1}", tokenexpdatetime, GetBearer());
         }
     }
 
@@ -161,23 +157,23 @@ namespace BCLRS
         public String Command { get; set; }
         public bool Done { get; set; }
 
-        public WebCommand(Guid _CommandGUID, String _Command,bool _Done)
+        public WebCommand(Guid _CommandGUID, String _Command, bool _Done)
         {
             CommandGUID = _CommandGUID;
             Command = _Command;
-            Done= _Done;
+            Done = _Done;
         }
     }
 
     public class WebSetting
     {
         public string Key { get; set; }
-        public string Value { get; set; }   
+        public string Value { get; set; }
 
         public WebSetting(string key, string value)
         {
             Key = key;
-            Value = value;  
+            Value = value;
         }
     }
 
@@ -187,18 +183,18 @@ namespace BCLRS
         string servicebaseurl;
         string mylocalprintingservicename;
         WebAuthentication webAuthentication;
-        
 
 
-        public WebServiceHelper(string _servicebaseurl, WebAuthentication _webAuthentication , string _mylocalprintingservicename)
+
+        public WebServiceHelper(string _servicebaseurl, WebAuthentication _webAuthentication, string _mylocalprintingservicename)
         {
             servicebaseurl = _servicebaseurl;
             mylocalprintingservicename = _mylocalprintingservicename;
-            webAuthentication= _webAuthentication;
+            webAuthentication = _webAuthentication;
             Initilaized = true;
         }
 
-       
+
         public bool Initilaized { get; }
         public string ErrorText { get; set; }
 
@@ -223,11 +219,12 @@ namespace BCLRS
 
                 parameres = new BodyOperationParameter[5] { new BodyOperationParameter("localService", mylocalprintingservicename), new BodyOperationParameter("printer", printername), new BodyOperationParameter("landscape", pagesettings.Landscape), new BodyOperationParameter("paperSize", pagesettings.PaperSize.ToString()), new BodyOperationParameter("paperTray", pagesettings.PaperSource.SourceName.ToString()) };
                 try
-                { 
-                retval = context.Execute<bool>(actionUri, "POST", true, parameres);
-                } catch(Exception eee)
                 {
-                    ErrorText = ErrorText +"\n"+ eee.InnerException.Message;
+                    retval = context.Execute<bool>(actionUri, "POST", true, parameres);
+                }
+                catch (Exception eee)
+                {
+                    ErrorText = ErrorText + "\n" + eee.InnerException.Message;
                 }
             }
 
@@ -285,7 +282,7 @@ namespace BCLRS
             try
             {
                 var BCLRSEntries = context.BCLRSEntryList.AddQueryOption("$filter", "entryType eq 'Print' and localServiceCode eq '" + mylocalprintingservicename + "' and entryCompleted eq false").Execute();
-                
+
                 foreach (var document in BCLRSEntries)
                 {
                     int copies = Convert.ToInt32(document.PrintCopies); //???
@@ -353,14 +350,14 @@ namespace BCLRS
 
                 foreach (var document in BCLRSEntries)
                 {
-                    bool upload = (document.ResourceType == "File Queue From Client") ;
+                    bool upload = (document.ResourceType == "File Queue From Client");
                     bool enabled = Convert.ToBoolean(document.Enabled);
                     FileUploadAction fileUploadAction = FileUploadAction.KeepFile;
 
                     if (document.AfterImportFileAction.Contains("Delete Source")) fileUploadAction = FileUploadAction.DeleteFile;
                     if (document.AfterImportFileAction.Contains("Move to Archive")) fileUploadAction = FileUploadAction.ArchiveFile;
 
-                    folders.Add(new BCFolder(document.No,document.LocalResourceCode,upload,enabled,fileUploadAction));
+                    folders.Add(new BCFolder(document.No, document.LocalResourceCode, upload, enabled, fileUploadAction));
                 }
 
             }
@@ -515,7 +512,7 @@ namespace BCLRS
             return FileUploadAction.KeepFile;
         }
 
-        public List<WebDocument> GetDocumentsForDownload()
+        public List<WebDocument> GetDocumentsForDownload(string localResourceFilter)
         {
             ErrorText = "";
             List<WebDocument> documents = new List<WebDocument>();
@@ -526,7 +523,7 @@ namespace BCLRS
 
             try
             {
-                var BCLRSEntries = context.BCLRSEntryList.AddQueryOption("$filter", "entryType eq 'File To Client' and localServiceCode eq '" + mylocalprintingservicename + "' and entryCompleted eq false and documentName ne ''").Execute();
+                var BCLRSEntries = context.BCLRSEntryList.AddQueryOption("$filter", "entryType eq 'File To Client' and localServiceCode eq '" + mylocalprintingservicename + "' and entryCompleted eq false and documentName ne '' and localResourceCode eq '" + localResourceFilter +"'").Execute();
 
                 foreach (var document in BCLRSEntries)
                 {
@@ -562,9 +559,9 @@ namespace BCLRS
                     context.SaveChanges(SaveChangesOptions.ContinueOnError);
                 }
             }
-            catch(Exception eee)
+            catch (Exception eee)
             {
-                ErrorText= eee.InnerException.Message;
+                ErrorText = eee.InnerException.Message;
             }
         }
     }

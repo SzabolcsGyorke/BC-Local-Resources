@@ -33,6 +33,18 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_tester));
             this.tc = new System.Windows.Forms.TabControl();
             this.TPage_Print = new System.Windows.Forms.TabPage();
+            this.btn_markascompleted = new System.Windows.Forms.Button();
+            this.btn_savefile = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cb_printer = new System.Windows.Forms.ComboBox();
+            this.btn_printdoc = new System.Windows.Forms.Button();
+            this.lst_documents = new System.Windows.Forms.ListView();
+            this.GUID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Document = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Printer = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Copies = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.UseRawPrint = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btn_getdocuments = new System.Windows.Forms.Button();
             this.tpage_local = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -54,7 +66,15 @@
             this.Enabled = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btn_getFolders = new System.Windows.Forms.Button();
             this.btn_uploadfolder1 = new System.Windows.Forms.Button();
+            this.TPage_commands = new System.Windows.Forms.TabPage();
+            this.btn_exexcommand = new System.Windows.Forms.Button();
+            this.btn_getcommands = new System.Windows.Forms.Button();
+            this.lst_commands = new System.Windows.Forms.ListView();
+            this.col_guid = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.col_Command = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.col_completed = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.TPage_Timer = new System.Windows.Forms.TabPage();
+            this.btn_clearlog = new System.Windows.Forms.Button();
             this.cb_command = new System.Windows.Forms.CheckBox();
             this.cb_heartbeat = new System.Windows.Forms.CheckBox();
             this.lst_timerlog = new System.Windows.Forms.ListView();
@@ -68,19 +88,15 @@
             this.lbl_timeinterval = new System.Windows.Forms.Label();
             this.tb_timeinterval = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.btn_uploadsettings = new System.Windows.Forms.Button();
+            this.btn_functions = new System.Windows.Forms.Button();
             this.cb_authtype = new System.Windows.Forms.ComboBox();
-            this.btn_resetauth = new System.Windows.Forms.Button();
             this.tb_scope = new System.Windows.Forms.TextBox();
             this.lbl_scope = new System.Windows.Forms.Label();
             this.tb_redirecturl = new System.Windows.Forms.TextBox();
             this.lbl_redirecturl = new System.Windows.Forms.Label();
             this.tb_authurl = new System.Windows.Forms.TextBox();
             this.lbl_authurl = new System.Windows.Forms.Label();
-            this.btn_tokeninfo = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
-            this.btn_updateheartbeat = new System.Windows.Forms.Button();
-            this.btn_registerinstance = new System.Windows.Forms.Button();
             this.tb_webkey = new System.Windows.Forms.TextBox();
             this.lbl_password = new System.Windows.Forms.Label();
             this.tb_username = new System.Windows.Forms.TextBox();
@@ -90,36 +106,24 @@
             this.tb_instance = new System.Windows.Forms.TextBox();
             this.lbl_instance = new System.Windows.Forms.Label();
             this.timer_Job = new System.Windows.Forms.Timer(this.components);
+            this.cm_functions = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.registerInstanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.updateHeartbeatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.uploadConfigurationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clearTokenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tokenInformationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.webDocumentBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.TPage_commands = new System.Windows.Forms.TabPage();
-            this.btn_exexcommand = new System.Windows.Forms.Button();
-            this.btn_getcommands = new System.Windows.Forms.Button();
-            this.lst_commands = new System.Windows.Forms.ListView();
-            this.col_guid = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.col_Command = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.col_completed = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.btn_markascompleted = new System.Windows.Forms.Button();
-            this.btn_savefile = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
-            this.cb_printer = new System.Windows.Forms.ComboBox();
-            this.btn_printdoc = new System.Windows.Forms.Button();
-            this.lst_documents = new System.Windows.Forms.ListView();
-            this.GUID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Document = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Printer = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Copies = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.UseRawPrint = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.btn_getdocuments = new System.Windows.Forms.Button();
             this.tc.SuspendLayout();
             this.TPage_Print.SuspendLayout();
             this.tpage_local.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.TPage_File.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.TPage_commands.SuspendLayout();
             this.TPage_Timer.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.cm_functions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.webDocumentBindingSource)).BeginInit();
-            this.TPage_commands.SuspendLayout();
             this.SuspendLayout();
             // 
             // tc
@@ -153,7 +157,115 @@
             this.TPage_Print.TabIndex = 0;
             this.TPage_Print.Text = "Printig";
             this.TPage_Print.UseVisualStyleBackColor = true;
-            this.TPage_Print.Click += new System.EventHandler(this.tabPage1_Click);
+            // 
+            // btn_markascompleted
+            // 
+            this.btn_markascompleted.Location = new System.Drawing.Point(304, 357);
+            this.btn_markascompleted.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_markascompleted.Name = "btn_markascompleted";
+            this.btn_markascompleted.Size = new System.Drawing.Size(177, 35);
+            this.btn_markascompleted.TabIndex = 23;
+            this.btn_markascompleted.Text = "Mark as Completed";
+            this.btn_markascompleted.UseVisualStyleBackColor = true;
+            this.btn_markascompleted.Click += new System.EventHandler(this.btn_markascompleted_Click);
+            // 
+            // btn_savefile
+            // 
+            this.btn_savefile.Location = new System.Drawing.Point(489, 357);
+            this.btn_savefile.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_savefile.Name = "btn_savefile";
+            this.btn_savefile.Size = new System.Drawing.Size(177, 35);
+            this.btn_savefile.TabIndex = 22;
+            this.btn_savefile.Text = "Save File";
+            this.btn_savefile.UseVisualStyleBackColor = true;
+            this.btn_savefile.Click += new System.EventHandler(this.btn_savefile_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(8, 405);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(55, 20);
+            this.label6.TabIndex = 21;
+            this.label6.Text = "Printer";
+            // 
+            // cb_printer
+            // 
+            this.cb_printer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cb_printer.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cb_printer.FormattingEnabled = true;
+            this.cb_printer.Location = new System.Drawing.Point(156, 402);
+            this.cb_printer.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cb_printer.Name = "cb_printer";
+            this.cb_printer.Size = new System.Drawing.Size(510, 28);
+            this.cb_printer.TabIndex = 20;
+            // 
+            // btn_printdoc
+            // 
+            this.btn_printdoc.Location = new System.Drawing.Point(489, 440);
+            this.btn_printdoc.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_printdoc.Name = "btn_printdoc";
+            this.btn_printdoc.Size = new System.Drawing.Size(177, 35);
+            this.btn_printdoc.TabIndex = 19;
+            this.btn_printdoc.Text = "Print Document";
+            this.btn_printdoc.UseVisualStyleBackColor = true;
+            this.btn_printdoc.Click += new System.EventHandler(this.btn_printdoc_Click);
+            // 
+            // lst_documents
+            // 
+            this.lst_documents.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.GUID,
+            this.Document,
+            this.Printer,
+            this.Copies,
+            this.UseRawPrint});
+            this.lst_documents.FullRowSelect = true;
+            this.lst_documents.HideSelection = false;
+            this.lst_documents.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem1});
+            this.lst_documents.Location = new System.Drawing.Point(13, 57);
+            this.lst_documents.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.lst_documents.MultiSelect = false;
+            this.lst_documents.Name = "lst_documents";
+            this.lst_documents.Size = new System.Drawing.Size(653, 290);
+            this.lst_documents.TabIndex = 18;
+            this.lst_documents.UseCompatibleStateImageBehavior = false;
+            this.lst_documents.View = System.Windows.Forms.View.Details;
+            this.lst_documents.SelectedIndexChanged += new System.EventHandler(this.lst_documents_SelectedIndexChanged_1);
+            // 
+            // GUID
+            // 
+            this.GUID.Text = "GUID";
+            this.GUID.Width = 95;
+            // 
+            // Document
+            // 
+            this.Document.Text = "Document";
+            this.Document.Width = 262;
+            // 
+            // Printer
+            // 
+            this.Printer.Text = "Printer";
+            // 
+            // Copies
+            // 
+            this.Copies.Text = "Copies";
+            // 
+            // UseRawPrint
+            // 
+            this.UseRawPrint.Text = "Use Raw Print";
+            // 
+            // btn_getdocuments
+            // 
+            this.btn_getdocuments.Location = new System.Drawing.Point(489, 10);
+            this.btn_getdocuments.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_getdocuments.Name = "btn_getdocuments";
+            this.btn_getdocuments.Size = new System.Drawing.Size(177, 37);
+            this.btn_getdocuments.TabIndex = 17;
+            this.btn_getdocuments.Text = "Get Documents";
+            this.btn_getdocuments.UseVisualStyleBackColor = true;
+            this.btn_getdocuments.Click += new System.EventHandler(this.btn_getdocuments_Click);
             // 
             // tpage_local
             // 
@@ -228,7 +340,7 @@
             // 
             // btn_openfilelist
             // 
-            this.btn_openfilelist.Location = new System.Drawing.Point(606, 69);
+            this.btn_openfilelist.Location = new System.Drawing.Point(616, 69);
             this.btn_openfilelist.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_openfilelist.Name = "btn_openfilelist";
             this.btn_openfilelist.Size = new System.Drawing.Size(33, 31);
@@ -242,7 +354,7 @@
             this.tb_pdffilename.Location = new System.Drawing.Point(140, 71);
             this.tb_pdffilename.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tb_pdffilename.Name = "tb_pdffilename";
-            this.tb_pdffilename.Size = new System.Drawing.Size(458, 26);
+            this.tb_pdffilename.Size = new System.Drawing.Size(468, 26);
             this.tb_pdffilename.TabIndex = 6;
             // 
             // TPage_File
@@ -311,16 +423,16 @@
             // 
             // tb_dwfolder1
             // 
-            this.tb_dwfolder1.Location = new System.Drawing.Point(65, 27);
+            this.tb_dwfolder1.Location = new System.Drawing.Point(148, 27);
             this.tb_dwfolder1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tb_dwfolder1.Name = "tb_dwfolder1";
-            this.tb_dwfolder1.Size = new System.Drawing.Size(391, 26);
+            this.tb_dwfolder1.Size = new System.Drawing.Size(308, 26);
             this.tb_dwfolder1.TabIndex = 34;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(3, 30);
+            this.label8.Location = new System.Drawing.Point(7, 31);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(54, 20);
@@ -380,8 +492,75 @@
             this.btn_uploadfolder1.UseVisualStyleBackColor = true;
             this.btn_uploadfolder1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // TPage_commands
+            // 
+            this.TPage_commands.Controls.Add(this.btn_exexcommand);
+            this.TPage_commands.Controls.Add(this.btn_getcommands);
+            this.TPage_commands.Controls.Add(this.lst_commands);
+            this.TPage_commands.Location = new System.Drawing.Point(4, 29);
+            this.TPage_commands.Name = "TPage_commands";
+            this.TPage_commands.Padding = new System.Windows.Forms.Padding(3);
+            this.TPage_commands.Size = new System.Drawing.Size(674, 485);
+            this.TPage_commands.TabIndex = 4;
+            this.TPage_commands.Text = "Commands";
+            this.TPage_commands.UseVisualStyleBackColor = true;
+            // 
+            // btn_exexcommand
+            // 
+            this.btn_exexcommand.Location = new System.Drawing.Point(490, 442);
+            this.btn_exexcommand.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_exexcommand.Name = "btn_exexcommand";
+            this.btn_exexcommand.Size = new System.Drawing.Size(177, 35);
+            this.btn_exexcommand.TabIndex = 19;
+            this.btn_exexcommand.Text = "Execute";
+            this.btn_exexcommand.UseVisualStyleBackColor = true;
+            this.btn_exexcommand.Click += new System.EventHandler(this.btn_exexcommand_Click);
+            // 
+            // btn_getcommands
+            // 
+            this.btn_getcommands.Location = new System.Drawing.Point(490, 8);
+            this.btn_getcommands.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_getcommands.Name = "btn_getcommands";
+            this.btn_getcommands.Size = new System.Drawing.Size(177, 35);
+            this.btn_getcommands.TabIndex = 18;
+            this.btn_getcommands.Text = "Get Commands";
+            this.btn_getcommands.UseVisualStyleBackColor = true;
+            this.btn_getcommands.Click += new System.EventHandler(this.btn_getcommands_Click);
+            // 
+            // lst_commands
+            // 
+            this.lst_commands.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.col_guid,
+            this.col_Command,
+            this.col_completed});
+            this.lst_commands.FullRowSelect = true;
+            this.lst_commands.HideSelection = false;
+            this.lst_commands.Location = new System.Drawing.Point(13, 51);
+            this.lst_commands.MultiSelect = false;
+            this.lst_commands.Name = "lst_commands";
+            this.lst_commands.Size = new System.Drawing.Size(655, 383);
+            this.lst_commands.TabIndex = 17;
+            this.lst_commands.UseCompatibleStateImageBehavior = false;
+            this.lst_commands.View = System.Windows.Forms.View.Details;
+            // 
+            // col_guid
+            // 
+            this.col_guid.Text = "Guid";
+            this.col_guid.Width = 100;
+            // 
+            // col_Command
+            // 
+            this.col_Command.Text = "Command";
+            this.col_Command.Width = 338;
+            // 
+            // col_completed
+            // 
+            this.col_completed.Text = "Completed";
+            this.col_completed.Width = 82;
+            // 
             // TPage_Timer
             // 
+            this.TPage_Timer.Controls.Add(this.btn_clearlog);
             this.TPage_Timer.Controls.Add(this.cb_command);
             this.TPage_Timer.Controls.Add(this.cb_heartbeat);
             this.TPage_Timer.Controls.Add(this.lst_timerlog);
@@ -398,6 +577,17 @@
             this.TPage_Timer.TabIndex = 3;
             this.TPage_Timer.Text = "Timer";
             this.TPage_Timer.UseVisualStyleBackColor = true;
+            // 
+            // btn_clearlog
+            // 
+            this.btn_clearlog.Location = new System.Drawing.Point(305, 440);
+            this.btn_clearlog.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_clearlog.Name = "btn_clearlog";
+            this.btn_clearlog.Size = new System.Drawing.Size(177, 37);
+            this.btn_clearlog.TabIndex = 45;
+            this.btn_clearlog.Text = "Clear Log";
+            this.btn_clearlog.UseVisualStyleBackColor = false;
+            this.btn_clearlog.Click += new System.EventHandler(this.btn_clearlog_Click);
             // 
             // cb_command
             // 
@@ -436,7 +626,8 @@
             this.lst_timerlog.TabIndex = 42;
             this.lst_timerlog.UseCompatibleStateImageBehavior = false;
             this.lst_timerlog.View = System.Windows.Forms.View.Details;
-            this.lst_timerlog.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lst_timerlog_MouseDoubleClick);
+            this.lst_timerlog.SelectedIndexChanged += new System.EventHandler(this.lst_timerlog_SelectedIndexChanged);
+            this.lst_timerlog.DoubleClick += new System.EventHandler(this.lst_timerlog_DoubleClick);
             // 
             // col_datetime
             // 
@@ -511,19 +702,15 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.btn_uploadsettings);
+            this.groupBox3.Controls.Add(this.btn_functions);
             this.groupBox3.Controls.Add(this.cb_authtype);
-            this.groupBox3.Controls.Add(this.btn_resetauth);
             this.groupBox3.Controls.Add(this.tb_scope);
             this.groupBox3.Controls.Add(this.lbl_scope);
             this.groupBox3.Controls.Add(this.tb_redirecturl);
             this.groupBox3.Controls.Add(this.lbl_redirecturl);
             this.groupBox3.Controls.Add(this.tb_authurl);
             this.groupBox3.Controls.Add(this.lbl_authurl);
-            this.groupBox3.Controls.Add(this.btn_tokeninfo);
             this.groupBox3.Controls.Add(this.label5);
-            this.groupBox3.Controls.Add(this.btn_updateheartbeat);
-            this.groupBox3.Controls.Add(this.btn_registerinstance);
             this.groupBox3.Controls.Add(this.tb_webkey);
             this.groupBox3.Controls.Add(this.lbl_password);
             this.groupBox3.Controls.Add(this.tb_username);
@@ -539,16 +726,18 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Connection";
             // 
-            // btn_uploadsettings
+            // btn_functions
             // 
-            this.btn_uploadsettings.Location = new System.Drawing.Point(13, 294);
-            this.btn_uploadsettings.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btn_uploadsettings.Name = "btn_uploadsettings";
-            this.btn_uploadsettings.Size = new System.Drawing.Size(54, 35);
-            this.btn_uploadsettings.TabIndex = 40;
-            this.btn_uploadsettings.Text = "Upload Settings";
-            this.btn_uploadsettings.UseVisualStyleBackColor = true;
-            this.btn_uploadsettings.Click += new System.EventHandler(this.btn_uploadsettings_Click);
+            this.btn_functions.Image = global::Tester.Properties.Resources.drop_down_arrow;
+            this.btn_functions.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_functions.Location = new System.Drawing.Point(497, 292);
+            this.btn_functions.Name = "btn_functions";
+            this.btn_functions.Padding = new System.Windows.Forms.Padding(0, 0, 7, 0);
+            this.btn_functions.Size = new System.Drawing.Size(173, 35);
+            this.btn_functions.TabIndex = 41;
+            this.btn_functions.Text = "Functions";
+            this.btn_functions.UseVisualStyleBackColor = true;
+            this.btn_functions.Click += new System.EventHandler(this.btn_functions_Click);
             // 
             // cb_authtype
             // 
@@ -556,26 +745,15 @@
             this.cb_authtype.Items.AddRange(new object[] {
             "Basic",
             "oAuth"});
-            this.cb_authtype.Location = new System.Drawing.Point(160, 53);
+            this.cb_authtype.Location = new System.Drawing.Point(160, 60);
             this.cb_authtype.Name = "cb_authtype";
             this.cb_authtype.Size = new System.Drawing.Size(127, 28);
             this.cb_authtype.TabIndex = 39;
             this.cb_authtype.SelectedIndexChanged += new System.EventHandler(this.cb_authtype_SelectedIndexChanged);
             // 
-            // btn_resetauth
-            // 
-            this.btn_resetauth.Location = new System.Drawing.Point(497, 49);
-            this.btn_resetauth.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btn_resetauth.Name = "btn_resetauth";
-            this.btn_resetauth.Size = new System.Drawing.Size(173, 35);
-            this.btn_resetauth.TabIndex = 38;
-            this.btn_resetauth.Text = "Clear Auth Cache";
-            this.btn_resetauth.UseVisualStyleBackColor = true;
-            this.btn_resetauth.Click += new System.EventHandler(this.btn_resetauth_Click);
-            // 
             // tb_scope
             // 
-            this.tb_scope.Location = new System.Drawing.Point(160, 237);
+            this.tb_scope.Location = new System.Drawing.Point(160, 244);
             this.tb_scope.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tb_scope.Name = "tb_scope";
             this.tb_scope.Size = new System.Drawing.Size(510, 26);
@@ -585,7 +763,7 @@
             // lbl_scope
             // 
             this.lbl_scope.AutoSize = true;
-            this.lbl_scope.Location = new System.Drawing.Point(12, 240);
+            this.lbl_scope.Location = new System.Drawing.Point(12, 247);
             this.lbl_scope.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_scope.Name = "lbl_scope";
             this.lbl_scope.Size = new System.Drawing.Size(55, 20);
@@ -594,7 +772,7 @@
             // 
             // tb_redirecturl
             // 
-            this.tb_redirecturl.Location = new System.Drawing.Point(160, 201);
+            this.tb_redirecturl.Location = new System.Drawing.Point(160, 208);
             this.tb_redirecturl.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tb_redirecturl.Name = "tb_redirecturl";
             this.tb_redirecturl.Size = new System.Drawing.Size(510, 26);
@@ -604,7 +782,7 @@
             // lbl_redirecturl
             // 
             this.lbl_redirecturl.AutoSize = true;
-            this.lbl_redirecturl.Location = new System.Drawing.Point(12, 204);
+            this.lbl_redirecturl.Location = new System.Drawing.Point(12, 211);
             this.lbl_redirecturl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_redirecturl.Name = "lbl_redirecturl";
             this.lbl_redirecturl.Size = new System.Drawing.Size(106, 20);
@@ -613,7 +791,7 @@
             // 
             // tb_authurl
             // 
-            this.tb_authurl.Location = new System.Drawing.Point(160, 165);
+            this.tb_authurl.Location = new System.Drawing.Point(160, 172);
             this.tb_authurl.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tb_authurl.Name = "tb_authurl";
             this.tb_authurl.Size = new System.Drawing.Size(510, 26);
@@ -623,58 +801,25 @@
             // lbl_authurl
             // 
             this.lbl_authurl.AutoSize = true;
-            this.lbl_authurl.Location = new System.Drawing.Point(12, 168);
+            this.lbl_authurl.Location = new System.Drawing.Point(12, 175);
             this.lbl_authurl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_authurl.Name = "lbl_authurl";
             this.lbl_authurl.Size = new System.Drawing.Size(140, 20);
             this.lbl_authurl.TabIndex = 32;
             this.lbl_authurl.Text = "Authorization URL";
             // 
-            // btn_tokeninfo
-            // 
-            this.btn_tokeninfo.Location = new System.Drawing.Point(77, 292);
-            this.btn_tokeninfo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btn_tokeninfo.Name = "btn_tokeninfo";
-            this.btn_tokeninfo.Size = new System.Drawing.Size(162, 35);
-            this.btn_tokeninfo.TabIndex = 31;
-            this.btn_tokeninfo.Text = "Token Info";
-            this.btn_tokeninfo.UseVisualStyleBackColor = true;
-            this.btn_tokeninfo.Click += new System.EventHandler(this.btn_tokeninfo_Click);
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(8, 56);
+            this.label5.Location = new System.Drawing.Point(12, 63);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(112, 20);
             this.label5.TabIndex = 30;
             this.label5.Text = "Authentication";
             // 
-            // btn_updateheartbeat
-            // 
-            this.btn_updateheartbeat.Location = new System.Drawing.Point(247, 292);
-            this.btn_updateheartbeat.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btn_updateheartbeat.Name = "btn_updateheartbeat";
-            this.btn_updateheartbeat.Size = new System.Drawing.Size(162, 35);
-            this.btn_updateheartbeat.TabIndex = 24;
-            this.btn_updateheartbeat.Text = "Update Heartbeat";
-            this.btn_updateheartbeat.UseVisualStyleBackColor = true;
-            this.btn_updateheartbeat.Click += new System.EventHandler(this.btn_updateheartbeat_Click);
-            // 
-            // btn_registerinstance
-            // 
-            this.btn_registerinstance.Location = new System.Drawing.Point(418, 292);
-            this.btn_registerinstance.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btn_registerinstance.Name = "btn_registerinstance";
-            this.btn_registerinstance.Size = new System.Drawing.Size(177, 37);
-            this.btn_registerinstance.TabIndex = 23;
-            this.btn_registerinstance.Text = "Register Instance";
-            this.btn_registerinstance.UseVisualStyleBackColor = true;
-            this.btn_registerinstance.Click += new System.EventHandler(this.btn_registerinstance_Click);
-            // 
             // tb_webkey
             // 
-            this.tb_webkey.Location = new System.Drawing.Point(160, 125);
+            this.tb_webkey.Location = new System.Drawing.Point(160, 132);
             this.tb_webkey.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tb_webkey.Name = "tb_webkey";
             this.tb_webkey.Size = new System.Drawing.Size(510, 26);
@@ -684,7 +829,7 @@
             // lbl_password
             // 
             this.lbl_password.AutoSize = true;
-            this.lbl_password.Location = new System.Drawing.Point(13, 131);
+            this.lbl_password.Location = new System.Drawing.Point(12, 138);
             this.lbl_password.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_password.Name = "lbl_password";
             this.lbl_password.Size = new System.Drawing.Size(78, 20);
@@ -693,7 +838,7 @@
             // 
             // tb_username
             // 
-            this.tb_username.Location = new System.Drawing.Point(160, 89);
+            this.tb_username.Location = new System.Drawing.Point(160, 96);
             this.tb_username.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tb_username.Name = "tb_username";
             this.tb_username.Size = new System.Drawing.Size(510, 26);
@@ -703,7 +848,7 @@
             // lbl_user
             // 
             this.lbl_user.AutoSize = true;
-            this.lbl_user.Location = new System.Drawing.Point(13, 95);
+            this.lbl_user.Location = new System.Drawing.Point(12, 102);
             this.lbl_user.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_user.Name = "lbl_user";
             this.lbl_user.Size = new System.Drawing.Size(83, 20);
@@ -712,7 +857,7 @@
             // 
             // tb_baseurl
             // 
-            this.tb_baseurl.Location = new System.Drawing.Point(160, 19);
+            this.tb_baseurl.Location = new System.Drawing.Point(160, 26);
             this.tb_baseurl.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tb_baseurl.Name = "tb_baseurl";
             this.tb_baseurl.Size = new System.Drawing.Size(510, 26);
@@ -722,7 +867,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(8, 24);
+            this.label2.Location = new System.Drawing.Point(12, 31);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(90, 20);
@@ -731,7 +876,7 @@
             // 
             // tb_instance
             // 
-            this.tb_instance.Location = new System.Drawing.Point(178, 12);
+            this.tb_instance.Location = new System.Drawing.Point(178, 21);
             this.tb_instance.Name = "tb_instance";
             this.tb_instance.Size = new System.Drawing.Size(510, 26);
             this.tb_instance.TabIndex = 10;
@@ -740,7 +885,7 @@
             // lbl_instance
             // 
             this.lbl_instance.AutoSize = true;
-            this.lbl_instance.Location = new System.Drawing.Point(30, 13);
+            this.lbl_instance.Location = new System.Drawing.Point(30, 22);
             this.lbl_instance.Name = "lbl_instance";
             this.lbl_instance.Size = new System.Drawing.Size(71, 20);
             this.lbl_instance.TabIndex = 11;
@@ -750,178 +895,52 @@
             // 
             this.timer_Job.Tick += new System.EventHandler(this.timer_Job_Tick);
             // 
+            // cm_functions
+            // 
+            this.cm_functions.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.cm_functions.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.registerInstanceToolStripMenuItem,
+            this.updateHeartbeatToolStripMenuItem,
+            this.uploadConfigurationToolStripMenuItem,
+            this.clearTokenToolStripMenuItem,
+            this.tokenInformationToolStripMenuItem});
+            this.cm_functions.Name = "contextMenuStrip1";
+            this.cm_functions.Size = new System.Drawing.Size(257, 164);
+            this.cm_functions.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.cm_functions_ItemClicked);
+            // 
+            // registerInstanceToolStripMenuItem
+            // 
+            this.registerInstanceToolStripMenuItem.Name = "registerInstanceToolStripMenuItem";
+            this.registerInstanceToolStripMenuItem.Size = new System.Drawing.Size(256, 32);
+            this.registerInstanceToolStripMenuItem.Text = "Register Instance";
+            // 
+            // updateHeartbeatToolStripMenuItem
+            // 
+            this.updateHeartbeatToolStripMenuItem.Name = "updateHeartbeatToolStripMenuItem";
+            this.updateHeartbeatToolStripMenuItem.Size = new System.Drawing.Size(256, 32);
+            this.updateHeartbeatToolStripMenuItem.Text = "Update Heartbeat";
+            // 
+            // uploadConfigurationToolStripMenuItem
+            // 
+            this.uploadConfigurationToolStripMenuItem.Name = "uploadConfigurationToolStripMenuItem";
+            this.uploadConfigurationToolStripMenuItem.Size = new System.Drawing.Size(256, 32);
+            this.uploadConfigurationToolStripMenuItem.Text = "Upload Configuration";
+            // 
+            // clearTokenToolStripMenuItem
+            // 
+            this.clearTokenToolStripMenuItem.Name = "clearTokenToolStripMenuItem";
+            this.clearTokenToolStripMenuItem.Size = new System.Drawing.Size(256, 32);
+            this.clearTokenToolStripMenuItem.Text = "Clear Token";
+            // 
+            // tokenInformationToolStripMenuItem
+            // 
+            this.tokenInformationToolStripMenuItem.Name = "tokenInformationToolStripMenuItem";
+            this.tokenInformationToolStripMenuItem.Size = new System.Drawing.Size(256, 32);
+            this.tokenInformationToolStripMenuItem.Text = "Token Information";
+            // 
             // webDocumentBindingSource
             // 
             this.webDocumentBindingSource.DataSource = typeof(BCLRS.WebDocument);
-            // 
-            // TPage_commands
-            // 
-            this.TPage_commands.Controls.Add(this.btn_exexcommand);
-            this.TPage_commands.Controls.Add(this.btn_getcommands);
-            this.TPage_commands.Controls.Add(this.lst_commands);
-            this.TPage_commands.Location = new System.Drawing.Point(4, 29);
-            this.TPage_commands.Name = "TPage_commands";
-            this.TPage_commands.Padding = new System.Windows.Forms.Padding(3);
-            this.TPage_commands.Size = new System.Drawing.Size(674, 485);
-            this.TPage_commands.TabIndex = 4;
-            this.TPage_commands.Text = "Commands";
-            this.TPage_commands.UseVisualStyleBackColor = true;
-            // 
-            // btn_exexcommand
-            // 
-            this.btn_exexcommand.Location = new System.Drawing.Point(490, 442);
-            this.btn_exexcommand.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btn_exexcommand.Name = "btn_exexcommand";
-            this.btn_exexcommand.Size = new System.Drawing.Size(177, 35);
-            this.btn_exexcommand.TabIndex = 19;
-            this.btn_exexcommand.Text = "Execute";
-            this.btn_exexcommand.UseVisualStyleBackColor = true;
-            this.btn_exexcommand.Click += new System.EventHandler(this.btn_exexcommand_Click_1);
-            // 
-            // btn_getcommands
-            // 
-            this.btn_getcommands.Location = new System.Drawing.Point(490, 8);
-            this.btn_getcommands.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btn_getcommands.Name = "btn_getcommands";
-            this.btn_getcommands.Size = new System.Drawing.Size(177, 35);
-            this.btn_getcommands.TabIndex = 18;
-            this.btn_getcommands.Text = "Get Commands";
-            this.btn_getcommands.UseVisualStyleBackColor = true;
-            // 
-            // lst_commands
-            // 
-            this.lst_commands.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.col_guid,
-            this.col_Command,
-            this.col_completed});
-            this.lst_commands.FullRowSelect = true;
-            this.lst_commands.HideSelection = false;
-            this.lst_commands.Location = new System.Drawing.Point(13, 51);
-            this.lst_commands.MultiSelect = false;
-            this.lst_commands.Name = "lst_commands";
-            this.lst_commands.Size = new System.Drawing.Size(655, 383);
-            this.lst_commands.TabIndex = 17;
-            this.lst_commands.UseCompatibleStateImageBehavior = false;
-            this.lst_commands.View = System.Windows.Forms.View.Details;
-            // 
-            // col_guid
-            // 
-            this.col_guid.Text = "Guid";
-            this.col_guid.Width = 100;
-            // 
-            // col_Command
-            // 
-            this.col_Command.Text = "Command";
-            this.col_Command.Width = 338;
-            // 
-            // col_completed
-            // 
-            this.col_completed.Text = "Completed";
-            this.col_completed.Width = 82;
-            // 
-            // btn_markascompleted
-            // 
-            this.btn_markascompleted.Location = new System.Drawing.Point(304, 357);
-            this.btn_markascompleted.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btn_markascompleted.Name = "btn_markascompleted";
-            this.btn_markascompleted.Size = new System.Drawing.Size(177, 35);
-            this.btn_markascompleted.TabIndex = 23;
-            this.btn_markascompleted.Text = "Mark as Completed";
-            this.btn_markascompleted.UseVisualStyleBackColor = true;
-            // 
-            // btn_savefile
-            // 
-            this.btn_savefile.Location = new System.Drawing.Point(489, 357);
-            this.btn_savefile.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btn_savefile.Name = "btn_savefile";
-            this.btn_savefile.Size = new System.Drawing.Size(177, 35);
-            this.btn_savefile.TabIndex = 22;
-            this.btn_savefile.Text = "Save File";
-            this.btn_savefile.UseVisualStyleBackColor = true;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(9, 405);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(55, 20);
-            this.label6.TabIndex = 21;
-            this.label6.Text = "Printer";
-            // 
-            // cb_printer
-            // 
-            this.cb_printer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cb_printer.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.cb_printer.FormattingEnabled = true;
-            this.cb_printer.Location = new System.Drawing.Point(72, 402);
-            this.cb_printer.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.cb_printer.Name = "cb_printer";
-            this.cb_printer.Size = new System.Drawing.Size(594, 28);
-            this.cb_printer.TabIndex = 20;
-            // 
-            // btn_printdoc
-            // 
-            this.btn_printdoc.Location = new System.Drawing.Point(489, 440);
-            this.btn_printdoc.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btn_printdoc.Name = "btn_printdoc";
-            this.btn_printdoc.Size = new System.Drawing.Size(177, 35);
-            this.btn_printdoc.TabIndex = 19;
-            this.btn_printdoc.Text = "Print Document";
-            this.btn_printdoc.UseVisualStyleBackColor = true;
-            // 
-            // lst_documents
-            // 
-            this.lst_documents.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.GUID,
-            this.Document,
-            this.Printer,
-            this.Copies,
-            this.UseRawPrint});
-            this.lst_documents.FullRowSelect = true;
-            this.lst_documents.HideSelection = false;
-            this.lst_documents.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1});
-            this.lst_documents.Location = new System.Drawing.Point(13, 57);
-            this.lst_documents.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.lst_documents.MultiSelect = false;
-            this.lst_documents.Name = "lst_documents";
-            this.lst_documents.Size = new System.Drawing.Size(653, 290);
-            this.lst_documents.TabIndex = 18;
-            this.lst_documents.UseCompatibleStateImageBehavior = false;
-            this.lst_documents.View = System.Windows.Forms.View.Details;
-            // 
-            // GUID
-            // 
-            this.GUID.Text = "GUID";
-            this.GUID.Width = 95;
-            // 
-            // Document
-            // 
-            this.Document.Text = "Document";
-            this.Document.Width = 262;
-            // 
-            // Printer
-            // 
-            this.Printer.Text = "Printer";
-            // 
-            // Copies
-            // 
-            this.Copies.Text = "Copies";
-            // 
-            // UseRawPrint
-            // 
-            this.UseRawPrint.Text = "Use Raw Print";
-            // 
-            // btn_getdocuments
-            // 
-            this.btn_getdocuments.Location = new System.Drawing.Point(489, 10);
-            this.btn_getdocuments.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btn_getdocuments.Name = "btn_getdocuments";
-            this.btn_getdocuments.Size = new System.Drawing.Size(177, 37);
-            this.btn_getdocuments.TabIndex = 17;
-            this.btn_getdocuments.Text = "Get Documents";
-            this.btn_getdocuments.UseVisualStyleBackColor = true;
             // 
             // frm_tester
             // 
@@ -948,12 +967,13 @@
             this.TPage_File.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            this.TPage_commands.ResumeLayout(false);
             this.TPage_Timer.ResumeLayout(false);
             this.TPage_Timer.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.cm_functions.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.webDocumentBindingSource)).EndInit();
-            this.TPage_commands.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -972,8 +992,6 @@
         private System.Windows.Forms.Button btn_openfilelist;
         private System.Windows.Forms.TextBox tb_pdffilename;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Button btn_updateheartbeat;
-        private System.Windows.Forms.Button btn_registerinstance;
         private System.Windows.Forms.TextBox tb_webkey;
         private System.Windows.Forms.Label lbl_password;
         private System.Windows.Forms.TextBox tb_username;
@@ -985,7 +1003,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox tb_instance;
         private System.Windows.Forms.Label lbl_instance;
-        private System.Windows.Forms.Button btn_tokeninfo;
         private System.Windows.Forms.TextBox tb_scope;
         private System.Windows.Forms.Label lbl_scope;
         private System.Windows.Forms.TextBox tb_redirecturl;
@@ -1017,10 +1034,8 @@
         private System.Windows.Forms.CheckBox cb_timedfilesync;
         private System.Windows.Forms.CheckBox cb_timedprint;
         private System.Windows.Forms.CheckBox cb_heartbeat;
-        private System.Windows.Forms.Button btn_resetauth;
         private System.Windows.Forms.ComboBox cb_authtype;
         private System.Windows.Forms.CheckBox cb_command;
-        private System.Windows.Forms.Button btn_uploadsettings;
         private System.Windows.Forms.TabPage TPage_commands;
         private System.Windows.Forms.Button btn_exexcommand;
         private System.Windows.Forms.Button btn_getcommands;
@@ -1040,6 +1055,14 @@
         private System.Windows.Forms.ColumnHeader Copies;
         private System.Windows.Forms.ColumnHeader UseRawPrint;
         private System.Windows.Forms.Button btn_getdocuments;
+        private System.Windows.Forms.ContextMenuStrip cm_functions;
+        private System.Windows.Forms.ToolStripMenuItem registerInstanceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem updateHeartbeatToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem uploadConfigurationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem clearTokenToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tokenInformationToolStripMenuItem;
+        private System.Windows.Forms.Button btn_functions;
+        private System.Windows.Forms.Button btn_clearlog;
     }
 }
 

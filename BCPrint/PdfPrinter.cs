@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BCPrint
 {
@@ -36,7 +32,7 @@ namespace BCPrint
             _printerName = printerName;
         }
 
-       
+
 
         /// <summary>
         /// Gets or sets the name of the PDF file to print.
@@ -49,7 +45,7 @@ namespace BCPrint
         string _pdfFileName;
 
         /// <summary>
-        /// Gets or sets the name of the printer. A typical name looks like '\\myserver\HP LaserJet PCL5'.
+        /// Gets or sets the name of the printer. 
         /// </summary>
         /// <value>The name of the printer.</value>
         public string PrinterName
@@ -87,7 +83,7 @@ namespace BCPrint
                 _printerName = _defaultPrinterName;
 
             if (String.IsNullOrEmpty(_pdfReaderPath))
-                throw new InvalidOperationException("No full qualified path to AcroRd32.exe or Acrobat.exe is set.");
+                throw new InvalidOperationException("No full qualified path to AcroRd32.exe or Acrobat.exe or FoxitPDFReader.exe is set.");
 
             if (String.IsNullOrEmpty(_printerName))
                 throw new InvalidOperationException("No printer name set.");
@@ -101,7 +97,7 @@ namespace BCPrint
             if (!File.Exists(fqName))
                 throw new InvalidOperationException(String.Format("The file {0} does not exist.", fqName));
 
-            
+
 
             // TODO: Check whether printer exists.
 
@@ -127,13 +123,13 @@ namespace BCPrint
                 Process process = Process.Start(startInfo);
                 if (!process.WaitForExit(milliseconds))
                 {
-                    // Kill Adobe Reader/Acrobat
+                    // Kill pdf reader
                     process.Kill();
                 }
             }
             catch (Exception eee)
             {
-                throw eee;    
+                throw eee;
             }
         }
 
@@ -150,7 +146,7 @@ namespace BCPrint
                 _runningAcro.Dispose();
                 _runningAcro = null;
             }
-            // Is any Adobe Reader/Acrobat running?
+            // Is any PDF Reader instance running?
             Process[] processes = Process.GetProcesses();
             int count = processes.Length;
             for (int idx = 0; idx < count; idx++)
@@ -162,7 +158,7 @@ namespace BCPrint
 
                     if (String.Compare(Path.GetFileName(module.FileName), Path.GetFileName(_pdfReaderPath), StringComparison.OrdinalIgnoreCase) == 0)
                     {
-                        // Yes: Fine, we can print.
+ 
                         _runningAcro = process;
                         break;
                     }
@@ -171,8 +167,7 @@ namespace BCPrint
             }
             if (_runningAcro == null)
             {
-                // No: Start an Adobe Reader/Acrobat.
-                // If you are within ASP.NET, good luck...
+                //Start a pdfreader session
                 _runningAcro = Process.Start(_pdfReaderPath);
                 if (_runningAcro != null)
                     _runningAcro.WaitForInputIdle();
@@ -181,8 +176,7 @@ namespace BCPrint
         static Process _runningAcro;
 
         /// <summary>
-        /// Gets or sets the Adobe Reader or Adobe Acrobat path.
-        /// A typical name looks like 'C:\Program Files\Adobe\Adobe Reader 7.0\AcroRd32.exe'.
+        /// Gets or sets the PDF reader path.
         /// </summary>
         public string PdfReaderPath
         {
@@ -192,7 +186,7 @@ namespace BCPrint
         static string _pdfReaderPath;
 
         /// <summary>
-        /// Gets or sets the name of the default printer. A typical name looks like '\\myserver\HP LaserJet PCL5'.
+        /// Gets or sets the name of the default printer. 
         /// </summary>
         static public string DefaultPrinterName
         {

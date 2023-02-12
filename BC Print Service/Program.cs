@@ -1,11 +1,4 @@
-﻿using BC_Local_Service;
-using BCLRS;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.ServiceProcess;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ServiceProcess;
 
 namespace BC_Local_Service
 {
@@ -16,20 +9,19 @@ namespace BC_Local_Service
         /// </summary>
         static void Main()
         {
-            
+
             //Application.SetCompatibleTextRenderingDefault(false);
             PortableSettingsProvider.SettingsFileName = "settings.config";
             PortableSettingsProvider.SettingsDirectory = PortableSettingsProvider.SettingsDirectory + "Configuration";
             System.IO.Directory.CreateDirectory(PortableSettingsProvider.SettingsDirectory);
             PortableSettingsProvider.ApplyProvider(BC_Print_Service.Properties.Settings.Default);
-          
-                        ServiceBase[] ServicesToRun;
-                        ServicesToRun = new ServiceBase[]
-                        {
+
+            ServiceBase[] ServicesToRun;
+            ServicesToRun = new ServiceBase[]
+            {
                             new BCLocalService()
-                        };
-                        ServiceBase.Run(ServicesToRun);
-            
+            };
+            ServiceBase.Run(ServicesToRun); 
         }
     }
 }

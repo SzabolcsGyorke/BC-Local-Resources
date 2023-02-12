@@ -29,5 +29,8 @@
     <Setting Name="TimeIntervalSec" Type="System.String" Scope="User">
       <Value Profile="(Default)">10</Value>
     </Setting>
+    <Setting Name="PdfPrinter" Type="System.String" Scope="User">
+      <Value Profile="(Default)">FoxIt</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

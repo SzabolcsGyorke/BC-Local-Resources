@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Drawing;
+﻿using RawPrint;
+using System;
 using System.Collections;
-using System.IO;
-using RawPrint;
 using System.Drawing.Printing;
+using System.IO;
 
 namespace BCPrint
 {
+    public enum PdfPrinterType
+    {
+        FoxIt,
+        AdobeAcrobat
+    }
     public class LocalPrinterHelper
     {
         public static ArrayList GetLocalPrinters()
@@ -50,7 +50,7 @@ namespace BCPrint
             settings = new PrinterSettings();
 
             settings.PrinterName = printerName;
-            
+
 
             return settings.DefaultPageSettings;
         }
@@ -64,9 +64,13 @@ namespace BCPrint
                     rawprint.PrintRawFile(printername, filenameandpath, documentname, false);
                 else
                 {
-                    PdfPrinter acrobatPrinter = new PdfPrinter(filenameandpath, printername);
-                    acrobatPrinter.PdfReaderPath = GetFoxItPath();
-                    acrobatPrinter.Print(10000); //10 seconds wait befor close the printer
+                    PdfPrinter pdfPrinter = new PdfPrinter(filenameandpath, printername);
+                    if (pdfprinertype == PdfPrinterType.FoxIt)
+                        pdfPrinter.PdfReaderPath = GetFoxItPath();
+                    else if (pdfprinertype == PdfPrinterType.AdobeAcrobat)
+                        pdfPrinter.PdfReaderPath = GetAcrobatPath();
+
+                    pdfPrinter.Print(10000); //10 seconds wait before close the printer
                 }
             }
 
@@ -111,6 +115,13 @@ namespace BCPrint
             set { _useRawPrint = value; }
         }
         static bool _useRawPrint;
+
+        static public PdfPrinterType pdfprinertype
+        {
+            get { return _pdfprinertype; }
+            set { _pdfprinertype = value; }
+        }
+        static public PdfPrinterType _pdfprinertype;
     }
 
 }

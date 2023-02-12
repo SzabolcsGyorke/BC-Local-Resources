@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BCLRS
 {
@@ -59,7 +56,8 @@ namespace BCLRS
                         if (folder.Upload)
                         {
                             if (!UploadBCFolder(folder)) { return false; }
-                        } else
+                        }
+                        else
                         {
                             if (!DownloadBCFolder(folder)) return false;
                         }
@@ -73,10 +71,10 @@ namespace BCLRS
 
         private bool DownloadBCFolder(BCFolder folder)
         {
-            List<WebDocument> FilesToDownload = wshelper.GetDocumentsForDownload();
+            List<WebDocument> FilesToDownload = wshelper.GetDocumentsForDownload(folder.Folder);
             if (FilesToDownload.Count > 0)
             {
-                foreach(WebDocument document in FilesToDownload)
+                foreach (WebDocument document in FilesToDownload)
                 {
                     document.DocumentName = Path.Combine(folder.Folder, document.DocumentName);
                     if (wshelper.GetBCDocument(document))
@@ -95,8 +93,9 @@ namespace BCLRS
         {
             DirectoryInfo d = new DirectoryInfo(folder.Folder);
             FileInfo[] Files = d.GetFiles("*.*");
-            
-            foreach (FileInfo file in Files) {
+
+            foreach (FileInfo file in Files)
+            {
                 var retval = wshelper.UploadFile(file.FullName.ToString());
                 if (retval == FileUploadAction.Error)
                 {
@@ -104,18 +103,18 @@ namespace BCLRS
                     return false;
                 }
 
-                if (retval == FileUploadAction.DeleteFile) 
-                { 
+                if (retval == FileUploadAction.DeleteFile)
+                {
                     File.Delete(file.FullName);
                 }
 
-                if (retval == FileUploadAction.ArchiveFile) 
+                if (retval == FileUploadAction.ArchiveFile)
                 {
-                
+
                 }
             }
             return true;
         }
-        
+
     }
 }

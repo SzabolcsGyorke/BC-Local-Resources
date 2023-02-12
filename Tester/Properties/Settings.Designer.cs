@@ -130,5 +130,17 @@ namespace Tester.Properties {
                 this["TimeIntervalSec"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("FoxIt")]
+        public string PdfPrinter {
+            get {
+                return ((string)(this["PdfPrinter"]));
+            }
+            set {
+                this["PdfPrinter"] = value;
+            }
+        }
     }
 }

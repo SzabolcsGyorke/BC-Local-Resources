@@ -1,20 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Collections;
+﻿using BCLRS;
 using BCPrint;
-using System.IO;
-using static BCLRS.FileHelper;
-using BCLRS;
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Diagnostics;
-using System.Reflection;
-using System.Windows.Forms.Design;
+using System.Drawing;
+using System.IO;
+using System.Windows.Forms;
 
 namespace Tester
 {
@@ -95,16 +87,14 @@ namespace Tester
                 lb_printers.SelectedIndex = 1;
             }
 
-
-          
-         
         }
 
         private void UpdateConnectionDetails(AuthType authtype)
         {
             if (authtype == AuthType.oAuth)
             {
-                btn_tokeninfo.Visible = true;
+                cm_functions.Items.Find("tokenInformationToolStripMenuItem", true)[0].Visible = true;
+                cm_functions.Items.Find("clearTokenToolStripMenuItem", true)[0].Visible = true;
                 lbl_user.Text = "Client ID";
                 lbl_password.Text = "Client Secret";
                 lbl_authurl.Visible = true;
@@ -117,7 +107,8 @@ namespace Tester
 
             if (authtype == AuthType.Basic)
             {
-                btn_tokeninfo.Visible = false;
+                cm_functions.Items.Find("tokenInformationToolStripMenuItem", true)[0].Visible = false;
+                cm_functions.Items.Find("clearTokenToolStripMenuItem", true)[0].Visible = false;
                 lbl_user.Text = "Username";
                 lbl_password.Text = "Password";
                 lbl_authurl.Visible = false;
@@ -127,6 +118,7 @@ namespace Tester
                 tb_scope.Visible = false;
                 lbl_scope.Visible = false;
             }
+            cleartoken();
         }
 
         private void btn_getdocuments_Click(object sender, EventArgs e)
@@ -168,14 +160,14 @@ namespace Tester
 
         private void btn_printdoc_Click(object sender, EventArgs e)
         {
-            // lst_documents.Items[lst_documents.se]
-
             foreach (ListViewItem selecteddoc in lst_documents.SelectedItems)
             {
                 string tempFile = Path.GetTempFileName();
                 wshelper.GetBCDocument(Guid.Parse(selecteddoc.SubItems[0].Text), tempFile);
+                LocalPrinterHelper.pdfprinertype = (Properties.Settings.Default.PdfPrinter.ToString() == PdfPrinterType.FoxIt.ToString()) ? PdfPrinterType.FoxIt : PdfPrinterType.AdobeAcrobat;
                 LocalPrinterHelper.SendPdfFileToPrinter(cb_printer.Text, tempFile, selecteddoc.SubItems[1].Text);
                 wshelper.SetBCDocumentComplete(Guid.Parse(selecteddoc.SubItems[0].Text));
+                lst_documents.Items[selecteddoc.Index].Remove();
             }
         }
 
@@ -191,18 +183,7 @@ namespace Tester
             }
         }
 
-        private void btn_registerinstance_Click(object sender, EventArgs e)
-        {
-            InitAuthentication();
-
-            wshelper.RegisterInstance();
-        }
-
-        private void btn_updateheartbeat_Click(object sender, EventArgs e)
-        {
-            InitAuthentication();
-            wshelper.UpdateBCHeartbeat();
-        }
+       
 
         private void btn_savefile_Click(object sender, EventArgs e)
         {
@@ -221,10 +202,7 @@ namespace Tester
             }
         }
 
-        private void tabPage1_Click(object sender, EventArgs e)
-        {
-
-        }
+     
 
         private void tb_baseurl_TextChanged(object sender, EventArgs e)
         {
@@ -272,13 +250,10 @@ namespace Tester
         private void btn_tokeninfo_Click(object sender, EventArgs e)
         {
             if (webAuthentication != null)
-            MessageBox.Show(webAuthentication.GetTokenInfo(), "Token", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(webAuthentication.GetTokenInfo(), "Token", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void tokenInfoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Token info");
-        }
+      
 
         private void lst_documents_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -289,11 +264,7 @@ namespace Tester
             }
         }
 
-        private void tb_dwfolder1_TextChanged(object sender, EventArgs e)
-        {
-        
-        }
-
+    
 
         private void btn_getFolders_Click(object sender, EventArgs e)
         {
@@ -424,6 +395,7 @@ namespace Tester
             foreach (ListViewItem selecteddoc in lst_documents.SelectedItems)
             {
                 wshelper.SetBCDocumentComplete(Guid.Parse(selecteddoc.SubItems[0].Text));
+                lst_documents.Items[selecteddoc.Index].Remove();
             }
         }
 
@@ -452,11 +424,12 @@ namespace Tester
             wshelper.RegisterFolder(tb_dwfolder1.Text, cb_folderdirection.SelectedIndex + 1);
         }
 
-        private void btn_resetauth_Click(object sender, EventArgs e)
+        private void cleartoken()
         {
             wshelper = null;
             webAuthentication = null;
         }
+    
 
         private void cb_authtype_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -514,33 +487,34 @@ namespace Tester
             Process process = Process.Start(startInfo);
         }
 
-
-
-        private void lst_timerlog_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-
-        }
-
-        private void btn_uploadsettings_Click(object sender, EventArgs e)
+        private void uploadsettings()
         {
             List<WebSetting> webSettings = new List<WebSetting>();
             foreach (System.Configuration.SettingsPropertyValue property in Properties.Settings.Default.PropertyValues)
             {
-                webSettings.Add(new WebSetting(property.Name.ToString(), property.PropertyValue.ToString()));                               
+                webSettings.Add(new WebSetting(property.Name.ToString(), property.PropertyValue.ToString()));
             }
             if (webSettings.Count > 0)
             {
                 InitAuthentication();
                 wshelper.UploadSettingstoBC(webSettings);
                 if (wshelper.ErrorText != "")
-                    MessageBox.Show(wshelper.ErrorText,"Web Service Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                    MessageBox.Show(wshelper.ErrorText, "Web Service Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else
+                    MessageBox.Show("Update Completed", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        private void btn_uploadsettings_Click(object sender, EventArgs e)
+        {
+            uploadsettings();
         }
 
         private void tb_instance_TextChanged(object sender, EventArgs e)
         {
             Properties.Settings.Default.Instance = tb_instance.Text;
             Properties.Settings.Default.Save();
+            cleartoken();
         }
 
         private void tb_timeinterval_TextChanged(object sender, EventArgs e)
@@ -549,9 +523,87 @@ namespace Tester
             Properties.Settings.Default.Save();
         }
 
-        private void btn_exexcommand_Click_1(object sender, EventArgs e)
-        {
+        
 
+        private void btn_functions_Click(object sender, EventArgs e)
+        {
+            cm_functions.Show(btn_functions, new Point(0, btn_functions.Height));
         }
+
+
+        private void cm_functions_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            if (e.ClickedItem.Name == "registerInstanceToolStripMenuItem")
+            {
+                InitAuthentication();
+                if (wshelper.RegisterInstance())
+                    MessageBox.Show(string.Format("Instance {0} registered", tb_instance.Text), "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else
+                    MessageBox.Show(wshelper.ErrorText, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            if (e.ClickedItem.Name == "updateHeartbeatToolStripMenuItem")
+            {
+                InitAuthentication();
+                if (wshelper.UpdateBCHeartbeat())
+                    MessageBox.Show("Update Complete", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else
+                    MessageBox.Show(wshelper.ErrorText, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            if (e.ClickedItem.Name == "uploadConfigurationToolStripMenuItem")
+            {
+                uploadsettings();
+            }
+
+            if (e.ClickedItem.Name == "clearTokenToolStripMenuItem")
+            {
+                cleartoken();
+                MessageBox.Show("Token Cleared", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+            if (e.ClickedItem.Name == "tokenInformationToolStripMenuItem")
+            {
+                if (webAuthentication != null)
+                    MessageBox.Show(webAuthentication.GetTokenInfo(), "Token", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        ListViewItem selectedlogitem;
+
+        private void lst_timerlog_DoubleClick(object sender, EventArgs e)
+        {
+           if (selectedlogitem != null)
+            {
+                MessageBox.Show(string.Format("Date Time: {0}\nFunction: {1}\nMessage: {2}", selectedlogitem.SubItems[0].Text, selectedlogitem.SubItems[1].Text, selectedlogitem.SubItems[2].Text), "Event Details", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }    
+          
+        }
+
+        private void lst_timerlog_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            selectedlogitem = null; 
+            if (lst_timerlog.SelectedItems.Count == 1)
+                selectedlogitem = lst_timerlog.SelectedItems[0];
+        }
+
+        private void btn_clearlog_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Do you want to clear the log?","Log",MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            { 
+            lst_timerlog.Items.Clear();
+            selectedlogitem = null;
+            }
+        }
+
+
+        private void lst_documents_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            
+            if (lst_documents.SelectedItems.Count == 1)
+                cb_printer.Text = lst_documents.SelectedItems[0].SubItems[2].Text;
+        }
+
+        
     }
 }
