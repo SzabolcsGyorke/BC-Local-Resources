@@ -28,7 +28,21 @@ Connection details
 oData URL: base url for the BC services including the compnay name. Example: https://api.businesscentral.dynamics.com/v2.0/6e9fbeef-85d9-4bcb-8ec4-xxxxxxxxxb9/Production/ODataV4/Company('CRONUS%20UK%20Ltd.')/
 
 Authentication: 
-  Basic - simple user/password authentication
-  
-  oAuth - use of application scope tokens
+  Basic - simple user/password authentication<br>
+  oAuth - use of application scope tokens<br>
     
+<b>oAuth</b><br>
+Client ID: client id form azure<br>
+Cleint Secret: cleint secret form azure <br>
+Authorization URL: token url from azure  Example: https://login.microsoftonline.com/6e9fbeef-xxxx-xxxx-8ec4-xxxxxxx12b9/oauth2/v2.0/token <br>
+Redirect URL: redirect web url set in azure <br>
+Scope: defult scope for BC Example: https://api.businesscentral.dynamics.com/.default<br>
+<br>
+![image](https://user-images.githubusercontent.com/64136814/218325198-9943ab76-8edd-49a9-910b-58c5693853df.png)
+
+<b>Basic</b><br>
+Username: BC username<br>
+Password: BC passord or API key.<br>
+<br>
+
+
