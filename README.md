@@ -22,7 +22,7 @@ No additional subscriptions required.
 The app supports two printing modes: pdf and raw. The raw print will directly send the attached file to the printer. This can be useful for barcode printing like zpl files.
 The pdf printing invokes Adobe Acrobat or the Foxit pdf readers and sends the pdf trough them to the selected printer.
 
-Of course you can try to use some non free alteratives as well.
+Of course you can try to use some non free alternatives as well.
 
 **Download the Installer "BC Local Resources Service Setup.zip" from the repo.**
 
@@ -79,7 +79,7 @@ oData URL: base url for the BC services including the company name._ Example for
 - **Clear Token**: clears the current authentication token (oAuth only)
 - **Token Information**: display the current token and expiry time (oAuth only)
 
-**Once you tested all the requeued components use the _Upload Configuration_ function to store it in BC and for furter use to configure the Windows Service.**
+**Once you tested all the requeued components use the _Upload Configuration_ function to store it in BC and for further use to configure the Windows Service.**
 
 ### Printing
 Download the list unprinted documents from BC and print them or mark them as completed.
@@ -138,7 +138,7 @@ Example:
 ```
 sc create BCLRS binpath= "C:\Program Files (x86)\SG\BC Local Resources Service Setup\BC Print Service.exe" DisplayName= "BC Local Resources" 
 ```
-The service should run with admin priviliges. This is due to the check of the running process of the PDF Viewers and their attempted close.
+The service should run with admin privileges. This is due to the check of the running process of the PDF Viewers and their attempted close.
 
 Once it installed create a new folder named **Configuration** to the service directory:
 <img width="836" alt="image" src="https://user-images.githubusercontent.com/64136814/218337407-01f85586-649a-4921-be38-e2c873a8cf14.png">
@@ -153,7 +153,7 @@ Find the instance created by the Tester app (or modify one with the use of the S
 The purpose of the extension is to collect the printouts, files and commands for the individual local services.
 
 ### Local Resource Services
-The list of registerd services/clients. It shows the status of the service: alive and pingig back to BC and the number of connected printers and folders.
+The list of registered services/clients. It shows the status of the service: alive and pinging back to BC and the number of connected printers and folders.
 You can also view, edit or export the service configuration.
 
 <img width="478" alt="image" src="https://user-images.githubusercontent.com/64136814/218547915-7c4b09ec-2e44-4c04-a79c-8025f20643ab.png">
@@ -172,18 +172,18 @@ The list of resources published by the local service.
 |No. | Primary key - pulled form the No. Series from the Setup|
 |Local Service Code||
 |Local Resource Code||
-|**Enabled**|During syncronization new resources are not enabled therefore they can't be used.|
+|**Enabled**|During synchronization new resources are not enabled therefore they can't be used.|
 |Description||
 |**Resource Type**|Sets the purpose of the resource: Printer, File Queue, Command Queue|
 |**After Import File Action**|What should happen after the file is uploaded to BC or downloaded to the client computer|
-|No. of Pending Entries|Numbrof the unprocessed entries.|
+|No. of Pending Entries|Number of the unprocessed entries.|
 |**Landscape**|Printer: Paper setup|
 |**Paper Size**|Printer: size of paper|
 |Paper Tray|Printer: Destination tray - not in use|
 |**Use Raw Print**|Bypass the PDF reader and send the file directly to the printer (ZPL)|
 
 ### Local Service Entries
-List of entries processed or queud for a service to process.
+List of entries processed or queued for a service to process.
 The table is company independent. Might change in the future.
 
 <img width="1225" alt="image" src="https://user-images.githubusercontent.com/64136814/218581889-b76b755a-e673-42c5-af18-45a3be2fe824.png">

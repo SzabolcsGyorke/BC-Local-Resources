@@ -89,7 +89,7 @@ codeunit 90100 "BC LRS Web Service"
     end;
 
     /// <summary>
-    /// OnAfterFileUpload. Event
+    /// OnAfterFileUpload. Event Codeunit 90100 "BC LRS Web Service"
     /// </summary>
     /// <param name="BCLRSEntry">VAR Record "BC LRS Entry".</param>
     /// <param name="StopFurtherEventProcessing">VAR Boolean.</param>
