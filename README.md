@@ -24,7 +24,7 @@ The pdf printing invokes Adobe Acrobat or the Foxit pdf readers and sends the pd
 
 Of course you can try to use some non free alternatives as well.
 
-**Download the Installer "BC Local Resources Service Setup.zip" from the repo.**
+**Download the Installer "BC Local Resources Service Setup.zip" from the repo or from the latest release.**
 
 ## BC extension and Setup
 Deploy the extension form the repository.
