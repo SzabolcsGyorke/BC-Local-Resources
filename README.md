@@ -136,7 +136,7 @@ The windows service runs in the background and synchronizes with BC in a set tim
 Currently the installer is not creating the service so you need to add it manually from a admin command prompt:
 Example:
 ```
-sc create BCLRS binpath= "C:\Program Files (x86)\SG\BC Local Resources Service Setup\BC Print Service.exe" DisplayName= "BC Local Resources" 
+sc create BCLRS binpath= "C:\Program Files (x86)\SG\Business Central Local Resources\BC Print Service.exe" DisplayName= "BC Local Resources"
 ```
 The service should run with admin privileges. This is due to the check of the running process of the PDF Viewers and their attempted close.
 
