@@ -183,6 +183,58 @@ The list of resources published by the local service.
 |**Use Raw Print**|Bypass the PDF reader and send the file directly to the printer (ZPL)|
 
 ### Local Service Entries
+List of entries processed or queud for a service to process.
+The table is company independent. Might change in the future.
+
+<img width="1225" alt="image" src="https://user-images.githubusercontent.com/64136814/218581889-b76b755a-e673-42c5-af18-45a3be2fe824.png">
+
+|Field |Description|
+|------|-----------|
+|Entry GUID|PK|
+|Company Name|Entry created in company|
+|Entry Type|File Queue, Print, Command|
+|Document Name|Print: File Name|
+|Blob Value Exits|Check if the BLOB is populated or not|
+|Local Service Code||
+|Local Resource Code||
+|Print Copies|Print: number of copies|
+|Entry Completed||
+|Entry Completed At||
+
+**Blob export/import**
+Functions added to the page to handle the blob field: Upload file and Download file
+
+**Create a command**
+1. Open the COMMAND Resource
+2. Add a new line
+3. Use the Command Editor to add the command
+
+### Printing
+The enabled local printers will show up on the Print Request Page under the Printer:
+
+<img width="397" alt="image" src="https://user-images.githubusercontent.com/64136814/218583561-ceb85b02-2613-46ea-9555-ce185ae162df.png">
+
+### File Inbox
+Files will be uploaded from the registered folder from the client computer. 
+Once the record is created the After File Import Action is preformed. **Important to have a Delete action selected otherwise the client will keep uploading the same file.**
+
+If you selected _Delete Source and Run Subscriber_ the file will be deleted from the client and the following event is triggered:
+```
+    /// <summary>
+    /// OnAfterFileUpload. Event Codeunit 90100 "BC LRS Web Service"
+    /// </summary>
+    /// <param name="BCLRSEntry">VAR Record "BC LRS Entry".</param>
+    /// <param name="StopFurtherEventProcessing">VAR Boolean.</param>
+    [IntegrationEvent(true, false)]
+    procedure OnAfterFileUpload(var BCLRSEntry: Record "BC LRS Entry"; var StopFurtherEventProcessing: Boolean)
+    begin
+    end;
+```
+
+### File Outbox
+By creating a Local Service Entry for a File Queue To Client Resource.
+
+The client will only attempt to download the file if the Description is populated with a file name so you'll have time to insert the record, upload the blob and lastly the Description. With this you can avoid to find the records before the blob data is added. 
 
 ## Windows Event Log
 The service creates log entries to the windows event log:
