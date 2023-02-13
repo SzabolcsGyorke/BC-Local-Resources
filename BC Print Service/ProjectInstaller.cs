@@ -9,5 +9,15 @@ namespace BC_Print_Service
         {
             InitializeComponent();
         }
+
+        private void serviceProcessInstaller1_AfterInstall(object sender, System.Configuration.Install.InstallEventArgs e)
+        {
+
+        }
+
+        private void serviceInstaller1_AfterInstall(object sender, System.Configuration.Install.InstallEventArgs e)
+        {
+
+        }
     }
 }

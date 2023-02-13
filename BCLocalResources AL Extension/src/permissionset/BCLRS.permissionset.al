@@ -1,0 +1,28 @@
+permissionset 90100 "BCLRS"
+{
+    Permissions = tabledata "BC LRS Entry" = RIMD,
+        tabledata "BC LRS Service" = RIMD,
+        tabledata "BC LRS Service Resource" = RIMD,
+        tabledata "BC LRS Service Setup Line" = RIMD,
+        tabledata "BC LRS Setup" = RIMD,
+        table "BC LRS Entry" = X,
+        table "BC LRS Service" = X,
+        table "BC LRS Service Resource" = X,
+        table "BC LRS Service Setup Line" = X,
+        table "BC LRS Setup" = X,
+        codeunit "BC LRS Management" = X,
+        codeunit "BC LRS Print Event Subscriber" = X,
+        codeunit "BC LRS Web Service" = X,
+        page "BC LRS Edit Text" = X,
+        page "BC LRS Entry List" = X,
+        page "BC LRS Folders" = X,
+        page "BC LRS Printer Setup" = X,
+        page "BC LRS Printers" = X,
+        page "BC LRS Resources Setup" = X,
+        page "BC LRS Service Resources" = X,
+        page "BC LRS Service Setup Lines" = X,
+        page "BC LRS Services" = X,
+        page BCLRSEntriesAPI = X,
+        page BCLRSServicesAPI = X,
+        page BCLRSSetupLinesAPI = X;
+}

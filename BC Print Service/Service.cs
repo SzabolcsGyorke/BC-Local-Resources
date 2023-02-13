@@ -107,7 +107,7 @@ namespace BC_Local_Service
         {
             //eventLog1.WriteEntry("Monitoring the System", EventLogEntryType.Information, eventId++);
             List<WebDocument> documents;
-            
+
 
             try
             {
@@ -122,21 +122,6 @@ namespace BC_Local_Service
                     wshelper.RegisterInstance();
                     sucsessfulsyncs = 0;
                 }
-                //Update Printers every 1000th HB
-                /*
-                                if (sucsessfulsyncs == 1000)
-                                {
-                                    eventLog1.WriteEntry("Services updated", EventLogEntryType.Information, eventId++);
-                                    wshelper.RegisterInstance();
-                                    sucsessfulsyncs = 0;
-                                }
-                                if (wshelper.ErrorText == "") { 
-                                     sucsessfulsyncs++;
-                                } else
-                                {
-                                    eventLog1.WriteEntry(wshelper.ErrorText, EventLogEntryType.Error, eventId++);
-                                }
-                */
 
                 //Syncfiles
                 BCLRS.FileHelper filehelper = new FileHelper(wshelper);
@@ -156,7 +141,7 @@ namespace BC_Local_Service
                             LocalPrinterHelper.pdfprinertype = (BC_Print_Service.Properties.Settings.Default.PdfPrinter.ToString() == PdfPrinterType.FoxIt.ToString()) ? PdfPrinterType.FoxIt : PdfPrinterType.AdobeAcrobat;
                             LocalPrinterHelper.SendPdfFileToPrinter(doc.PrinterName, tempFile, doc.DocumentName);
                             wshelper.SetBCDocumentComplete(doc.DocumentGUID);
-                          
+
                         }
                         else
                             eventLog1.WriteEntry("Document Query " + wshelper.ErrorText, EventLogEntryType.Error, eventId++);
@@ -185,24 +170,38 @@ namespace BC_Local_Service
             }
             catch (Exception eee)
             {
-
                 eventLog1.WriteEntry(eee.InnerException.ToString(), EventLogEntryType.Error, eventId++);
             }
-
-
         }
 
         private void ExecuteCommand(string _command)
         {
             ProcessStartInfo startInfo = new ProcessStartInfo();
-            startInfo.FileName = _command;
+            eventLog1.WriteEntry(_command, EventLogEntryType.Information, eventId++);
+            string[] comparts = _command.Split(new char[] { '^' });
+            if (comparts.Length == 2)
+            {
+                startInfo.FileName = comparts[0];
+                startInfo.Arguments = comparts[1];
+            }
+            else
+            {
+                startInfo.FileName = _command;
+            }
 
             startInfo.WindowStyle = ProcessWindowStyle.Hidden;
             startInfo.CreateNoWindow = true;
             startInfo.ErrorDialog = false;
             startInfo.UseShellExecute = false;
 
-            Process process = Process.Start(startInfo);
+            try
+            {
+                Process process = Process.Start(startInfo);
+            }
+            catch (Exception eee)
+            {
+                eventLog1.WriteEntry(eee.InnerException.ToString(), EventLogEntryType.Error, eventId++);
+            }
         }
         protected override void OnStop()
         {

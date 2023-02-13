@@ -183,7 +183,7 @@ namespace Tester
             }
         }
 
-       
+
 
         private void btn_savefile_Click(object sender, EventArgs e)
         {
@@ -202,7 +202,7 @@ namespace Tester
             }
         }
 
-     
+
 
         private void tb_baseurl_TextChanged(object sender, EventArgs e)
         {
@@ -253,7 +253,7 @@ namespace Tester
                 MessageBox.Show(webAuthentication.GetTokenInfo(), "Token", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-      
+
 
         private void lst_documents_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -264,7 +264,7 @@ namespace Tester
             }
         }
 
-    
+
 
         private void btn_getFolders_Click(object sender, EventArgs e)
         {
@@ -429,7 +429,7 @@ namespace Tester
             wshelper = null;
             webAuthentication = null;
         }
-    
+
 
         private void cb_authtype_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -477,7 +477,16 @@ namespace Tester
         private void ExecuteCommand(string _command)
         {
             ProcessStartInfo startInfo = new ProcessStartInfo();
-            startInfo.FileName = _command;
+            string[] comparts = _command.Split(new char[] { '^' });
+            if (comparts.Length == 2)
+            {
+                startInfo.FileName = comparts[0];
+                startInfo.Arguments = comparts[1];
+            }
+            else
+            {
+                startInfo.FileName = _command;
+            }
 
             startInfo.WindowStyle = ProcessWindowStyle.Hidden;
             startInfo.CreateNoWindow = true;
@@ -523,7 +532,7 @@ namespace Tester
             Properties.Settings.Default.Save();
         }
 
-        
+
 
         private void btn_functions_Click(object sender, EventArgs e)
         {
@@ -573,37 +582,37 @@ namespace Tester
 
         private void lst_timerlog_DoubleClick(object sender, EventArgs e)
         {
-           if (selectedlogitem != null)
+            if (selectedlogitem != null)
             {
                 MessageBox.Show(string.Format("Date Time: {0}\nFunction: {1}\nMessage: {2}", selectedlogitem.SubItems[0].Text, selectedlogitem.SubItems[1].Text, selectedlogitem.SubItems[2].Text), "Event Details", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }    
-          
+            }
+
         }
 
         private void lst_timerlog_SelectedIndexChanged(object sender, EventArgs e)
         {
-            selectedlogitem = null; 
+            selectedlogitem = null;
             if (lst_timerlog.SelectedItems.Count == 1)
                 selectedlogitem = lst_timerlog.SelectedItems[0];
         }
 
         private void btn_clearlog_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Do you want to clear the log?","Log",MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            { 
-            lst_timerlog.Items.Clear();
-            selectedlogitem = null;
+            if (MessageBox.Show("Do you want to clear the log?", "Log", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                lst_timerlog.Items.Clear();
+                selectedlogitem = null;
             }
         }
 
 
         private void lst_documents_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            
+
             if (lst_documents.SelectedItems.Count == 1)
                 cb_printer.Text = lst_documents.SelectedItems[0].SubItems[2].Text;
         }
 
-        
+
     }
 }

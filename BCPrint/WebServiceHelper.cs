@@ -523,7 +523,7 @@ namespace BCLRS
 
             try
             {
-                var BCLRSEntries = context.BCLRSEntryList.AddQueryOption("$filter", "entryType eq 'File To Client' and localServiceCode eq '" + mylocalprintingservicename + "' and entryCompleted eq false and documentName ne '' and localResourceCode eq '" + localResourceFilter +"'").Execute();
+                var BCLRSEntries = context.BCLRSEntryList.AddQueryOption("$filter", "entryType eq 'File To Client' and localServiceCode eq '" + mylocalprintingservicename + "' and entryCompleted eq false and documentName ne '' and localResourceCode eq '" + localResourceFilter + "'").Execute();
 
                 foreach (var document in BCLRSEntries)
                 {

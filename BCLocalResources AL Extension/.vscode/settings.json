@@ -1,0 +1,23 @@
+{
+    "CRS.FileNamePattern": "<ObjectNameShort>.<ObjectType>.al",
+    "CRS.FileNamePatternExtensions": "<ObjectNameShort>.<ObjectTypeShortPascalCase>.al",
+    "CRS.FileNamePatternPageCustomizations": "<ObjectNameShort>(<BaseNameShort>).<ObjectTypeShort>.al",
+    "CRS.OnSaveAlFileAction": "Reorganize",
+    // "al.assemblyProbingPaths": [
+    //     "./.netpackages",
+    //     "C:/Program Files/Assemblies",
+    //     "C:/Windows/Microsoft.NET/assembly",
+    //     "C:/Program Files/Microsoft Dynamics 365 Business Central/160",
+    //     "C:/Program Files/Microsoft Dynamics 365 Business Central/170",
+    //     "C:/Windows/Microsoft.NET/Framework",
+    //     "./DotNet Libraries"
+    // ],
+    "al.enableCodeAnalysis": true,
+    "al.enableCodeActions": true,
+    "alObjectDesigner.disableFileWatcherOnChange": true,
+    "alObjectDesigner.gridRowHeightOption": "small",
+    "al.codeAnalyzers": [
+        "${UICop}",
+        "${CodeCop}"
+    ]
+}

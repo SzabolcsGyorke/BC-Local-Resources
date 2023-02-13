@@ -1,0 +1,31 @@
+{
+  "id": "a3c57c7c-05a3-47ec-bb0f-7259b936b38d",
+  "name": "BC Local Resources",
+  "publisher": "SG",
+  "version": "1.0.0.13",
+  "brief": "Local Resources",
+  "description": "Local Resources",
+  "privacyStatement": "https://github.com/SzabolcsGyorke/BC-Local-Resources",
+  "EULA": "https://github.com/SzabolcsGyorke/BC-Local-Resources",
+  "help": "https://github.com/SzabolcsGyorke/BC-Local-Resources",
+  "url": "https://github.com/SzabolcsGyorke/BC-Local-Resources",
+  "logo": "misc/logo.jpg",
+  "dependencies": [   
+    
+  ],
+  "screenshots": [],
+  "platform": "21.0.0.0",
+  "application": "21.0.0.0",
+  "idRanges": [
+    {
+      "from": 90100,
+      "to": 90149
+    }
+  ],
+  "contextSensitiveHelpUrl": "https://BCLRS.com/help/",
+  "resourceExposurePolicy": {"allowDebugging": true,"allowDownloadingSource": true,"applyToDevExtension": false},
+  "features": ["TranslationFile"],
+  "runtime": "10.0",
+  "target": "Cloud",
+  "suppressWarnings": ["AA0218"]
+}
